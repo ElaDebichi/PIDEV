@@ -1,0 +1,24 @@
+
+
+
+
+{{ form_start(form,{'action': path('employer_new'),'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+      {{ form_widget(form.company,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-md-4','placeholder':'YOUR COMPANY NAME *'}}) }}
+        {{ form_widget(form.password,{ 'label':'','id':'user-password','attr':{'class':'form-control col-md-4','placeholder':'YOUR PASSWORD *'}}) }}
+        {{ form_widget(form.phone,{ 'label':'','id':'user-phone','attr':{'class':'form-control col-md-4','placeholder':'YOUR PHONE NUMBER *'}}) }}
+        {{ form_widget(form.address,{ 'label':'','id':'user-address','attr':{'class':'form-control col-md-4','placeholder':'YOUR EMAIL ADDRESS *'}}) }}
+        {{ form_widget(form.fb,{ 'label':'','id':'user-fb','attr':{'class':'form-control col-md-4','placeholder':'YOUR FACEBOOK PAGE *'}}) }}
+        {{ form_widget(form.linkdin,{ 'label':'','id':'user-linkdin','attr':{'class':'form-control col-md-4','placeholder':'YOUR LINKDIN *'}}) }}
+        {{ form_widget(form.town,{ 'label':'','id':'user-town','attr':{'class':'form-control col-md-4','placeholder':'YOUR TOWN *'}}) }}
+        {{ form_widget(form.img,{ 'id':'user-img','attr':{'class':'form-control col-md-4','placeholder':'YOUR LOGO *'}}) }}
+        {{ form_widget(form.categorie,{ 'id':'user-categorie','attr':{'class':'form-control col-md-4','placeholder':'YOUR CATEGORIE *'}}) }}
+
+
+        {{ form_widget(form.description,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}} ) }}
+
+        <div class="col-md-offset-5" > <button type="submit" href="{{path('employer_new')}}" class="btn btn-primary mt30 btn-black "/>click to save</button></div>
+
+
+{{ form_end(form) }}
+
+
