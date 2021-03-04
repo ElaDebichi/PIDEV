@@ -1,77 +1,71 @@
-<div class="app-content content">
-        <div class="content-wrapper">
-                <div class="content-body">
-                        <!-- users edit start -->
-                        <section class="users-edit">
-                                <div class="card">
-                                        <div class="card-content">
-                                                <div class="card-body">
-                                                        <div class="tab-content">
-                                                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
-                                                                        <!-- users edit account form start -->
-                                                                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
-                                                                                <div class="row">
-                                                                                        <div class="col-12 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Libelle</label>
-                                                                                                                {{ form_widget(form.libelle,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'libelle *'}}) }}
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Secteur</label>
-                                                                                                                {{ form_widget(form.secteur,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'secteur *'}}) }}
+{{ form_start(form) }}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+<meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+<meta name="author" content="PIXINVENT">
+<title>Form Layouts - Vuexy - Bootstrap HTML admin template</title>
+<link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+<link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Poste</label>
-                                                                                                                {{ form_widget(form.poste,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'poste *'}}) }}
+<!-- BEGIN: Vendor CSS-->
+<link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+<!-- END: Vendor CSS-->
 
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Date Expiration</label>
-                                                                                                                {{ form_widget(form.dateExpiration,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'date expiration *'}}) }}
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Description</label>
-                                                                                                                {{ form_widget(form.description,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'description *'}}) }}
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Duree</label>
-                                                                                                                {{ form_widget(form.duree,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'duree *'}}) }}
-                                                                                                        </div>
-                                                                                                </div><div class="form-group">
-                                                                                                        <div class="controls">
-                                                                                                                <label>Niveau</label>
-                                                                                                                {{ form_widget(form.niveau,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'niveau *'}}) }}
-                                                                                                        </div>
-                                                                                                </div>
-                                                                                                <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                                                                        {{ button_label|default('Save') }}
-                                                                                                </button>
-                                                                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
-                                                                                        </div>
-                                                                                </div>
-                                                                        {{ form_end(form) }}
-                                                                        <!-- users edit account form ends -->
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </section>
-                        <!-- users edit ends -->
+<!-- BEGIN: Theme CSS-->
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
 
+<!-- BEGIN: Page CSS-->
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+<link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
+<!-- END: Page CSS-->
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+<!-- END: Custom CSS-->
+
+
+
+<body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+
+
+<
+<!-- Basic Horizontal form layout section start -->
+<section id="basic-horizontal-layouts">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-12">
+            <div class="card">
+
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-horizontal">
+                            {{ form_widget(form) }}
+                            <button class="btn btn-primary mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                        </form>
+                    </div>
                 </div>
+            </div>
         </div>
-</div>
 
+    </div>
+</section>
+
+<script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+
+
+<script src="../../../app-assets/js/core/app-menu.js"></script>
+<script src="../../../app-assets/js/core/app.js"></script>
+<script src="../../../app-assets/js/scripts/components.js"></script>
+
+
+</body>
+
+
+{{ form_end(form) }}

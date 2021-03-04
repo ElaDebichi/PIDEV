@@ -1,9 +1,11 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}New Stage{% endblock %}
+{% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Stage</h1>
 
-    {{ include('stage_admin/_form.html.twig') }}
+
+    {{ include('article/_form.html.twig') }}
+
+    <a href="{{ path('article_index') }}">back to list</a>
 {% endblock %}
