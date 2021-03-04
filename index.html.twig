@@ -1,63 +1,69 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Employer index{% endblock %}
+{% block title %}Stage index{% endblock %}
 
 {% block body %}
+    <h1>Stage index</h1>
+
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
     <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-            <div class="content-header row">
-                <h1>Employer index</h1>
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Password</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Town</th>
-                        <th>Fb</th>
-                        <th>Linkdin</th>
-                        <th>Description</th>
-                        <th>Img</th>
-                        <th>Company</th>
-                        <th>actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for employer in employers %}
-                        <tr>
-                            <td>{{ employer.id }}</td>
-                            <td>{{ employer.password }}</td>
-                            <td>{{ employer.phone }}</td>
-                            <td>{{ employer.address }}</td>
-                            <td>{{ employer.town }}</td>
-                            <td>{{ employer.fb }}</td>
-                            <td>{{ employer.linkdin }}</td>
-                            <td>{{ employer.description }}</td>
-                            <td>{{ employer.img }}</td>
-                            <td>{{ employer.company }}</td>
-                            <td>
-                                <a href="{{ path('employer_showAdmin', {'id': employer.id}) }}">show</a>
-                                <a href="{{ path('employer_editAdmin', {'id': employer.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="11">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('employer_newAdmin') }}">Create new</a>
-            </div>
             <div class="content-body">
-
+                <!-- Zero configuration table -->
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Libelle</th>
+                                                    <th>Secteur</th>
+                                                    <th>Poste</th>
+                                                    <th>DateExpiration</th>
+                                                    <th>Duree</th>
+                                                    <th>Niveau</th>
+                                                    <th>actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for stage in stages %}
+                                                    <tr>
+                                                        <td>{{ stage.id }}</td>
+                                                        <td>{{ stage.libelle }}</td>
+                                                        <td>{{ stage.secteur }}</td>
+                                                        <td>{{ stage.poste }}</td>
+                                                        <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                        <td>{{ stage.duree }}</td>
+                                                        <td>{{ stage.niveau }}</td>
+                                                        <td>
+                                                            <a href="{{ path('stage_admin_show', {'id': stage.id}) }}">Show</a>
+                                                            <a href="{{ path('stage_admin_edit', {'id': stage.id}) }}">Edit</a>
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="8">no records found</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <a href="{{ path('stage_admin_new') }}">Create new</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Zero configuration table -->
             </div>
         </div>
     </div>
+    </body>
 
 {% endblock %}

@@ -1,11 +1,9 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}New Candidat{% endblock %}
+{% block title %}New Stage{% endblock %}
 
 {% block body %}
-    <h1>Create new Candidat</h1>
+    <h1>Create new Stage</h1>
 
-    {{ include('candidat/_form.html.twig') }}
-
-    <a href="{{ path('candidat_index') }}">back to list</a>
+    {{ include('stage_admin/_form.html.twig') }}
 {% endblock %}
