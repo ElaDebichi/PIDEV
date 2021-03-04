@@ -1,0 +1,63 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Employer index{% endblock %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <h1>Employer index</h1>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Password</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Town</th>
+                        <th>Fb</th>
+                        <th>Linkdin</th>
+                        <th>Description</th>
+                        <th>Img</th>
+                        <th>Company</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for employer in employers %}
+                        <tr>
+                            <td>{{ employer.id }}</td>
+                            <td>{{ employer.password }}</td>
+                            <td>{{ employer.phone }}</td>
+                            <td>{{ employer.address }}</td>
+                            <td>{{ employer.town }}</td>
+                            <td>{{ employer.fb }}</td>
+                            <td>{{ employer.linkdin }}</td>
+                            <td>{{ employer.description }}</td>
+                            <td>{{ employer.img }}</td>
+                            <td>{{ employer.company }}</td>
+                            <td>
+                                <a href="{{ path('employer_showAdmin', {'id': employer.id}) }}">show</a>
+                                <a href="{{ path('employer_editAdmin', {'id': employer.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="11">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('employer_newAdmin') }}">Create new</a>
+            </div>
+            <div class="content-body">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
