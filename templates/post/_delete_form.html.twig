@@ -1,0 +1,34 @@
+
+<form id="submit" method="post" action="{{ path('post_delete', {'id': post.id}) }}" >
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+    <button id="confirm-text" onclick="" class="btn btn-outline-danger mr-1 mb-1"><i class="feather icon-trash-2"></i></button>
+</form>
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+
+        function test(){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+        }
+
+
+
+    </script>
