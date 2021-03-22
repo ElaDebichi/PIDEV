@@ -1,0 +1,62 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    configs:
+        main_config:
+            toolbar:
+                - { name: "styles", items: [ "Save",
+                                             "NewPage",
+                                             "Preview",
+                                             "Print",
+                                             "Cut",
+                                             "Copy",
+                                             "Paste",
+                                             "PasteText",
+                                             "PasteFromWord",
+                                             "Undo",
+                                             "Redo",
+                                             "Find",
+                                             "Replace",
+                                             "JustifyLeft",
+                                             "JustifyCenter",
+                                             "JustifyRight",
+                                             "JustifyBlock",
+                                             "BidiLtr",
+                                             "BidiRtl",
+                                             "CreatePlaceholder",
+                                             "Image",
+                                             "Table",
+                                             "HorizontalRule",
+                                             "Smiley",
+                                             "SpecialChar",
+                                             "InsertPre",
+                                             "Subscript",
+                                             "Superscript",
+                                             "RemoveFormat",
+                                             "NumberedList",
+                                             "BulletedList",
+                                             "Blockquote",
+                                             "Bold",
+                                             "Italic",
+                                             "Underline",
+                                             "Strike",
+                                             "Styles",
+                                             "Format",
+                                             "Font",
+                                             "FontSize",
+                                             "TextColor",
+                                             "BGColor",
+                                             "UIColor",
+                                             "MediaEmbed",
+                                             "About",
+                                             "Youtube",
+
+
+                ]
+
+                }
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+    {% block content %}
+<div style="display: inline-block;top: 0px;left: 750px;" class="col-sm-4 col-12">
+    <input class="form-control round" placeholder="Search" type="text" id="searchadv">
+</div>
+
+    <button style="top: 5px;left: 750px;" type="submit" id="search" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="feather icon-search"></i></button>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+        <script src="../../../app-assets/js/scripts/ajaxsearch.js"></script>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="content-body">
+    <div class="row">
+    </div>
+        <h1>Posts list
+            <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('post_new') }}"><i class="feather icon-plus"></i></a>
+
+        </h1>
+
+        <section id="column-selectors">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+
+    <div class="table-responsive">
+    <table class="table table-striped dataex-html5-selectors">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Nblikes</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.content |raw }}</td>
+                <td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.nblikes }}</td>
+                <td>
+                    <div style="display: inline-block;">
+                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_edit', {'id': post.id}) }}"> <i class="feather icon-edit"></i></a>
+                    </div>
+                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_show', {'id': post.id}) }}"><i class="feather icon-eye"></i></a>
+                    <div style="display: inline-block;">
+                        {{ include('post/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+    </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+
+</section>
+
+
+</div>
+    {% endblock %}
+{% endblock %}
