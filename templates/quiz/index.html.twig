@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz index{% endblock %}
+
+{% block body %}
+ <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+    <h1>Quiz index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomdequiz</th>
+                <th>Nomdeformation</th>
+                <th>Result</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.id }}</td>
+                <td>{{ quiz.nomdequiz }}</td>
+                <td>{{ quiz.nomdeformation }}</td>
+                <td>{{ quiz.result }}</td>
+                <td>
+                    <a href="{{ path('quiz_show', {'id': quiz.id}) }}">show</a>
+                    <a href="{{ path('quiz_edit', {'id': quiz.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('quiz_new') }}">Create new</a>
+    
+{% endblock %}

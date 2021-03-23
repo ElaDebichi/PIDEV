@@ -1,0 +1,82 @@
+
+
+{% block title %}New Formation{% endblock %}
+
+{% block body %}
+
+   <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            
+
+
+                            <div class="card" style="height: 420.283px;">
+                                <div class="card-header">
+                                    <h4 class="card-title">New Formation</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-horizontal">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4" align="right">
+                                                                <span>Fomation Name</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                             <div class="col-md-4" align="right">
+                                                                <span>nom de formateur</span>
+                                                            </div>
+                                                           <div class="col-md-8">
+                                                                <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group row">
+                                                             <div class="col-md-4" align="right">
+                                                                <span>sujet de formations 	</span>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" id="first-name" class="form-control" name="fname" placeholder="First Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group col-md-8 offset-md-4">
+                                                        <fieldset class="checkbox">
+                                                            <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                <input type="checkbox">
+                                                                <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check"></i>
+                                                                    </span>
+                                                                </span>
+                                                                <span class="">Internal</span>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-8 offset-md-4">
+                                                        <button class="btn btn-primary mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                                                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                
+                        {% endblock %}

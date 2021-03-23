@@ -1,0 +1,55 @@
+{% extends 'back/base.html.twig' %}
+{% block Content %}
+
+
+<div align="center" >
+    {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+<br>
+
+    <div class="col-sm-6 offset-top-10 inset-sm-left-7">
+        <div class="form-wrap">
+            <table class="form-wrap">
+                <tr>
+                    <td>{{ form_label(form.nom, "Nom") }} </td>
+                    <td>{{ form_widget(form.nom, {'attr': {'style': 'width: 250px'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.prenom, "Prenom") }}</td>
+                    <td>{{ form_widget(form.prenom, {'attr': {'style': 'width: 250px'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.sexe, "Sexe") }}</td>
+                    <td> {{ form_widget(form.sexe, {'attr': {'style': 'width: 250px'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.dateNaiss, "Date de naissance") }}</td>
+                    <td>{{ form_widget(form.dateNaiss, {'attr': {'style': 'width: 250px'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.email, "E-Mail") }}</td>
+                    <td>{{ form_widget(form.email, {'attr': {'style': 'width: 250px'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.tel, "Numéro de téléphone") }}</td>
+                    <td>{{ form_widget(form.tel, {'attr': {'style': 'width: 250px'}})  }}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+
+
+        {{ form_widget(form.Ajouter) }}
+
+
+        {{ form_errors(form.nom) }}
+        {{ form_errors(form.prenom) }}
+        {{ form_errors(form.sexe) }}
+        {{ form_errors(form.dateNaiss) }}
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.tel) }}
+    {{ form_end(form) }}
+</div>
+{% endblock%}

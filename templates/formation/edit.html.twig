@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('front/scss/emploi/css/root.css') }}">
+{% endblock %}
+{% block body %}
+
+   <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+{#
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="ajouter" >
+    {{ form_end(form) }}
+ #}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_titre">
+                    <h2>Modifier une offre/demande</h2>
+                </div>
+                <div class="x_content">
+                    {{ form_start(form) }}
+
+                    <div >
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name"> nom de formateur<span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.nomdeformateur, {'attr':{'class': 'form-control' }}) }}
+                        </div>
+                        <span style="color: darkred;" >{{form_errors(form.nomdeformateur) }}</span>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name">sujet de formation <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.sujetdeformation, {'attr':{'class': 'form-control'}}) }}
+                        </div>
+                        <span style="color: darkred;" >{{form_errors(form.sujetdeformation) }}</span>
+                    </div>
+
+               
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name">Fomation Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.nomformation, {'attr':{'class': 'form-control'}}) }}
+                        </div>
+                        <span style="color: darkred;" >{{form_errors(form.nomformation) }}</span>
+                    </div>
+                    
+   <input type="submit" class="btn btn-success" value="Modifier">
+
+
+                    {{ form_end(form) }}
+
+
+
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
