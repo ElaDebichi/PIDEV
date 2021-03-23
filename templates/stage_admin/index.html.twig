@@ -1,0 +1,100 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Stage index{% endblock %}
+
+{% block body %}
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title">List of internships</h1>
+                                    <div class="breadcrum-right">
+                                        <form role="form" method="post" action="{{ path('stage_admin_update') }}">
+                                            <div class="btn-group btn-group-sm" aria-label="Set Select5 option">
+                                                <button class="js-programmatic-set-val btn btn-outline-primary">
+                                                    <i class="feather icon-refresh-cw"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th>
+                                                        ID
+                                                        <form role="search" method="post" action="{{ path('stage_triAsc_id') }}">
+                                                            <button><i class="fa fa-chevron-up"></i></button>
+                                                        </form>
+                                                        <form role="search" method="post" action="{{ path('stage_triDesc_id') }}">
+                                                            <button><i class="fa fa-chevron-down"></i></button>
+                                                        </form>
+                                                    </th>
+                                                    <th>
+                                                        Libelle
+                                                        <form role="search" method="post" action="{{ path('stage_triAsc_libelle') }}">
+                                                            <button><i class="fa fa-chevron-up"></i></button>
+                                                        </form>
+                                                        <form role="search" method="post" action="{{ path('stage_triDesc_libelle') }}">
+                                                            <button><i class="fa fa-chevron-down"></i></button>
+                                                        </form>
+                                                    </th>
+                                                    <th>Post</th>
+                                                    <th>Expiration Date</th>
+                                                    <th>Duration</th>
+                                                    <th>Level</th>
+                                                    <th>Category</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for stage in stages %}
+                                                    <tr>
+                                                        <td class="odd" role="row">{{ stage.id }}</td>
+                                                        <td>{{ stage.libelle }}</td>
+                                                        <td>{{ stage.poste }}</td>
+                                                        <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                        <td>{{ stage.duree }} months</td>
+                                                        <td>{{ stage.niveau }}</td>
+                                                        <td>{{ stage.category.libelle }}</td>
+                                                        <td>
+                                                            <a href="{{ path('stage_admin_show', {'id': stage.id}) }}" class="btn btn-outline-primary">
+                                                                Show
+                                                            </a>
+                                                            <br>
+                                                            <a href="{{ path('stage_admin_edit', {'id': stage.id}) }}" class="btn btn-outline-primary">
+                                                                Edit
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="8">no records found !</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <a href="{{ path('stage_admin_new') }}" class="btn btn-outline-primary">
+                                                <i class="feather icon-plus"></i> Create new </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

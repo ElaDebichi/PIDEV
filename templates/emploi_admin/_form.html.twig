@@ -1,0 +1,104 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-body">
+            <section class="users-edit">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="content-header-title float-left mb-0">Job Offer</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+                                    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Title</label>
+                                                    {{ form_widget(form.libelle,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Title *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.libelle) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Post</label>
+                                                    {{ form_widget(form.poste,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Post *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.poste) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Expiration Date</label>
+                                                    {{ form_widget(form.dateExpiration,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Expiration Date *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.dateExpiration) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Description</label>
+                                                    {{ form_widget(form.description,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Description *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.description) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Type of Contract</label>
+                                                    {{ form_widget(form.typeContrat,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Type of Contract *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.typeContrat) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Salary</label>
+                                                    {{ form_widget(form.salaire,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Salary *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.salaire) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Level</label>
+                                                    {{ form_widget(form.niveau,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Level *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.niveau) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <label>Category</label>
+                                                    {{ form_widget(form.category,{ 'attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'Category *'}}) }}
+                                                    <div class="chip chip-danger">
+                                                        {{ form_errors(form.category) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
+                                                {{ button_label|default('Save') }}
+                                            </button>
+
+                                            <a href="{{ path('emploi_admin_index') }}" class="btn btn-primary mr-1">Back to list</a>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

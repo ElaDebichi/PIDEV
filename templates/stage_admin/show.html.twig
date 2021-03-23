@@ -1,0 +1,78 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+    <h1>Stage</h1>
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <!-- page users view start -->
+                <section class="page-users-view">
+                    <div class="row">
+                        <!-- account start -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Internship</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                            <table>
+                                                <tr>
+                                                    <td class="font-weight-bold">ID</td>
+                                                    <td>{{ stage.id }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Title</td>
+                                                    <td>{{ stage.libelle }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Post</td>
+                                                    <td>{{ stage.poste }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-12 col-md-12 col-lg-5">
+                                            <table class="ml-0 ml-sm-0 ml-lg-0">
+                                                <tr>
+                                                    <td class="font-weight-bold">Expiration Date</td>
+                                                    <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Duration</td>
+                                                    <td>{{ stage.duree }} months</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Level</td>
+                                                    <td>{{ stage.niveau }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Category</td>
+                                                    <td>{{ stage.category.libelle }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-12 col-md-12">
+                                            <a href="{{ path('stage_admin_index') }}" class="btn btn-primary mr-1">Back to list</a>
+
+                                            <a href="{{ path('stage_admin_edit', {'id': stage.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i>Edit</a>
+
+                                            {{ include('stage_admin/_delete_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

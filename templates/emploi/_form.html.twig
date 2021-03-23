@@ -1,0 +1,89 @@
+<div class="card-content">
+        <div class="card-body">
+                {{ form_start(form, {'attr':{ 'class':'form form-vertical','novalidate':'novalidate'}}) }}
+                <div class="form-body">
+                        <div class="row">
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="first-name-vertical">Title</label>
+                                                {{ form_widget(form.libelle, {'attr':{ 'class':'form-control', 'placeholder':'Title *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.libelle) }}
+
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="contact-info-vertical">Post</label>
+                                                {{ form_widget(form.poste, {'attr':{ 'class':'form-control', 'placeholder':'Post *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.poste) }}
+
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Expiration Date</label>
+                                                {{ form_widget(form.dateExpiration, {'attr':{ 'class':'form-control', 'placeholder':'Expiration Date *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.dateExpiration) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Description</label>
+                                                {{ form_widget(form.description, {'attr':{ 'class':'form-control', 'placeholder':'Description *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.description) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Level</label>
+                                                {{ form_widget(form.niveau, {'attr':{ 'class':'form-control', 'placeholder':'Level *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.niveau) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Type of Contract</label>
+                                                {{ form_widget(form.typeContrat, {'attr':{ 'class':'form-control', 'placeholder':'Type of Contract *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.typeContrat) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Salary</label>
+                                                {{ form_widget(form.salaire, {'attr':{ 'class':'form-control', 'placeholder':'Salary *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.salaire) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Category</label>
+                                                {{ form_widget(form.category, {'attr':{ 'class':'form-control', 'placeholder':'Category *'}}) }}
+                                                <div class="chip chip-danger">
+                                                        {{ form_errors(form.category) }}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <button class="btn btn-primary mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                                        <a href="{{ path('emploi_index') }}" class="btn btn-outline-warning mr-1 mb-1">Back to list</a>
+
+                                </div>
+                        </div>
+                </div>
+                {{ form_end(form) }}
+        </div>
+</div>

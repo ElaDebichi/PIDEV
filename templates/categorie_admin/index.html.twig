@@ -1,0 +1,65 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title">List of categories</h1>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Libelle</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for categorie in categories %}
+                                                    <tr>
+                                                        <td>{{ categorie.id }}</td>
+                                                        <td>{{ categorie.libelle }}</td>
+                                                        <td>
+                                                            <a href="{{ path('categorie_admin_show', {'id': categorie.id}) }}"  class="btn btn-outline-primary">
+                                                                Show
+                                                            </a>
+                                                            <a href="{{ path('categorie_admin_edit', {'id': categorie.id}) }}" class="btn btn-outline-primary">
+                                                                Edit
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="3">no records found</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <a href="{{ path('categorie_admin_new') }}" class="btn btn-outline-primary">
+                                                <i class="feather icon-plus"></i> Create new
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

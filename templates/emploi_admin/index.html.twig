@@ -1,0 +1,104 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Emploi index{% endblock %}
+
+{% block body %}
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title">List of jobs</h1>
+                                    <div class="breadcrum-right">
+                                        <form role="form" method="post" action="{{ path('emploi_admin_update') }}">
+                                            <div class="btn-group btn-group-sm" aria-label="Set Select5 option">
+                                                <button class="js-programmatic-set-val btn btn-outline-primary">
+                                                    <i class="feather icon-refresh-cw"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        ID
+                                                        <form role="search" method="post" action="{{ path('emploi_triAsc_id') }}">
+                                                            <button><i class="fa fa-chevron-up"></i></button>
+                                                        </form>
+                                                        <form role="search" method="post" action="{{ path('emploi_triDesc_id') }}">
+                                                            <button><i class="fa fa-chevron-down"></i></button>
+                                                        </form>
+                                                    </th>
+                                                    <th>
+                                                        Libelle
+                                                        <form role="search" method="post" action="{{ path('emploi_triAsc_libelle') }}">
+                                                            <button><i class="fa fa-chevron-up"></i></button>
+                                                        </form>
+                                                        <form role="search" method="post" action="{{ path('emploi_triDesc_libelle') }}">
+                                                            <button><i class="fa fa-chevron-down"></i></button>
+                                                        </form>
+                                                    </th>
+                                                    <th>Post</th>
+                                                    <th>Expiration Date</th>
+                                                    <th>Contract Type</th>
+                                                    <th>Salary</th>
+                                                    <th>Level</th>
+                                                    <th>Category</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for emploi in emplois %}
+                                                <tr>
+                                                    <td>{{ emploi.id }}</td>
+                                                    <td>{{ emploi.libelle }}</td>
+                                                    <td>{{ emploi.poste }}</td>
+                                                    <td>{{ emploi.dateExpiration ? emploi.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                    <td>{{ emploi.typeContrat }}</td>
+                                                    <td>{{ emploi.salaire }}</td>
+                                                    <td>{{ emploi.niveau }}</td>
+                                                    <td>{{ emploi.category.libelle }}</td>
+                                                    <td>
+                                                        <a href="{{ path('emploi_admin_show', {'id': emploi.id}) }}" class="btn btn-outline-primary">
+                                                            Show
+                                                        </a>
+                                                        <br>
+                                                        <a href="{{ path('emploi_admin_edit', {'id': emploi.id}) }}" class="btn btn-outline-primary">
+                                                            Edit
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="8">no records found !</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            <a href="{{ path('emploi_admin_new') }}" class="btn btn-outline-primary">
+                                                <i class="feather icon-plus"></i> Create new
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

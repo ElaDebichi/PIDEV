@@ -1,0 +1,49 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    <h1>Categorie</h1>
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="page-users-view">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Category</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                            <table>
+                                                <tr>
+                                                    <td class="font-weight-bold">ID </td>
+                                                    <td>{{ categorie.id }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Libelle </td>
+                                                    <td>{{ categorie.libelle }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <a href="{{ path('categorie_admin_index') }}" class="btn btn-primary mr-1">Back to list</a>
+
+                                            <a href="{{ path('categorie_admin_edit', {'id': categorie.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i>Edit</a>
+
+                                            {{ include('categorie_admin/_delete_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
