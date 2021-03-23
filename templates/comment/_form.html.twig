@@ -43,7 +43,7 @@
                         <div class="col-md-8">
                             <fieldset class="form-group">
                                 <div class="btn-group dropdown mr-1 mb-1">
-                               {{ form_widget(form.post) }}
+                               {{ form_widget(form.post)  }}
 
                                 </div>
 
@@ -58,7 +58,7 @@
 
 
 
-                <button class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
 
                 {{ form_end(form) }}
 
@@ -68,5 +68,17 @@
 </div>
 
 
+<script>
+    function editReview()
+    {
+        const textarea = document.getElementById('post1_content');
+        let badwords = /bashful|dopey|grumpy|happy|sleepy|doc/gi;
+        let userreview1 = textarea.value;
+        let userreview2 = userreview1.replace(badwords,'****');
+        document.getElementById('post1_content').value = userreview2;
 
+    }
+
+    document.getElementById('submitbtn').addEventListener('click',editReview)
+</script>
 
