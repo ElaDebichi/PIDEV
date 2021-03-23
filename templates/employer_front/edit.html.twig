@@ -1,0 +1,13 @@
+
+
+
+
+{% block body %}
+
+
+    {{ include('employer_front/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('employer_front') }}">back to list</a>
+
+    {{ include('employer_front/_delete_form.html.twig') }}
+{% endblock %}

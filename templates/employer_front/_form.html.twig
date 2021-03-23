@@ -1,0 +1,164 @@
+
+
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Employer{% endblock %}
+
+{% block body %}
+    <h1>Employer</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+
+    <section id="multiple-column-form">
+
+        <div class="row match-height">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Multiple Column</h4>
+                    </div>
+
+
+                    <div class="card-content">
+                        <div class="card-body">
+                            {{ form_start(form,{'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+                            <form class="form">
+                                <div class="form-body">
+                                    <div class="row">
+
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+
+                                                {{ form_widget(form.company,{ 'label':'','id' : 'user-company','attr':{'class':'form-control','placeholder':'YOUR COMPANY NAME *'}}) }}
+                                                {{ form_errors(form.company) }}
+                                                <label for="first-name-column">Company name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.password,{ 'label':'','id':'user-password','attr':{'class':'form-control ','placeholder':'YOUR PASSWORD *'}}) }}
+                                                {{ form_errors(form.password) }}
+
+                                                <label for="last-name-column">Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                 {{ form_widget(form.phone,{ 'label':'','id':'user-phone','attr':{'class':'form-control ','placeholder':'YOUR PHONE NUMBER *'}}) }}
+                                                {{ form_errors(form.phone) }}
+                                                <label for="city-column">Phone number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.address,{ 'label':'','id':'user-address','attr':{'class':'form-control','placeholder':'YOUR EMAIL ADDRESS *'}}) }}
+                                                {{ form_errors(form.address) }}
+                                                <label for="country-floating">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.fb,{ 'label':'','id':'user-fb','attr':{'class':'form-control','placeholder':'YOUR FACEBOOK PAGE *'}}) }}
+                                                {{ form_errors(form.fb) }}
+                                                <label for="company-column">Facebook page</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.linkdin,{ 'label':'','id':'user-linkdin','attr':{'class':'form-control','placeholder':'YOUR LINKDIN *'}}) }}
+                                                {{ form_errors(form.linkdin) }}
+                                                <label for="email-id-column">Linkedin</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.town,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR TOWN *'}}) }}
+                                                {{ form_errors(form.town) }}
+                                                <label for="email-id-column">Town</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.categorie,{ 'id':'user-categorie','attr':{'class':'form-control','placeholder':'YOUR CATEGORIE *'}}) }}
+                                                {{ form_errors(form.categorie) }}
+                                                <label for="email-id-column">Category</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.imageFile,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR IMG *'}}) }}
+                                                <label for="email-id-column">Image</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-label-group">
+                                                {{ form_widget(form.description,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}}) }}
+                                                {{ form_errors(form.description) }}
+                                                <label for="email-id-column">Description</label>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group col-12">
+                                            <fieldset class="checkbox">
+                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                    <input type="checkbox">
+                                                    <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check"></i>
+                                                                    </span>
+                                                                </span>
+                                                    <span class="">Remember me</span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1"  href="{{path('employer_newFront')}}" > Submit</button>
+
+                                            <button type="reset" class="btn btn-outline-warning mr-1 mb-1"> Reset</button>
+                                        </div>
+                                        {{ form_end(form) }}
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

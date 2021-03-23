@@ -1,0 +1,48 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: 'bcrypt'
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: address
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            #provider: users_in_memory
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    role_hierarchy:
+        ROLE_USER: [ROLE_CANDIDATE,ROLE_EMPLOYER]
+        ROLE_ADMIN: [ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN]
+    access_control:
+         - { path: ^/skill, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/admin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/elfinder, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/efconnect, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/employer, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
+         - { path: ^/candidat, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER,ROLE_ADMIN] }
+         - { path: ^/anonymous, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/post, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/comment, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }

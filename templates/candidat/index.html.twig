@@ -1,0 +1,203 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Candidat index{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="content-body">
+                <div class="row">
+
+                </div>
+
+
+                <!-- Column selectors with Export Options and print table -->
+                <section id="column-selectors">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <script type="text/javascript">
+                                    function imprimer_page(){
+                                        window.print();
+                                    }
+                                </script>
+                                <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                    <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+                                <form>
+                                    <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+                                </form>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card-content">
+                                        <div class="card-body card-dashboard">
+
+
+                                        <div class="table-responsive">
+
+                                            <table class="table table-striped dataex-html5-selectors" id="t">
+                                                <section id="search-bar">
+                                                    <div class="search-bar">
+
+                                                            <fieldset class="form-group position-relative has-icon-left">
+
+                                                                <input type="text" class="form-control round" id="search"  placeholder="Search By Town">
+                                                                <br>
+
+
+                                                                <div class="form-control-position">
+                                                                    <i class="feather icon-search px-1"></i>
+                                                                </div>
+                                                            </fieldset>
+
+
+
+
+                                                    </div>
+
+
+
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+                                                <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>name</th>
+                                                    <th>first name</th>
+                                                    <th>password</th>
+                                                    <th>phone</th>
+                                                    <th>email</th>
+                                                    <th>town</th>
+                                                    <th>fb</th>
+                                                    <th>linkdin</th>
+                                                    <th>description</th>
+                                                    <th>img</th>
+                                                    <th>Birthday</th>
+                                                    <th>degree</th>
+                                                    <th>type</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="all">
+                                                {% for candidat in candidats %}
+                                                <tr>
+                                                    <td>{{ candidat.id }}</td>
+                                                    <td>{{ candidat.nom }}</td>
+                                                    <td>{{ candidat.prenom }}</td>
+                                                    <td>{{ candidat.password }}</td>
+                                                    <td>{{ candidat.phone }}</td>
+                                                    <td>{{ candidat.address }}</td>
+                                                    <td>{{ candidat.town }}</td>
+                                                    <td>{{ candidat.fb }}</td>
+                                                    <td>{{ candidat.linkdin }}</td>
+                                                    <td>{{ candidat.description }}</td>
+                                                    <td>{{ candidat.img }}</td>
+                                                  <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
+                                                    <td>{{ candidat.nivEtude }}</td>
+                                                    <td>{{ candidat.typeCandidat }}</td>
+                                                    <td>
+                                                        <a href="{{ path('candidat_show', {'id': candidat.id}) }}">show</a>
+                                                        <a href="{{ path('candidat_edit', {'id': candidat.id}) }}">edit</a>
+                                                    </td>
+
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                  <tbody id="search">
+
+                                                  </tbody>
+
+
+                                            </table>
+                                            <a href="{{ path('candidat_new') }}">Create new</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Column selectors with Export Options and print table -->
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+
+
+
+{% endblock %}
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searchStudentx') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(retour, function(i, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td> '+obj.id+'  </td><td>    '+obj.nom+'  </td><td>'+obj.prenom+' </td><td>'+obj.password+' </td><td>'+obj.phone+' </td><td>'+obj.address+' </td><td>'+obj.town+' </td><td>'+obj.fb+' </td><td>'+obj.linkdin+' </td><td>'+obj.description+' </td><td>'+obj.img+' </td><td>'+obj.dateNaissance+' </td><td>'+obj.nivEtude+' </td><td>'+obj.typeCandidat+' </td><td><a href="candidat_edit/'+obj.id+'">modifier</a> </br><a href="candidat_show/'+obj.id+'">show</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+
+{% endblock %}
+
+

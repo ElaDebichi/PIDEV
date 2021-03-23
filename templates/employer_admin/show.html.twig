@@ -1,0 +1,199 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Employer{% endblock %}
+
+{% block body %}
+    <h1>Employer</h1>
+
+
+
+
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- page users view start -->
+            <section class="page-users-view">
+                <div class="row">
+                    <!-- account start -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Account</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="users-view-image">
+                                        <img src="/uploads/{{ employer.getImg() }}"  style="max-height: 500px; max-width: 200px;"  class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                    </div>
+                                    <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="font-weight-bold">ID</td>
+                <td>{{ employer.id }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Password</td>
+                <td>{{ employer.password }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Phone</td>
+                <td>{{ employer.phone }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Address</td>
+                <td>{{ employer.address }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Town</td>
+                <td>{{ employer.town }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Facebook</td>
+                <td>{{ employer.fb }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Linkdin</td>
+                <td>{{ employer.linkdin }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Description</td>
+                <td>{{ employer.description }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Image</td>
+                <td>{{ employer.img }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Company</td>
+                <td>{{ employer.company }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">categorie</td>
+                <td>{{ employer.categorie }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="{{ path('employer_editAdmin', {'id': employer.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Edit</a>
+                                        <a href="{{ path('employer_admin') }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> afficher</a>
+
+                                        {{ include('employer_admin/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- account end -->
+                    <!-- information start -->
+                    <div class="col-md-6 col-12 ">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title mb-2">Information</div>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <td class="font-weight-bold">Birth Date </td>
+                                        <td>28 January 1998
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Mobile</td>
+                                        <td>+65958951757</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Website</td>
+                                        <td>https://rowboat.com/insititious/Angelo
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Languages</td>
+                                        <td>English, Arabic
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Gender</td>
+                                        <td>female</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Contact</td>
+                                        <td>email, message, phone
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- information start -->
+                    <!-- social links end -->
+                    <div class="col-md-6 col-12 ">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title mb-2">Social Links</div>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <td class="font-weight-bold">Twitter</td>
+                                        <td>https://twitter.com/adoptionism744
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Facebook</td>
+                                        <td>https://www.facebook.com/adoptionism664
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Instagram</td>
+                                        <td>https://www.instagram.com/adopt-ionism744/
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Github</td>
+                                        <td>https://github.com/madop818
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">CodePen</td>
+                                        <td>https://codepen.io/adoptism243
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Slack</td>
+                                        <td>@adoptionism744
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- social links end -->
+                </div>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+</div>
+    <!-- permissions end -->
+    </div>
+    </section>
+    <!-- page users view end -->
+
+    </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}

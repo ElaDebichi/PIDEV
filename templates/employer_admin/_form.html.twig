@@ -1,0 +1,388 @@
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- users edit start -->
+            <section class="users-edit">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center active" id="account-tab" data-toggle="tab" href="#account" aria-controls="account" role="tab" aria-selected="true">
+                                        <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Account</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" id="information-tab" data-toggle="tab" href="#information" aria-controls="information" role="tab" aria-selected="false">
+                                        <i class="feather icon-info mr-25"></i><span class="d-none d-sm-block">Information</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" id="social-tab" data-toggle="tab" href="#social" aria-controls="social" role="tab" aria-selected="false">
+                                        <i class="feather icon-share-2 mr-25"></i><span class="d-none d-sm-block">Social</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+                                    <!-- users edit media object start -->
+                                    <div class="media mb-2">
+                                        <a class="mr-2 my-25" href="#">
+                                            <img src="admin/app-assets/images/portrait/small/avatar-s-18.jpg" alt="users avatar" class="users-avatar-shadow rounded" height="90" width="90">
+                                        </a>
+                                        <div class="media-body mt-50">
+                                            <h4 class="media-heading">Angelo Sashington</h4>
+                                            <div class="col-12 d-flex mt-1 px-0">
+                                                <a href="#" class="btn btn-primary d-none d-sm-block mr-75">Change</a>
+                                                <a href="#" class="btn btn-primary d-block d-sm-none mr-75"><i class="feather icon-edit-1"></i></a>
+                                                <a href="#" class="btn btn-outline-danger d-none d-sm-block">Remove</a>
+                                                <a href="#" class="btn btn-outline-danger d-block d-sm-none"><i class="feather icon-trash-2"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- users edit media object ends -->
+                                    <!-- users edit account form start -->
+                                    {{ form_start(form,{'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="controls">
+          <label>Company name</label>
+      {{ form_widget(form.company,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR COMPANY NAME *'}}) }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="controls">
+          <label>Password</label>
+        {{ form_widget(form.password,{ 'label':'','id':'user-password','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR PASSWORD *'}}) }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="controls">
+          <label>Phone number</label>
+        {{ form_widget(form.phone,{ 'label':'','id':'user-phone','attr':{'class':'form-control col-md-4','placeholder':'YOUR PHONE NUMBER *'}}) }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="controls">
+          <label>Email Address</label>
+        {{ form_widget(form.address,{ 'label':'','id':'user-address','attr':{'class':'form-control col-md-4','placeholder':'YOUR EMAIL ADDRESS *'}}) }}
+  </div>
+</div>
+    <div class="form-group">
+      <div class="controls">
+          <label>Facebook Page</label>
+        {{ form_widget(form.fb,{ 'label':'','id':'user-fb','attr':{'class':'form-control col-md-4','placeholder':'YOUR FACEBOOK PAGE *'}}) }}
+      </div>
+    </div>
+        <div class="form-group">
+          <div class="controls">
+              <label>Your Linkedin</label>
+        {{ form_widget(form.linkdin,{ 'label':'','id':'user-linkdin','attr':{'class':'form-control col-md-4','placeholder':'YOUR LINKDIN *'}}) }}
+          </div>
+        </div>
+            <div class="form-group">
+              <div class="controls">
+                  <label>Your Town</label>
+        {{ form_widget(form.town,{ 'label':'','id':'user-town','attr':{'class':'form-control col-md-4','placeholder':'YOUR TOWN *'}}) }}
+              </div>
+            </div>
+                <div class="form-group">
+                  <div class="controls">
+                      <label>Your image</label>
+        {{ form_widget(form.imageFile,{ 'id':'user-img','attr':{'class':'form-control col-md-4','placeholder':'YOUR LOGO *'}}) }}
+                  </div>
+                </div>
+                    <div class="form-group">
+                      <div class="controls">
+                          <label>Your Categorie</label>
+        {{ form_widget(form.categorie,{ 'id':'user-categorie','attr':{'class':'form-control col-md-4','placeholder':'YOUR CATEGORIE *'}}) }}
+                      </div>
+                    </div>
+                        <div class="form-group">
+                          <div class="controls">
+                              <label>Your Description</label>
+
+        {{ form_widget(form.description,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}} ) }}
+      </div>
+    </div>
+
+                                                <div class="col-md-offset-5" > <button type="submit" href="{{path('employer_newAdmin')}}" class="btn btn-primary mt30 btn-black " />click to save </button> </div>
+                                                {{ form_end(form) }}
+
+
+
+                                            </div>
+</div>
+
+
+                                </div>
+
+
+                                <div class="tab-pane" id="information" aria-labelledby="information-tab" role="tabpanel">
+                                    <!-- users edit Info form start -->
+                                    <form novalidate>
+                                        <div class="row mt-1">
+                                            <div class="col-12 col-sm-6">
+                                                <h5 class="mb-1"><i class="feather icon-user mr-25"></i>Personal Information</h5>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="controls">
+                                                                <label>Birth date</label>
+                                                                <input type="text" class="form-control birthdate-picker" required placeholder="Birth date" data-validation-required-message="This birthdate field is required">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Mobile</label>
+                                                        <input type="text" class="form-control" value="&#43;6595895857" placeholder="Mobile number here..." data-validation-required-message="This mobile number is required">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Website</label>
+                                                        <input type="text" class="form-control" required placeholder="Website here..." value="https://rowboat.com/insititious/Angelo" data-validation-required-message="This Website field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Languages</label>
+                                                    <select class="form-control" id="users-language-select2" multiple="multiple">
+                                                        <option value="English" selected>English</option>
+                                                        <option value="Spanish">Spanish</option>
+                                                        <option value="French">French</option>
+                                                        <option value="Russian">Russian</option>
+                                                        <option value="German">German</option>
+                                                        <option value="Arabic" selected>Arabic</option>
+                                                        <option value="Sanskrit">Sanskrit</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="vs-radio-con">
+                                                                    <input type="radio" name="vueradio" checked value="false">
+                                                                    <span class="vs-radio">
+                                                                            <span class="vs-radio--border"></span>
+                                                                            <span class="vs-radio--circle"></span>
+                                                                        </span>
+                                                                    Male
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="vs-radio-con">
+                                                                    <input type="radio" name="vueradio" value="false">
+                                                                    <span class="vs-radio">
+                                                                            <span class="vs-radio--border"></span>
+                                                                            <span class="vs-radio--circle"></span>
+                                                                        </span>
+                                                                    Female
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="vs-radio-con">
+                                                                    <input type="radio" name="vueradio" value="false">
+                                                                    <span class="vs-radio">
+                                                                            <span class="vs-radio--border"></span>
+                                                                            <span class="vs-radio--circle"></span>
+                                                                        </span>
+                                                                    Other
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Contact Options</label>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" checked name="customCheck1" id="customCheck1">
+                                                                    <label class="custom-control-label" for="customCheck1">Email</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" checked name="customCheck2" id="customCheck2">
+                                                                    <label class="custom-control-label" for="customCheck2">Message</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        <li class="d-inline-block mr-2">
+                                                            <fieldset>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" name="customCheck3" id="customCheck3">
+                                                                    <label class="custom-control-label" for="customCheck3">Phone</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <h5 class="mb-1 mt-2 mt-sm-0"><i class="feather icon-map-pin mr-25"></i>Address</h5>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Address Line 1</label>
+                                                        <input type="text" class="form-control" value="A-65, Belvedere Streets" required placeholder="Address Line 1" data-validation-required-message="This Address field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Address Line 2</label>
+                                                        <input type="text" class="form-control" required placeholder="Address Line 2" data-validation-required-message="This Address field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Postcode</label>
+                                                        <input type="text" class="form-control" required placeholder="postcode" value="1868" data-validation-required-message="This Postcode field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" required value="New York" data-validation-required-message="This Time Zone field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>State</label>
+                                                        <input type="text" class="form-control" required value="New York" data-validation-required-message="This Time Zone field is required">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label>Country</label>
+                                                        <input type="text" class="form-control" required value="United Kingdom" data-validation-required-message="This Time Zone field is required">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                                <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
+                                                    Changes</button>
+                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- users edit Info form ends -->
+                                </div>
+                                <div class="tab-pane" id="social" aria-labelledby="social-tab" role="tabpanel">
+                                    <!-- users edit socail form start -->
+                                    <form novalidate>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6">
+
+                                                <fieldset>
+                                                    <label>Twitter</label>
+                                                    <div class="input-group mb-75">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text feather icon-twitter" id="basic-addon3"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" value="https://www.twitter.com/adoptionism744" placeholder="https://www.twitter.com/" aria-describedby="basic-addon3">
+                                                    </div>
+
+                                                    <label>Facebook</label>
+                                                    <div class="input-group mb-75">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text feather icon-facebook" id="basic-addon4"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" value="https://www.facebook.com/adoptionism664" placeholder="https://www.facebook.com/" aria-describedby="basic-addon4">
+                                                    </div>
+                                                    <label>Instagram</label>
+                                                    <div class="input-group mb-75">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text feather icon-instagram" id="basic-addon5"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" value="https://www.instagram.com/adopt-ionism744" placeholder="https://www.instagram.com/" aria-describedby="basic-addon5">
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label>Github</label>
+                                                <div class="input-group mb-75">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text feather icon-github" id="basic-addon9"></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" value="https://www.github.com/madop818" placeholder="https://www.github.com/" aria-describedby="basic-addon9">
+                                                </div>
+                                                <label>Codepen</label>
+                                                <div class="input-group mb-75">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text feather icon-codepen" id="basic-addon12"></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" value="https://www.codepen.com/adoptism243" placeholder="https://www.codepen.com/" aria-describedby="basic-addon12">
+                                                </div>
+                                                <label>Slack</label>
+                                                <div class="input-group mb-75">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text feather icon-slack" id="basic-addon11"></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" value="@adoptionism744" placeholder="https://www.slack.com/" aria-describedby="basic-addon11">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                                <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">Save
+                                                    Changes</button>
+                                                <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- users edit socail form ends -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- users edit ends -->
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

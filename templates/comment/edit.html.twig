@@ -1,0 +1,32 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Edit Comment{% endblock %}
+
+{% block body %}
+     {% block content %}
+         <div class="content-body">
+
+         <section id="basic-horizontal-layouts">
+
+         <div class="card">
+         <div class="card-header">
+             <h4 class="card-title">Edit Comment</h4>
+         </div>
+
+
+         <div style="text-align: right;">
+             {{ include('comment/_delete_form.html.twig') }}
+    {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('comment_index') }}">back to list</a>
+
+
+         </div>
+
+         </div>
+
+         </section>
+
+         </div>
+{% endblock %}
+{% endblock %}

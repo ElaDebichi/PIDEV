@@ -1,0 +1,165 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Hello EmployerFrontController!{% endblock %}
+
+{% block body %}
+
+
+    <!-- ======= Blog Section ======= -->
+  <!-- End Blog Section -->
+
+
+
+
+
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+    <div class="content-body">
+        <!-- Basic example and Profile cards section start -->
+
+                <section class="vuexy-checkbox-sizes">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <section id="search-bar">
+                                            <div class="search-bar">
+                                                <form role="search" id="nav-search-form" method="post" action="{{ path('rechercheEmploye') }}">
+                                                    <fieldset class="form-group position-relative has-icon-left">
+
+                                                        <input type="text" class="form-control round" id="search"  name="search" placeholder="Search By Category">
+                                                        <br>
+                                                        <div class="btn-group btn-group-sm" aria-label="Set Select2 option"> <button type="submit" class="btn gradient-light-primary text-white"> Search </button> </div>
+
+                                                        <div class="form-control-position">
+                                                            <i class="feather icon-search px-1"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+
+                                            <form role="search" id="nav-search-form" method="post" action="{{ path('triEmploye') }}">
+
+
+                                                <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                    <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+                                                        <button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+                                                            Sort by Company Name
+                                                        </button>
+                                                    </div>
+
+                                            </form>
+                                                <form role="search" id="nav-search-form" method="post" action="{{ path('triEmployeTown') }}">
+                                                    <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                        <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+                                                            <button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+                                                                Sort by Town
+                                                                {% if is_granted('ROLE_CANDIDATE') %}
+                                                                    CANDIDATE DETECTED
+                                                                {% endif %}
+                                                                {% if is_granted('ROLE_EMPLOYER') %}
+                                                                    EMPLOYER DETECTED
+                                                                {% endif %}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <form role="search" id="nav-search-form" method="post" action="{{ path('triEmployeCategory') }}">
+                                                    <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                        <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+                                                            <button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
+                                                                Sort by Category
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+        <div class="navbar-wrapper">
+            <div class="navbar-container content">
+                <div class="navbar-collapse" id="navbar-mobile">
+                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="basic-examples">
+            <div class="row match-height">
+
+
+                {% for employer in employers %}
+                    <div class="card">
+                        <div class="card-content">
+                            <img id="img"  style="max-width:500px; max-height: 200px; "  src="/uploads/{{employer.img}}">
+                            <div class="card-body">
+                                <h5>{{ employer.company }}</h5>
+                                <p class="card-text  mb-0">{{ employer.categorie }}</p>
+                                <span class="card-text">{{ employer.town }}</span>
+                                <div class="card-btns d-flex justify-c+ontent-between mt-2">
+                                    <a href="#" class="btn gradient-light-primary text-white">Follow</a>
+                                    <a href="{{ path('employer_showFront', {'id': employer.id}) }}" class="btn btn-outline-primary">Read More</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                </div>
+
+                <!-- Profile Cards Starts -->
+
+                <!-- Profile Cards Ends -->
+            </div>
+        </section>
+
+        <!-- // Basic example and Profile cards section end -->
+
+        <!-- Overlay Image and Chat Section Starts -->
+
+        <!-- Overlay Image and Chat Section Starts -->
+
+        <!-- Admin and Video Section Starts -->
+
+        <!-- Admin and Video Section Starts -->
+
+        <!-- Timeline Starts -->
+
+        <!-- Timeline Ends -->
+
+    </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

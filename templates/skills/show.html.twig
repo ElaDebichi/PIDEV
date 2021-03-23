@@ -1,0 +1,126 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Skills{% endblock %}
+
+{% block body %}
+    <h1>Skills</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- page users view start -->
+                <section class="page-users-view">
+                    <div class="row">
+                        <!-- account start -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Account</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="font-weight-bold">ID</td>
+
+                                                    <td>{{ skill.id }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Libelle</td>
+                                                    <td>{{ skill.libelle }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Level</td>
+                                                    <td>{{ skill.level }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">Duration</td>
+                                                    <td>{{ skill.duration }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-weight-bold">candidats</td>
+                                                    <td>{{ skill.candidat }}</td>
+                                                </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-12">
+                                            <a href="{{ path('skills_index') }}" class="btn btn-primary mr-1"><i class="feather icon-show-1"></i>back to list</a>
+
+                                            <a href="{{ path('skills_edit', {'id': skill.id}) }} " class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i>edit</a>
+
+                                            {{ include('skills/_delete_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- account end -->
+                        <!-- information start -->
+
+                        <!-- information start -->
+                        <!-- social links end -->
+
+                        <!-- social links end -->
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- permissions end -->
+    </div>
+    </section>
+    <!-- page users view end -->
+
+    </div>
+    </div>
+    </div>
+
+
+
+{% endblock %}
