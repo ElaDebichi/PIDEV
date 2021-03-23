@@ -1,71 +1,173 @@
-{{ form_start(form) }}
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-<meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-<meta name="author" content="PIXINVENT">
-<title>Form Layouts - Vuexy - Bootstrap HTML admin template</title>
-<link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-<link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
-
-<!-- BEGIN: Vendor CSS-->
-<link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
-<!-- END: Vendor CSS-->
-
-<!-- BEGIN: Theme CSS-->
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
-
-<!-- BEGIN: Page CSS-->
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
-<!-- END: Page CSS-->
-
-<!-- BEGIN: Custom CSS-->
-<link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
-<!-- END: Custom CSS-->
 
 
 
-<body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+    <h1>Candidat</h1>
 
 
-<
-<!-- Basic Horizontal form layout section start -->
-<section id="basic-horizontal-layouts">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-12">
-            <div class="card">
 
-                <div class="card-content">
-                    <div class="card-body">
-                        <form class="form form-horizontal">
-                            {{ form_widget(form) }}
-                            <button class="btn btn-primary mr-1 mb-1">{{ button_label|default('Save') }}</button>
-                        </form>
+
+
+
+
+
+
+
+
+
+
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+
+            <section id="multiple-column-form">
+
+                <div class="row match-height">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Multiple Column</h4>
+                            </div>
+
+
+                            <div class="card-content">
+                                <div class="card-body">
+                                    {{ form_start(form,{'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+                                    <form class="form">
+                                        <div class="form-body">
+                                            <div class="row">
+
+
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+
+                                                        {{ form_widget(form.prenom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control','placeholder':'YOUR FIRST NAME *'}}) }}
+                                                        <label for="first-name-column">First Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+
+                                                        {{ form_widget(form.nom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control','placeholder':'YOUR NAME *'}}) }}
+                                                        <label for="first-name-column">Name</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.password,{ 'label':'','id':'user-password','attr':{'class':'form-control ','placeholder':'YOUR PASSWORD *'}}) }}
+                                                        <label for="last-name-column">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.phone,{ 'label':'','id':'user-phone','attr':{'class':'form-control ','placeholder':'YOUR PHONE NUMBER *'}}) }}
+                                                        <label for="city-column">Phone number</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.address,{ 'label':'','id':'user-address','attr':{'class':'form-control','placeholder':'YOUR EMAIL ADDRESS *'}}) }}
+                                                        <label for="country-floating">Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.fb,{ 'label':'','id':'user-fb','attr':{'class':'form-control','placeholder':'YOUR FACEBOOK PAGE *'}}) }}
+                                                        <label for="company-column">Facebook page</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.linkdin,{ 'label':'','id':'user-linkdin','attr':{'class':'form-control','placeholder':'YOUR LINKDIN *'}}) }}
+                                                        <label for="email-id-column">Linkedin</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.town,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR TOWN *'}}) }}
+                                                        <label for="email-id-column">Town</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.dateNaissance,{ 'id':'user-categorie','attr':{'class':'form-control','placeholder':'YOUR BIRTHDAY *'}}) }}
+                                                        <label for="email-id-column">Birthday</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.imageFile,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR IMG *'}}) }}
+                                                        <label for="email-id-column">Image</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.description,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}}) }}
+                                                        <label for="email-id-column">Description</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.typeCandidat,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR TYPE *'}}) }}
+                                                        <label for="email-id-column">Type</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <div class="form-label-group">
+                                                        {{ form_widget(form.nivEtude,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR DEGREE *'}}) }}
+                                                        <label for="email-id-column">Degree</label>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="form-group col-12">
+                                                    <fieldset class="checkbox">
+                                                        <div class="vs-checkbox-con vs-checkbox-primary">
+                                                            <input type="checkbox">
+                                                            <span class="vs-checkbox">
+                                                                    <span class="vs-checkbox--check">
+                                                                        <i class="vs-icon feather icon-check"></i>
+                                                                    </span>
+                                                                </span>
+                                                            <span class="">Remember me</span>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary mr-1 mb-1"  href="{{path('candidat_newFront')}}" > Submit</button>
+
+                                                    <button type="reset" class="btn btn-outline-warning mr-1 mb-1"> Reset</button>
+                                                </div>
+                                                {{ form_end(form) }}
+
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-
     </div>
-</section>
 
-<script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-
-
-<script src="../../../app-assets/js/core/app-menu.js"></script>
-<script src="../../../app-assets/js/core/app.js"></script>
-<script src="../../../app-assets/js/scripts/components.js"></script>
+{% endblock %}
 
 
-</body>
 
 
-{{ form_end(form) }}
+
+
+
+
+

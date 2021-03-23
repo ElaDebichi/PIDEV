@@ -9,11 +9,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
+/**
+ * @Route("/admin")
+ */
 class EmployerAdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="employer_admin")
+     * @Route("/", name="employer_admin")
      */
     public function index(): Response
     {$users = $this->getDoctrine()->getRepository(Employer::class)->findAll();
@@ -22,7 +26,7 @@ class EmployerAdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/newAdmin", name="employer_newAdmin", methods={"GET","POST"})
+     * @Route("/new", name="employer_newAdmin", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -48,11 +52,16 @@ class EmployerAdminController extends AbstractController
 
 
     }
+
     /**
      * @Route("/{id}/edit", name="employer_editAdmin", methods={"GET","POST"})
+     * @param Request $request
+     * @param $id
+     * @return Response
      */
-    public function edit(Request $request, Employer $employer): Response
+    public function edit(Request $request,$id): Response
     {
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($id);
         $form = $this->createForm(Employer1Type::class, $employer);
         $form->handleRequest($request);
 
@@ -67,11 +76,15 @@ class EmployerAdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     /**
- * @Route("/{id}", name="employer_showAdmin", methods={"GET"})
- */
-    public function show(Employer $employer): Response
+     * @Route("/{id}", name="employer_showAdmin", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function show($id): Response
     {
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($id);
         return $this->render('employer_admin/show.html.twig', [
             'employer' => $employer,
         ]);
@@ -79,9 +92,13 @@ class EmployerAdminController extends AbstractController
 
     /**
      * @Route("/{id}", name="employer_deleteAdmin", methods={"DELETE"})
+     * @param Request $request
+     * @param $id
+     * @return Response
      */
-    public function delete(Request $request, Employer $employer): Response
+    public function delete(Request $request,$id): Response
     {
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($id);
         if ($this->isCsrfTokenValid('delete' . $employer->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($employer);
@@ -89,5 +106,18 @@ class EmployerAdminController extends AbstractController
         }
 
         return $this->redirectToRoute('employer_admin');
+    }
+    /**
+     * @Route("candidat/searchStudentx ", name="searchStudentx")
+     */
+    public function searchStudentx(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Employer::class);
+        $requestString=$request->get('searchValue');
+        $employers = $repository->findEmployerByCategorie($requestString);
+        $jsonContent = $Normalizer->normalize($employers, 'json',['groups'=>'employers']);
+        $retour = json_encode($jsonContent);
+        return new JsonResponse($jsonContent);
+
     }
 }
