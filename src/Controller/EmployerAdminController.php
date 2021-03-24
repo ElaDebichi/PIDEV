@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -16,6 +18,13 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  */
 class EmployerAdminController extends AbstractController
 {
+    private EncoderFactoryInterface $encoder;
+    private UserPasswordEncoderInterface $pwdEncoder;
+    public function __construct(EncoderFactoryInterface $encoder,UserPasswordEncoderInterface $enc)
+    {
+        $this->encoder = $encoder;
+        $this->pwdEncoder = $enc;
+    }
     /**
      * @Route("/", name="employer_admin")
      */

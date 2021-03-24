@@ -116,8 +116,8 @@
                                                     <td>{{ candidat.fb }}</td>
                                                     <td>{{ candidat.linkdin }}</td>
                                                     <td>{{ candidat.description }}</td>
-                                                    <td>{{ candidat.img }}</td>
-                                                  <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
+                                                    <td>   <img src="/uploads/{{candidat.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
+                                                    <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
                                                     <td>{{ candidat.nivEtude }}</td>
                                                     <td>{{ candidat.typeCandidat }}</td>
                                                     <td>

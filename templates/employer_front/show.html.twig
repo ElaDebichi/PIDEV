@@ -140,6 +140,22 @@
 
                                         </div>
                                         <div class="mt-1">
+                                            <h6 class="feather icon-check-circle"> Created at : {{ employer.createdAt|date('Y-m-d')}}</h6>
+
+                                        </div>
+                                        <div class="mt-1">
+                                            <h6 class="feather icon-edit"> Updated at : {{ employer.updatedAt|date('Y-m-d')}}</h6>
+
+                                        </div>
+                                        <div class="mt-1">
+                                            <h6 class="feather icon-facebook"> Facebook : {{ employer.fb}}</h6>
+
+                                        </div>
+                                        <div class="mt-1">
+                                            <h6 class="feather icon-user"> Linkedin : {{ employer.linkdin}}</h6>
+
+                                        </div>
+                                        <div class="mt-1">
                                             <button type="button" class="btn btn-sm btn-icon btn-primary mr-25 p-25" href=" {{ employer.fb  }}"><i class="feather icon-facebook"></i> </button>
                                             <button type="button" class="btn btn-sm btn-icon btn-primary mr-25 p-25"  href=" {{ employer.linkdin  }}"><i class="feather icon-twitter"></i> </button>
                                             <button type="button" class="btn btn-sm btn-icon btn-primary p-25"><i class="feather icon-instagram"></i></button>

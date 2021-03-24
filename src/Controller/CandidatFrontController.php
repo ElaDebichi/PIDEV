@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Post;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Entity\Candidat;
@@ -83,9 +84,11 @@ class CandidatFrontController extends AbstractController
      */
     public function show($id): Response
     {
+
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
+
         return $this->render('candidat_front/show.html.twig', [
-            'candidat' => $candidat,
+             'candidat'=>$candidat,
         ]);
     }
 

@@ -1,0 +1,55 @@
+
+<div class="card-content">
+    <div class="card-body">
+        <div class="form-body">
+
+                {{ form_start(form) }}
+
+                <div class="col-12">
+
+                    <div class="form-group row">
+                        <div class="col-xl-auto">
+                            <fieldset class="form-group">
+
+
+                                <!-- {{ form_widget(form.content, {'attr': {'class': 'form-control form-control-lg'}}) }} -->
+                                <input type="text" class="form-control" id="{{ form.content.vars.id }}"
+                                       name="{{ form.content.vars.full_name }}" value="{{ form.content.vars.value }}">
+
+
+                                <div class="alert alert-danger mt-1 alert-validation-msg" role="alert">
+                                    {{ form_errors(form.content) }}
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                {# {{ dump(form.content.vars) }} #}
+
+
+                <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+
+
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    function editReview()
+    {
+        const textarea = document.getElementById('post1_content');
+        let badwords = /bashful|dopey|grumpy|happy|sleepy|doc/gi;
+        let userreview1 = textarea.value;
+        let userreview2 = userreview1.replace(badwords,'****');
+        document.getElementById('post1_content').value = userreview2;
+
+    }
+
+    document.getElementById('submitbtn').addEventListener('click',editReview)
+</script>
+
