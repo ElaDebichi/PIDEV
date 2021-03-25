@@ -1,0 +1,132 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block body %}
+<!-- Groups section start -->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+<section id="groups">
+    <div class="row">
+        <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Overview about the data</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-group">
+
+                <div class="card">
+                    <div class="card-content">
+                        <img class="card-img-top img-fluid" src="../../../app-assets/images/pages/content-img-3.jpg" alt="Card image cap" />
+                        <div class="card-body">
+                            <h4 class="card-title">Manage your users</h4>
+                            <p class="card-text">As a admin you have the possibility to manage your users, edit and remove</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img class="card-img-top img-fluid" src="../../../app-assets/images/pages/content-img-2.jpg" alt="Card image cap" />
+                        <div class="card-body">
+                            <h4 class="card-title">Manage The Job Offers</h4>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img class="card-img-top img-fluid" src="../../../app-assets/images/pages/content-img-4.jpg" alt="Card image cap" />
+                        <div class="card-body">
+                            <h4 class="card-title">Manage the events</h4>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <img class="card-img-top img-fluid" src="../../../app-assets/images/pages/content-img-1.jpg" alt="Card image cap" />
+                        <div class="card-body">
+                            <h4 class="card-title">Manage the formations</h4>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                            <div class="avatar bg-rgba-primary p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="feather icon-users text-primary font-medium-5"></i>
+                                </div>
+                            </div>
+                            <h2 class="text-bold-700 mt-1">{{ users }}</h2>
+                            <p class="mb-0">Subscribers Gained</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="line-area-chart-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                            <div class="avatar bg-rgba-success p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="feather icon-credit-card text-success font-medium-5"></i>
+                                </div>
+                            </div>
+                            <h2 class="text-bold-700 mt-1">97.5k</h2>
+                            <p class="mb-0">Revenue Generated</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="line-area-chart-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                            <div class="avatar bg-rgba-danger p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                </div>
+                            </div>
+                            <h2 class="text-bold-700 mt-1">36%</h2>
+                            <p class="mb-0">Quarterly Sales</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="line-area-chart-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                            <div class="avatar bg-rgba-warning p-50 m-0">
+                                <div class="avatar-content">
+                                    <i class="feather icon-package text-warning font-medium-5"></i>
+                                </div>
+                            </div>
+                            <h2 class="text-bold-700 mt-1">97.5K</h2>
+                            <p class="mb-0">Orders Received</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="line-area-chart-4"></div>
+                        </div>
+                    </div>
+                </div>
+        </div></div>
+<!-- Groups section end -->
+{% endblock %}

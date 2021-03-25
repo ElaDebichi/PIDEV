@@ -6,6 +6,7 @@ use App\Entity\Skills;
 use App\Entity\Candidat;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,6 +17,9 @@ class SkillsType extends AbstractType
     {
         $builder
             ->add('libelle')
+            ->add('imageFile', FileType::class, [
+                'mapped' => false
+            ])
 
         ;
     }

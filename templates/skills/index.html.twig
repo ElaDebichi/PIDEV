@@ -1,98 +1,107 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Skills index{% endblock %}
+{% block title %}Skills{% endblock %}
 
 {% block body %}
-    <h1>Skills index</h1>
+    {% block content %}
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
 
+                        </div>
+                    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
+                </div>
+                <div class="content-body">
+                    <div class="row">
 
                     </div>
-                </div>
+                    <div style="display: inline-block;top: 0px;left: 750px;" class="col-sm-4 col-12">
+                        <input class="form-control round" placeholder="Search" type="text" id="searchadv">
+                    </div>
 
-            </div>
-            <div class="content-body">
-                <div class="row">
-
-                </div>
+                    <button style="top: 5px;left: 750px;" type="submit" id="search" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="feather icon-search"></i></button>
 
 
-                <!-- Column selectors with Export Options and print table -->
-                <section id="column-selectors">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-
-                                        <div class="table-responsive">
-                                            <table class="table table-striped dataex-html5-selectors">
-                                                <thead>
-                                                <tr>
-                                                    <th>id</th>
-                                                    <th>libelle</th>
+                    <br>
+                    <br>
+                    <br>
 
 
-                                                    <th>Action</th>
+                    <div class="content-body">
+                        <div class="row">
+                        </div>
+                        <h1 class="text-uppercase">SKILLS
+                            <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('skills_newSkill')  }}"><i class="feather icon-plus"></i></a>
 
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for skill in skills %}
-                                                    <tr>
-                                                        <td>{{ skill.id }}</td>
-                                                        <td>{{ skill.libelle }}</td>
+                        </h1>
+
+                        <section id="column-selectors">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped dataex-html5-selectors">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Libelle</th>
+                                                            <th>Image</th>
+                                                            <th>Action</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tb">
+                                                        {% for skill in skills %}
+                                                            <tr>
+                                                                <td>{{ skill.libelle }}</td>
 
 
-                                                        <td>
-                                                            {{ include('skills/_delete_form.html.twig') }}
-                                                            <a  href="{{ path('skills_edit', {'id': skill.id}) }}"> <i class="feather icon-edit-1"></i> Edit</a>
-                                                        </td>
+                                                                <td>   <img src="/uploads/{{skill.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
+                                                                <td>
 
-                                                    </tr>
-                                                {% endfor %}
-                                            </table>
-                                            <a href="{{ path('skills_newSkill') }}">Create new</a>
+                                                                    <div style="display: inline-block;">
+
+                                                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('skills_edit', {'id': skill.id}) }}"> <i class="feather icon-edit"></i></a>
+                                                                    </div>
+
+                                                                    <div style="display: inline-block;">
+                                                                        {{ include('skills/_delete_form.html.twig') }}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        </section>
+
+
                     </div>
-                </section>
-                <!-- Column selectors with Export Options and print table -->
-
-
-
+                </div>
             </div>
         </div>
-    </div>
-    <!-- END: Content-->
+
+        <!-- Column selectors with Export Options and print table -->
 
 
 
-
-
-
+        </div>
+        </div>
+        </div>
+    {% endblock %}
 {% endblock %}

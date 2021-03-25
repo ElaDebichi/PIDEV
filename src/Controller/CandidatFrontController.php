@@ -87,8 +87,19 @@ class CandidatFrontController extends AbstractController
 
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
 
+
+
+
+
+
+
+
+
+
+
         return $this->render('candidat_front/show.html.twig', [
              'candidat'=>$candidat,
+
         ]);
     }
 

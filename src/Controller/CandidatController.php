@@ -33,6 +33,24 @@ class CandidatController extends AbstractController
         $this->pwdEncoder = $enc;
     }
     /**
+     * @Route("/dashboard", name="dashboard", methods={"GET"})
+     */
+    public function dashboard(): Response
+    {
+        $em=$this->getDoctrine()->getRepository(User::class);
+        $qb = $em->createQueryBuilder('ca');
+        $qb->select('count(c.id)');
+        $qb->from('App\Entity\User','c');
+
+        $count = $qb->getQuery()->getSingleScalarResult();
+
+        return $this->render('candidat/dashboard.html.twig', [
+            'users' => $count
+
+        ]);
+    }
+
+    /**
      * @Route("/candidat", name="candidat_index", methods={"GET"})
      */
     public function index(): Response

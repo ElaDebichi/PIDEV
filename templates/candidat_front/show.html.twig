@@ -50,13 +50,15 @@
                                         <img class="img-fluid bg-cover rounded-0 w-100" src="../../../app-assets/images/profile/user-uploads/cover.jpg" alt="User Profile Image">
                                     </div>
                                     <div class="profile-img-container d-flex align-items-center justify-content-between">
-                                        <img src="/uploads/{{candidat.getImg()}}" class="rounded-circle img-border box-shadow-1" alt="Card image">
+                                        <img src="/uploads/{{candidat.getImg()}}" style="object-fit: cover" class="rounded-circle img-border box-shadow-1" alt="Card image">
                                         <div class="float-right">
 
-
+                                            {% if app.user.id == candidat.id %}
                                             <a class="btn btn-icon btn-icon rounded-circle btn-primary mr-1"   href="{{ path('candidat_editFront', {'id': candidat.id}) }}"> <i class="feather icon-edit-2"></i></a>
-                                            <a class="btn btn-icon btn-icon rounded-circle btn-primary mr-1"   href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"> <i class="feather icon-edit-2"></i> cv</a>
+                                            {% endif %}
+                                            {% if app.user.id != candidat.id %}
                                             <a class="btn btn-icon btn-icon rounded-circle btn-primary mr-1"   href="{{ path('contact', {'id': candidat.id}) }}"> <i class="feather icon-edit-2"></i> Send Mail</a>
+                                            {% endif %}
 
                                         </div>
                                     </div>
@@ -150,11 +152,18 @@
                                             <button type="button" class="btn btn-sm btn-icon btn-primary p-25"><i class="feather icon-instagram"></i></button>
                                         </div>
                                     </div>
+                                    {% if app.user.id == candidat.id %}
+                                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"><i class="feather icon-plus"></i> Download your resume</a>
+                                    {% endif %}
+
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Skills</h4>
                                     </div>
+                                    {% if app.user.id == candidat.id %}
+                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"><i class="feather icon-plus"></i> Add Skill</a>
+                                    {% endif %}
                                     <div class="card-body suggested-block">
                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                             <div class="avatar mr-50">
@@ -348,10 +357,11 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="avatar mr-1">
-                                                    <img src="/uploads/{{candidat.getImg()}}" alt="avtar img holder" height="45" width="45">
+                                                    <img src="/uploads/{{candidat.getImg()}}" alt="avtar img holder"  style="width:50px; height: 50px; object-fit: scale-down; " >
                                                 </div>
                                                 <div class="user-page-info">
                                                     <p class="mb-0">{{ candidat.getNom ~ " " ~ candidat.getPrenom }}</p>
+
                                                     <span class="font-small-2">{{ post.date ? post.date|date('Y-m-d') : '' }} AT {{ post.date ? post.date|date('H:i:s') : '' }}</span>
                                                 </div>
                                                 {% if app.user.id == candidat.id%}
@@ -407,7 +417,7 @@
                                                 <div class="d-flex justify-content-start align-items-center mb-2">
 
                                                     <div class="avatar mr-50">
-                                                        <img src="/uploads/{{comment.user.getImg()}}" alt="Avatar" height="30" width="30">
+                                                        <img src="/uploads/{{comment.user.getImg()}}" alt="Avatar" height="30" width="30" style="object-fit: scale-down;">
                                                     </div>
                                                     <div class="user-page-info">
                                                         <h6 class="mb-0">{{ comment.user.nom ~ " " ~ comment.user.prenom }}</h6>

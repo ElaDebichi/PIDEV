@@ -34,7 +34,7 @@
                                                         <input type="text" class="form-control round" id="search"  name="search" placeholder="Search By Town">
                                                         <br>
                                                         <div class="btn-group btn-group-sm" aria-label="Set Select2 option"> <button type="submit" class="btn gradient-light-primary text-white">
-                                                               Search
+                                                                Search
                                                             </button> </div>
 
                                                         <div class="form-control-position">
@@ -87,49 +87,56 @@
             </div>
             </section>
 
-                <section id="basic-examples">
-                    <div class="row match-height">
+            <section id="decks">
 
-                        {% for candidat in candidats %}
-                            <div class="card">
-                                <div class="card-content">
-                                    <img id="img"   style="max-width:500px; max-height: 200px; " src="/uploads/{{candidat.img}}">
-                                    <div class="card-body">
-                                        <h5>{{ candidat.nom ~ candidat.prenom }}</h5>
-                                        <p class="card-text  mb-0">{{ candidat.typeCandidat }}</p>
-                                        <span class="card-text">{{ candidat.town }}</span>
-                                        <div class="card-btns d-flex justify-content-between mt-2">
-                                            <a href="#" class="btn gradient-light-primary text-white">Follow</a>
-                                            <a href="{{ path('candidat_showFront', {'id': candidat.id}) }}" class="btn btn-outline-primary">Read More</a>
+                <div class="row" height="200" width="500" >
 
-                                        </div>
+                    {% for candidat in candidats %}
+                        <div>  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; </div>
+                        <div class="card" >
+
+                            <div class="card-content">
+
+                                <img id="img"   style="width:300px; height: 400px; " src="/uploads/{{candidat.img}}">
+
+                                <div class="card-body">
+                                    <h5>{{ candidat.nom ~ candidat.prenom }}</h5>
+                                    <p class="card-text  mb-0">{{ candidat.typeCandidat }}</p>
+                                    <span class="card-text">{{ candidat.town }}</span>
+                                    <div class="card-btns d-flex justify-content-between mt-2">
+                                        <a href="#" class="btn gradient-light-primary text-white">Follow</a>
+                                        <a href="{{ path('candidat_showFront', {'id': candidat.id}) }}" class="btn btn-outline-primary">Read More</a>
+
                                     </div>
+
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
+                            <div>  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; </div>
+                        </div>
+                    {% endfor %}
+                </div>
 
-                    <!-- Profile Cards Starts -->
+                <!-- Profile Cards Starts -->
 
-                    <!-- Profile Cards Ends -->
-            </div>
-            </section>
-
-            <!-- // Basic example and Profile cards section end -->
-
-            <!-- Overlay Image and Chat Section Starts -->
-
-            <!-- Overlay Image and Chat Section Starts -->
-
-            <!-- Admin and Video Section Starts -->
-
-            <!-- Admin and Video Section Starts -->
-
-            <!-- Timeline Starts -->
-
-            <!-- Timeline Ends -->
-
+                <!-- Profile Cards Ends -->
         </div>
+        </section>
+
+        <!-- // Basic example and Profile cards section end -->
+
+        <!-- Overlay Image and Chat Section Starts -->
+
+        <!-- Overlay Image and Chat Section Starts -->
+
+        <!-- Admin and Video Section Starts -->
+
+        <!-- Admin and Video Section Starts -->
+
+        <!-- Timeline Starts -->
+
+        <!-- Timeline Ends -->
+
+    </div>
 
     </div>
     </div>

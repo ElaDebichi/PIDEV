@@ -7,6 +7,7 @@ use App\Entity\Skills;
 use phpDocumentor\Reflection\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,7 +32,8 @@ class CandidatType extends AbstractType
             ->add('prenom')
             ->add('dateNaissance')
             ->add('nivEtude')
-            ->add('typeCandidat');
+            ->add('typeCandidat',ChoiceType::class, [
+                'choices' => ['Stagiaire' => 'Stagiaire','Job seeker'=>'Job seeker']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
