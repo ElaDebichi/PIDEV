@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('formation_delete', {'id': formation.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ formation.id) }}">
+    <div style="display: inline-block;">
+    <button class="btn btn-outline-primary mr-1 mb-1"><i class="feather icon-delete"></i></a></button>
+     </div>
+</form>

@@ -1,0 +1,20 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+
+{% block body %}
+
+
+
+ <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            
+    <h1 align="center">Create new Formation</h1>
+
+    {{ include('formation/_form.html.twig') }}
+
+    <a href="{{ path('formation_index') }}">back to list</a>
+     </div>
+{% endblock %}

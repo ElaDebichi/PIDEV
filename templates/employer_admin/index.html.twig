@@ -96,8 +96,7 @@
                 </section>
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Password</th>
+
                         <th>Category</th>
                         <th>Phone</th>
                         <th>Email</th>
@@ -113,8 +112,7 @@
                     <tbody id="all">
                     {% for employer in employers %}
                         <tr>
-                            <td>{{ employer.id }}</td>
-                            <td>{{ employer.password }}</td>
+
                             <td>{{ employer.categorie }}</td>
                             <td>{{ employer.phone }}</td>
                             <td>{{ employer.address }}</td>
@@ -192,19 +190,18 @@
                                   $('#t tbody#all').hide();
 
                                   $('#t tbody#search').append('<tr>' +
-                                      '<td> '+obj.id+'  </td>' +
-                                      '<td>'+obj.password+'  </td>' +
+
                                       '<td>'+obj.categorie+'  </td>' +
                                       '<td>'+obj.phone+' </td>' +
-                                      '<td>'+obj.address+' </td>' +
-                                      '<td>'+obj.town+' </td>' +
                                       '<td>'+obj.address+' </td>' +
                                       '<td>'+obj.town+' </td>' +
                                       '<td>'+obj.fb+' </td>' +
                                       '<td>'+obj.linkdin+' </td>' +
                                       '<td>'+obj.description+' </td>' +
+
                                       '<td>'+obj.img+' </td>' +
                                       '<td>'+obj.company+' </td>' +
+
                                       '<td><a href="employer_editAdmin/'+obj.id+'">modifier</a> ' +
                                       '</br><a href="employer_showAdmin/'+obj.id+'">show</a></td></tr>');
                               });

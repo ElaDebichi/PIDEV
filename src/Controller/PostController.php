@@ -34,9 +34,9 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="post_new", methods={"GET","POST"})
+     * @Route("/new/{iduser}", name="post_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,$iduser): Response
     {
         $post = new Post();
         $form = $this->createForm(Post1Type::class, $post);
@@ -47,8 +47,9 @@ class PostController extends AbstractController
             $post->setNblikes(0);
             $post->setDate(new \DateTimeImmutable('now'));
 
-           $user= $entityManager->getRepository(Candidat::class)->find(52);
+           $user= $entityManager->getRepository(Candidat::class)->find($iduser);
             $post->setUser($user);
+
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -94,12 +95,14 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("/{id}/{iduser}", name="post_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Post $post): Response
+    public function delete(Request $request, Post $post , $iduser): Response
     {
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            $user = $this->getDoctrine()->getRepository(User::class)->find($iduser);
+            $user->removePost($post);
             $entityManager->remove($post);
             $entityManager->flush();
         }

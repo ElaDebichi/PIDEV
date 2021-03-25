@@ -1,5 +1,5 @@
 
-<form id="submit" method="post" action="{{ path('post_delete', {'id': post.id}) }}" >
+<form id="submit" method="post" action="{{ path('post_delete', {'id': post.id, 'iduser': post.user.id}) }}" >
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
     <button id="confirm-text" onclick="" class="btn btn-outline-danger mr-1 mb-1"><i class="feather icon-trash-2"></i></button>

@@ -100,7 +100,8 @@ abstract class User implements UserInterface
     private $post;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", cascade="remove")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="post_id", onDelete="CASCADE")
      */
     private $comment;
 

@@ -87,10 +87,10 @@
                 </section>
                                                 <thead>
                                                 <tr>
-                                                    <th>id</th>
+
                                                     <th>name</th>
                                                     <th>first name</th>
-                                                    <th>password</th>
+
                                                     <th>phone</th>
                                                     <th>email</th>
                                                     <th>town</th>
@@ -106,10 +106,10 @@
                                                 <tbody id="all">
                                                 {% for candidat in candidats %}
                                                 <tr>
-                                                    <td>{{ candidat.id }}</td>
+
                                                     <td>{{ candidat.nom }}</td>
                                                     <td>{{ candidat.prenom }}</td>
-                                                    <td>{{ candidat.password }}</td>
+
                                                     <td>{{ candidat.phone }}</td>
                                                     <td>{{ candidat.address }}</td>
                                                     <td>{{ candidat.town }}</td>
@@ -180,7 +180,7 @@
                             $('#t tbody#search').empty();
                             $.each(retour, function(i, obj) {
                                 $('#t tbody#all').hide();
-                                $('#t tbody#search').append('<tr><td> '+obj.id+'  </td><td>    '+obj.nom+'  </td><td>'+obj.prenom+' </td><td>'+obj.password+' </td><td>'+obj.phone+' </td><td>'+obj.address+' </td><td>'+obj.town+' </td><td>'+obj.fb+' </td><td>'+obj.linkdin+' </td><td>'+obj.description+' </td><td>'+obj.img+' </td><td>'+obj.dateNaissance+' </td><td>'+obj.nivEtude+' </td><td>'+obj.typeCandidat+' </td><td><a href="candidat_edit/'+obj.id+'">modifier</a> </br><a href="candidat_show/'+obj.id+'">show</a></td></tr>');
+                                $('#t tbody#search').append('<tr><td>    '+obj.nom+'  </td><td>'+obj.prenom+' </td><td>'+obj.phone+' </td><td>'+obj.address+' </td><td>'+obj.town+' </td><td>'+obj.fb+' </td><td>'+obj.linkdin+' </td><td>'+obj.description+' </td><td>'+obj.img+' </td><td>'+obj.dateNaissance+' </td><td>'+obj.nivEtude+' </td><td>'+obj.typeCandidat+' </td><td><a href="candidat_edit/'+obj.id+'">modifier</a> </br><a href="candidat_show/'+obj.id+'">show</a></td></tr>');
                             });
                         }
                         else

@@ -1,0 +1,102 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+<h1>Candidat</h1>
+
+
+
+
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- page users view start -->
+            <section class="page-users-view">
+                <div class="row">
+                    <!-- account start -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Account</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="users-view-image">
+                                        <img src="/uploads/{{formation.getImg()}}" style="max-height: 500px; max-width: 200px;" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                    </div>
+
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Formation name:</td>
+                                                        <td>{{ formation.nomformation }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Tutor name:</td>
+                                                        <td>{{ formation.nomdeformateur }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="font-weight-bold">Formation subject:</td>
+                                                        <td>{{ formation.sujetdeformation }}</td>
+                                                    </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-12">
+                                                <a href="{{ path('formation_index') }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> afficher</a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- account end -->
+                            <!-- information start -->
+
+                            <!-- information start -->
+                            <!-- social links end -->
+
+                            <!-- social links end -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- permissions end -->
+</div>
+</section>
+<!-- page users view end -->
+
+</div>
+</div>
+</div>
+
+
+
+
+{{ include('formation/_delete_form.html.twig') }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

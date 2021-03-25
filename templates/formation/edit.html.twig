@@ -1,0 +1,118 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- users edit start -->
+                <section class="users-edit">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+                                        <!-- users edit media object start -->
+
+
+                                        <!-- users edit media object ends -->
+                                        <!-- users edit account form start -->
+                            {{ form_start(form,{'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+
+                             <h2>Edit a formation</h2>
+                            <div class="card-content">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+
+
+                                                </div>
+                                            </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+
+                    <div >
+                        <div class="item form-group">
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name"> Tutor name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.nomdeformateur, {'attr':{'class': 'form-control' }}) }}
+                        </div>
+                        <span style="color: darkred;" >{{form_errors(form.nomdeformateur) }}</span>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name">Formation subject <span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.sujetdeformation, {'attr':{'class': 'form-control'}}) }}
+                        </div>
+           
+                        <span style="color: darkred;" >{{form_errors(form.sujetdeformation) }}</span>
+                    </div>
+
+               
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name">Formation Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-12 col-sm-12 ">
+                            {{ form_widget(form.nomformation, {'attr':{'class': 'form-control'}}) }}
+                        </div>
+                        <span style="color: darkred;" >{{form_errors(form.nomformation) }}</span>
+                    </div>
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-12 col-sm-12 " style="text-align: left;" for="first-name">Fomation Image <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-12 col-sm-12 ">
+                                                    {{ form_widget(form.imageFile, {'attr':{'class': 'form-control'}}) }}
+                                                </div>
+                                                <span style="color: darkred;" >{{form_errors(form.nomformation) }}</span>
+                                            </div>
+                        <div class="item form-group">
+                            <div class="col-md-12 col-sm-12 ">
+                        <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('formation_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    
+
+
+
+                    {{ form_end(form) }}
+
+
+
+
+                                        </div>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+    </section>
+</div>
+    </div>
+    <!-- users edit socail form ends -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- users edit ends -->
+
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

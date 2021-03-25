@@ -38,12 +38,12 @@ class Post
     private $nblikes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"})
      */
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="post",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="post",cascade={"persist","remove"})
      */
     private $user;
 

@@ -1,0 +1,116 @@
+
+
+
+
+{% block body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- users edit start -->
+            <section class="users-edit">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+
+                                    <!-- users edit media object ends -->
+                                    <!-- users edit account form start -->
+                                    {{ form_start(form,{'attr':{'main-contact-form wow':'main-contact-form wow'}}) }}
+
+
+                            <div class="card-content">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <div class="controls">
+
+
+                                                </div>
+                                            </div>
+
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="first-name-column">Formation name:</label>
+                                                        {{ form_widget(form.nomformation,{ 'label':'','id' : 'formation','attr':{'class':'form-control','placeholder':'FORMATION NAME *'}}) }}
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="first-name-column">Tutor name:</label>
+                                                        {{ form_widget(form.nomdeformateur,{ 'label':'','id' : 'formation','attr':{'class':'form-control','placeholder':'TUTOR NAME *'}}) }}
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="last-name-column">Formation subject:</label>
+                                                        {{ form_widget(form.sujetdeformation,{ 'label':'','id':'formation','attr':{'class':'form-control ','placeholder':'FORMATION SUBJECT *'}}) }}
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label for="last-name-column">Formation image:</label>
+                                              {{ form_widget(form.imageFile,{ 'label':'','id':'user-town','attr':{'class':'form-control','placeholder':'YOUR IMG *'}}) }}
+                                                 </div>
+                                                </div>
+
+
+                                            <div class="col-md-offset-5" > <button type="submit" href="{{path('formation_new', {'iduser':app.user.id})}}" class="btn btn-primary mt30 btn-black " />click to save </button> </div>
+
+                                            {{ form_end(form) }}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- users edit socail form ends -->
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- users edit ends -->
+
+    </div>
+    </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
