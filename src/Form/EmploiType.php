@@ -37,7 +37,6 @@ class EmploiType extends AbstractType
                 'format' => 'yyyy-MM-dd',
                 'data' => new \DateTime(),
                 'attr' => array('class' => 'pickadate'),
-
             ])
             ->add('typeContrat', ChoiceType::class,
                 array('choices' => array(

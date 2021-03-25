@@ -64,8 +64,7 @@
                         </div>
                     </div>
                     <div class="col-12" align="right">
-                        <!--<a href="{{ path('emploi_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>-->
-                        <button type="button" id="btn" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</button>
+                        <a href="{{ path('emploi_apply', {'id': emploi.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
                         <a href="{{ path('emploi_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
                     </div>
                 </section>

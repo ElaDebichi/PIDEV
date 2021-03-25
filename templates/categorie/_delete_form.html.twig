@@ -1,8 +1,9 @@
-<form method="post" action="{{ path('categorie_delete', {'id': categorie.id}) }}" onsubmit="function ;">
+<form method="post" action="{{ path('categorie_delete', {'id': categorie.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+
+    <button class="btn btn-outline-primary mb-2" id="confirm-color" >
+        Confirm Button Colooor
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
-    <button type="button" class="btn btn-outline-primary mb-2" id="confirm-color" >
-        Confirm Button Colooor
     </button>
 </form>
 

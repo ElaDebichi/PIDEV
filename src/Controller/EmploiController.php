@@ -2,23 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\Categorie;
 use App\Entity\Emploi;
 use App\Entity\Search;
 use App\Form\EmploiType;
 use App\Form\SearchType;
 use App\Repository\EmploiRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/emploi")
+ * @Route("/job")
  */
-class EmploiController extends AbstractController
+class EmploiController extends Controller
 {
     public function indexDefault(EmploiRepository $emploiRepository): Response
     {
@@ -30,24 +27,29 @@ class EmploiController extends AbstractController
     /**
      * @Route("/", name="emploi_index", methods={"GET", "POST"})
      */
-    public function finds(Request $request)
+    public function finds(Request $request,EmploiRepository $emploiRepository)
     {
         $categorySearch = new Search();
         $form = $this->createForm(SearchType::class,$categorySearch);
         $form->handleRequest($request);
 
-        $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+        $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
 
         if($form->isSubmitted() && $form->isValid()) {
             $category = $categorySearch->getCategory();
 
             if ($category!="")
             {
-                $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category] );
+                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category] );
             }
             else
-                $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
         }
+        $emplois = $this->get('knp_paginator')->paginate(
+            $allemplois,
+            $request->query->getInt('page', 1),
+            2
+        );
 
         return $this->render('emploi/index.html.twig',['form' => $form->createView(),'emplois' => $emplois]);
     }
@@ -61,18 +63,23 @@ class EmploiController extends AbstractController
         $form = $this->createForm(SearchType::class,$categorySearch);
         $form->handleRequest($request);
 
-        $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+        $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
 
         if($form->isSubmitted() && $form->isValid()) {
             $category = $categorySearch->getCategory();
 
             if ($category!="")
             {
-                $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category] );
+                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category] );
             }
             else
-                $emplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
         }
+        $emplois = $this->get('knp_paginator')->paginate(
+            $allemplois,
+            $request->query->getInt('page', 1),
+            2
+        );
 
         return $this->render('emploi/indexC.html.twig',['form' => $form->createView(),'emplois' => $emplois]);
     }

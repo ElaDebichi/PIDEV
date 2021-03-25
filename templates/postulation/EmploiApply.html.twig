@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                {% if items | length > 0 %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Libelle</th>
+                            <th>Post</th>
+                            <th>Expiration Date</th>
+                            <th>Contract Type</th>
+                            <th>Salary</th>
+                            <th>Level</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.emploi.libelle }}</td>
+                                <td>{{ item.emploi.poste }}</td>
+                                <td>{{ item.emploi.dateExpiration ? item.emploi.dateExpiration|date('Y-m-d') : '' }}</td>
+                                <td>{{ item.emploi.typeContrat }}</td>
+                                <td>{{ item.emploi.salaire }}</td>
+                                <td>{{ item.emploi.niveau }}</td>
+                                <td>{{ item.emploi.category.libelle }}</td>
+                                <td>
+                                    <a href="{{ path('emploi_apply_remove',{'id': item.emploi.id}) }}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p colspan="3">no records found</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

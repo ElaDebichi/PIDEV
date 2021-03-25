@@ -99,10 +99,7 @@ class StageAdminController extends AbstractController
      */
     public function updateAction(StageRepository $stageRepository): Response
     {
-        //$stages = $stageRepository->updateDate();
         $stageRepository->updateDate();
-        /*return $this->render('stage_admin/index.html.twig', array(
-            'stages' => $stages));*/
         return $this->redirectToRoute('stage_admin_index');
     }
 

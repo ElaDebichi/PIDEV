@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                {% if items | length > 0 %}
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Libelle</th>
+                            <th>Post</th>
+                            <th>Expiration Date</th>
+                            <th>Duration</th>
+                            <th>Level</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.stage.libelle }}</td>
+                                <td>{{ item.stage.poste }}</td>
+                                <td>{{ item.stage.dateExpiration ? item.stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                <td>{{ item.stage.duree }}</td>
+                                <td>{{ item.stage.niveau }}</td>
+                                <td>{{ item.stage.category.libelle }}</td>
+                                <td>
+                                    <a href="{{ path('stage_apply_remove',{'id': item.stage.id}) }}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p colspan="3">no records found</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -25,6 +25,7 @@
                         </div>
                     </div>
                 </section>
+                <div class="container">
                 <section id="card-caps">
                     <div class="row my-3">
                         {% for emploi in emplois %}
@@ -40,7 +41,14 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        <span class="float-left"></span>
+                                        <span class="float-left">
+                                            <button id="play" data-content="{{ emploi.description }}" class="btn-icon btn btn-primary btn-round">
+                                                <i class="feather icon-volume-1"></i>
+                                            </button>
+                                            <button id="cancel" data-content="{{ emploi.description }}" class="btn-icon btn btn-primary btn-round">
+                                                <i class="feather icon-x"></i>
+                                            </button>
+                                        </span>
                                         <span class="float-right">
                                         <a href="{{ path('emploi_showC', {'id': emploi.id}) }}" class="card-link">Read More <i class="fa fa-angle-right"></i></a>
                                     </span>
@@ -51,8 +59,15 @@
                             <td colspan="8">no records found</td>
                         {% endfor %}
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <div class="pagination justify-content-center mt-3">
+                            {{ knp_pagination_render(emplois) }}
+                        </div>
+                    </nav>
                 </section>
+                </div>
             </div>
         </div>
     </div>
 {% endblock %}
+

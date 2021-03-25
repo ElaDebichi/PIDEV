@@ -374,6 +374,7 @@ $(document).ready(function () {
           title: 'Deleted!',
           text: 'Your file has been deleted.',
           confirmButtonClass: 'btn btn-success',
+
         })
       }
       else if (result.dismiss === Swal.DismissReason.cancel) {

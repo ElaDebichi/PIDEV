@@ -35,8 +35,6 @@ class StageType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'data' => new \DateTime(),
-                'attr' => array('class' => 'pickadate'),
-
             ])
             ->add('duree')
             ->add('niveau', ChoiceType::class,

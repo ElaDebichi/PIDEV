@@ -264,7 +264,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="feather icon-briefcase"></i><span data-i18n="Apps">Offers</span></a>
+                    <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="feather icon-briefcase"></i><span data-i18n="Apps">Offers</span></a>
                         <ul class="dropdown-menu">
                             <li data-menu=""><a class="dropdown-item" href="{{ path('emploi_indexC') }}" data-toggle="dropdown" data-i18n="Email"><i class="feather icon-mail"></i>Jobs</a>
                             </li>
@@ -278,7 +278,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown" data-i18n="User"><i class="feather icon-user"></i>Internship</a>
+                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" data-toggle="dropdown" data-i18n="User"><i class="feather icon-user"></i>Internship</a>
                                 <ul class="dropdown-menu">
                                     <li data-menu=""><a class="dropdown-item" href="{{ path('stage_index') }}" data-toggle="dropdown" data-i18n="List"><i class="feather icon-circle"></i>List</a>
                                     </li>
@@ -286,7 +286,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li data-menu=""><a class="dropdown-item" href="" data-toggle="dropdown" data-i18n="Email"><i class="feather icon-mail"></i>Candidat</a>
+                            <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu"><a class="dropdown-item dropdown-toggle" data-toggle="dropdown" data-i18n="User"><i class="feather icon-user"></i>Apply</a>
+                                <ul class="dropdown-menu">
+                                    <li data-menu=""><a class="dropdown-item" href="{{ path('postulation_stage') }}" data-toggle="dropdown" data-i18n="List"><i class="feather icon-circle"></i>Internship Apply</a>
+                                    </li>
+                                    <li data-menu=""><a class="dropdown-item" href="{{ path('postulation_emploi') }}" data-toggle="dropdown" data-i18n="View"><i class="feather icon-circle"></i>Job Apply</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -627,6 +633,7 @@
     <script src="../../../app-assets/js/scripts/forms/number-input.js"></script>
     <!-- END: Page JS-->
 
+    <script src="../../../app-assets/js/textToSpeech.js"></script>
 
 {% endblock %}
 

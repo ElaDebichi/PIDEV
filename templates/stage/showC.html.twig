@@ -62,8 +62,13 @@
                         </div>
                     </div>
                     <div class="col-12" align="right">
+                        <!--<form role="form" method="post" action="">
+                            <div class="btn-group btn-group-sm" aria-label="Set Select5 option">
+                                <button type="button" id="btn" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</button>
+                            </div>
+                        </form>-->
                         <!--<a href="{# path('stage_indexC') #}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1" id="btn">Apply</a>-->
-                        <button type="button" id="btn" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</button>
+                        <a href="{{ path('stage_apply', {'id': stage.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
                         <a href="{{ path('stage_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
                     </div>
                 </section>

@@ -7,54 +7,62 @@ use App\Entity\Stage;
 use App\Form\SearchType;
 use App\Form\StageType;
 use App\Repository\StageRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Google\Cloud\TextToSpeech\V1\AudioConfig;
-use Google\Cloud\TextToSpeech\V1\AudioEncoding;
-use Google\Cloud\TextToSpeech\V1\SsmlVoiceGender;
-use Google\Cloud\TextToSpeech\V1\SynthesisInput;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
-use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 
 
 /**
- * @Route("/stage")
+ * @Route("/internship")
  */
-class StageController extends AbstractController
+class StageController extends Controller
 {
-
-    public function indexDefault(StageRepository $stageRepository): Response
+    public function indexDefault(StageRepository $stageRepository, Request $request): Response
     {
+        $allstages = $stageRepository->findAll();
+        $stages = $this->get('knp_paginator')->paginate(
+        // Doctrine Query, not results
+            $allstages,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            2
+        );
         return $this->render('stage/index.html.twig', [
-            'stages' => $stageRepository->findAll(),
+            'stages' => $stages,
         ]);
     }
 
     /**
      * @Route("/", name="stage_index", methods={"GET", "POST"})
      */
-    public function finds(Request $request)
+    public function finds(Request $request, StageRepository $stageRepository)
     {
         $categorySearch = new Search();
         $form = $this->createForm(SearchType::class,$categorySearch);
         $form->handleRequest($request);
 
-        $stages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
+        $allstages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
 
         if($form->isSubmitted() && $form->isValid()) {
             $category = $categorySearch->getCategory();
 
             if ($category!="")
             {
-                $stages= $this->getDoctrine()->getRepository(Stage::class)->findBy(['category' => $category] );
+                $allstages= $this->getDoctrine()->getRepository(Stage::class)->findBy(['category' => $category] );
             }
             else
-                $stages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
+                $allstages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
         }
-
+        //$allstages = $stageRepository->findAll();
+        $stages = $this->get('knp_paginator')->paginate(
+            $allstages,
+            $request->query->getInt('page', 1),
+            2
+        );
         return $this->render('stage/index.html.twig',['form' => $form->createView(),'stages' => $stages]);
     }
 
@@ -67,18 +75,23 @@ class StageController extends AbstractController
         $form = $this->createForm(SearchType::class,$categorySearch);
         $form->handleRequest($request);
 
-        $stages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
+        $allstages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
 
         if($form->isSubmitted() && $form->isValid()) {
             $category = $categorySearch->getCategory();
 
             if ($category!="")
             {
-                $stages= $this->getDoctrine()->getRepository(Stage::class)->findBy(['category' => $category] );
+                $allstages= $this->getDoctrine()->getRepository(Stage::class)->findBy(['category' => $category] );
             }
             else
-                $stages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
+                $allstages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
         }
+        $stages = $this->get('knp_paginator')->paginate(
+            $allstages,
+            $request->query->getInt('page', 1),
+            2
+        );
 
         return $this->render('stage/indexC.html.twig',['form' => $form->createView(),'stages' => $stages]);
     }
@@ -159,7 +172,7 @@ class StageController extends AbstractController
 
         return $this->redirectToRoute('stage_index');
     }
-
+    
 
 
 }
