@@ -7,28 +7,25 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-    <h1>Formation</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ formation.id }}</td>
-            </tr>
-            <tr>
-                <th>Nomformation</th>
-                <td>{{ formation.nomformation }}</td>
-            </tr>
-            <tr>
-                <th>Nomdeformateur</th>
-                <td>{{ formation.nomdeformateur }}</td>
-            </tr>
-            <tr>
-                <th>Sujetdeformation</th>
-                <td>{{ formation.sujetdeformation }}</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <h1>Formation</h1>
+ <div class="card">
+                                <div class="card-content">
+                                    <img src="/uploads/{{formation.getImg()}}" alt="Card image">
+                                    <div class="card-body">
+                                        <h5>{{ formation.Id }}</h5>
+                                         <p class="card-text  mb-0">{{ formation.nomformation }}</p>
+                                        <p class="card-text  mb-0">{{ formation.nomdeformateur }}</p>
+                                        <span class="card-text">{{ formation.sujetdeformation }}</span>
+                                        <div class="card-btns d-flex justify-content-between mt-2">
+                                            <a href="#" class="btn gradient-light-primary text-white">Follow</a>
+                                         
+
+                                        </div>
+                                    </div>
+                                </div>
+                        
 
     <a href="{{ path('formation_index') }}">back to list</a>
 

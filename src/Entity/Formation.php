@@ -32,6 +32,11 @@ class Formation
      */
     private $sujetdeformation;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $img;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Formation
     public function setSujetdeformation(string $sujetdeformation): self
     {
         $this->sujetdeformation = $sujetdeformation;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
 
         return $this;
     }

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body  %}
+
+    
+<section id="row-grouping">
+    <input type="text" id="search" class="form-control" placeholder="Search">
+    <div class="row justify-content-center">
+
+
+
+
+        {% for formation in formations %}
+
+
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="card" style="height: 505.016px;">
+                        <div class="card-content">
+                            <img src="../../../app-assets/images/profile/pages/page-08.jpg" alt="avtar img holder" >
+                            <div class="card-body">
+                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        {% else %}
+
+                <td colspan="9">no records found</td>
+
+        {% endfor %}
+
+
+
+
+
+
+    </div>
+</section>
+
+    <script src="{{ asset("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js") }}">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                var value = $(this).val();
+                $.ajax({
+                    url : "{{ path('evenements_searcheventx') }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td> '+obj.Date+'  </td><td>    '+obj.adresse+'  </td><td>'+obj.titre+' </td><td><a href="/'+obj.id+'">modifier</a> </br>' +
+                                    '<a href="/'+obj.id+'">supprimer</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+
