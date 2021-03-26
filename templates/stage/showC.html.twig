@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+    <h1>Stage</h1>
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="card invoice-page">
+                    <div id="invoice-template" class="card-body">
+                        <div id="invoice-company-details" class="row">
+                            <div class="col-sm-6 col-12 text-left pt-1">
+                                <div class="media pt-1">
+                                    <img src="../../../app-assets/images/logo/logo.png" alt="company logo" />
+                                    <!-- logo -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12 text-center">
+                                <h1>Employment Name</h1>
+                                <div class="invoice-details mt-2">
+                                    <div class="recipient-contact pb-2">
+                                        <p>
+                                            <i class="feather icon-home"></i>
+                                            address
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-mail"></i>
+                                            peter@mail.com
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-phone"></i>
+                                            +91 988 888 8888
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="invoice-customer-details" class="row pt-2">
+                            <div class="col-sm-6 col-12 text-left">
+                                <h1>{{ stage.libelle }}</h1>
+                                <h5>Post </h5>
+                                {{ stage.poste }}
+                                <div class="recipient-info my-2">
+                                    <h5>Description </h5>
+                                    <p>{{ stage.description }}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12 text-left">
+                                <br>
+                                <h5>Expiration Date</h5>
+                                <p>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</p>
+                                <h5>Duration</h5>
+                                <p>{{ stage.duree }} months</p>
+                                <h5>Level</h5>
+                                <p>{{ stage.niveau }}</p>
+                                <h5>Category</h5>
+                                <p>{{ stage.category.libelle }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" align="right">
+                        <!--<form role="form" method="post" action="">
+                            <div class="btn-group btn-group-sm" aria-label="Set Select5 option">
+                                <button type="button" id="btn" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</button>
+                            </div>
+                        </form>-->
+                        <!--<a href="{# path('stage_indexC') #}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1" id="btn">Apply</a>-->
+                        <a href="{{ path('stage_apply', {'id': stage.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
+                        <a href="{{ path('stage_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+        btn.addEventListener('click',() => {
+            if(btn.innerText === "Apply")
+                btn.innerText = 'Cancel';
+            else btn.innerText = 'Apply';
+        });
+    </script>
+{% endblock %}

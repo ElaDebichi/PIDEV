@@ -117,10 +117,22 @@ abstract class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Emploi::class, mappedBy="user")
+     */
+    private $emploi;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="user")
+     */
+    private $stage;
+
     public function __construct()
     {
         $this->post = new ArrayCollection();
         $this->comment = new ArrayCollection();
+        $this->emploi = new ArrayCollection();
+        $this->stage = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -351,6 +363,66 @@ abstract class User implements UserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Emploi[]
+     */
+    public function getEmploi(): Collection
+    {
+        return $this->emploi;
+    }
+
+    public function addEmploi(Emploi $emploi): self
+    {
+        if (!$this->emploi->contains($emploi)) {
+            $this->emploi[] = $emploi;
+            $emploi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmploi(Emploi $emploi): self
+    {
+        if ($this->emploi->removeElement($emploi)) {
+            // set the owning side to null (unless already changed)
+            if ($emploi->getUser() === $this) {
+                $emploi->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStage(): Collection
+    {
+        return $this->stage;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stage->contains($stage)) {
+            $this->stage[] = $stage;
+            $stage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stage->removeElement($stage)) {
+            // set the owning side to null (unless already changed)
+            if ($stage->getUser() === $this) {
+                $stage->setUser(null);
+            }
+        }
 
         return $this;
     }

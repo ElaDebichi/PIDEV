@@ -1,0 +1,134 @@
+
+
+
+
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Internship index{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="content-body">
+                    <div class="row">
+
+                    </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+
+
+                    <div class="content-body">
+                        <div class="row">
+                        </div>
+
+
+                        <section id="column-selectors">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="breadcrum-left">
+                                                <h1 class="text-uppercase">Internship offers
+                                                    <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('stage_admin_new', {'iduser': app.user.id}) }}"><i class="feather icon-plus"></i></a>
+
+
+                                                </h1>
+                                            </div>
+                                            <div class="breadcrum-right">
+                                                <form role="form" method="post" action="{{ path('stage_admin_update') }}">
+                                                    <div class="btn-group btn-group-sm" aria-label="Set Select5 option">
+                                                        <button class="js-programmatic-set-val btn btn-outline-primary">
+                                                            <i class="feather icon-refresh-cw"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped dataex-html5-selectors">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Libelle
+
+                                                            </th>
+                                                            <th>Post</th>
+                                                            <th>Expiration Date</th>
+                                                            <th>Duration</th>
+                                                            <th>Level</th>
+                                                            <th>Category</th>
+                                                            <th>User address</th>
+                                                            <th>User image</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tb">
+                                                        {% for stage in stages %}
+                                                            <tr>
+                                                                <td>{{ stage.libelle }}</td>
+                                                                <td>{{ stage.poste }}</td>
+                                                                <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                                <td>{{ stage.duree }} months</td>
+                                                                <td>{{ stage.niveau }}</td>
+                                                                <td>{{ stage.category.libelle }}</td>
+                                                                <td>{{ stage.user.address }}</td>
+                                                                <td>   <img src="/uploads/{{stage.user.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
+
+
+                                                                <td>
+                                                                    <div style="display: inline-block;">
+                                                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('stage_admin_edit', {'id': stage.id}) }}"> <i class="feather icon-edit"></i></a>
+                                                                    </div>
+                                                                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('stage_admin_show', {'id': stage.id}) }}"><i class="feather icon-eye"></i></a>
+                                                                    <div style="display: inline-block;">
+                                                                        {{ include('stage_admin/_delete_form.html.twig') }}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column selectors with Export Options and print table -->
+
+
+
+        </div>
+        </div>
+        </div>
+    {% endblock %}
+{% endblock %}

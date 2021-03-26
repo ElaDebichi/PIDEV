@@ -156,7 +156,7 @@ class EmployerAdminController extends AbstractController
         return $this->redirectToRoute('employer_admin');
     }
     /**
-     * @Route("candidat/searchStudentx ", name="searchStudentx")
+     * @Route("employer/searchStudentx ", name="searchStudentx")
      */
     public function searchStudentx(Request $request,NormalizerInterface $Normalizer)
     {

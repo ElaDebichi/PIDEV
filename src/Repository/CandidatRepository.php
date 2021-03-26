@@ -19,6 +19,7 @@ class CandidatRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidat::class);
     }
 
+
     public function findCandidatByTown($town){
         return $this->createQueryBuilder('candidat')
             ->where('candidat.town LIKE :town')
@@ -26,6 +27,8 @@ class CandidatRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
 
 
     // /**

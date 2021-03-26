@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\Comment1Type;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,9 +28,9 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{iduser}", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,$iduser): Response
     {
         $comment = new Comment();
         $form = $this->createForm(Comment1Type::class, $comment);
@@ -38,7 +39,7 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setNblikes(0);
-            $user= $entityManager->getRepository(Candidat::class)->find(52);
+            $user= $entityManager->getRepository(User::class)->find($iduser);
             $comment->setUser($user);
             $entityManager->persist($comment);
             $entityManager->flush();

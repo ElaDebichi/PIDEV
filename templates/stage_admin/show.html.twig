@@ -1,0 +1,113 @@
+
+
+
+
+
+    {% extends 'baseAdmin.html.twig' %}
+
+    {% block title %}Job Offer{% endblock %}
+
+    {% block body %}
+        <h1>Job Offer</h1>
+
+
+
+
+
+
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- page users view start -->
+                    <section class="page-users-view">
+                        <div class="row">
+                            <!-- account start -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Internship offer</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+                                                <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                    <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+
+                                                        <table class="table">
+                                                            <tbody>
+
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Title</td>
+                                                                <td>{{ stage.libelle }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Post</td>
+                                                                <td>{{ stage.poste }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Expiration date</td>
+                                                                <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Duration</td>
+                                                                <td>{{ stage.duree }} months</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Level</td>
+                                                                <td>{{ stage.niveau }}}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Description</td>
+                                                                <td>{{ stage.description }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Category</td>
+                                                                <td>{{ stage.category.libelle }}</td>
+                                                            </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <a href="{{ path('stage_admin_edit', {'id': stage.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Edit</a>
+                                                        <a href="{{ path('stage_admin_index') }}" class="btn btn-primary mr-1">Back</a>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- permissions end -->
+        </div>
+        </section>
+        <!-- page users view end -->
+
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+    {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Emploi{% endblock %}
+
+{% block body %}
+    <h1>Emploi</h1>
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="card invoice-page">
+                    <div id="invoice-template" class="card-body">
+                        <div id="invoice-company-details" class="row">
+                            <div class="col-sm-6 col-12 text-right">
+                                <div class="media pt-1">
+                                    <!-- logo -->
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12 text-left">
+                                <h1>{{ emploi.libelle }}</h1>
+                                <h5>Post </h5>
+                                {{ emploi.poste }}
+                                <div class="recipient-info my-2">
+                                    <h5>Description </h5>
+                                    <p>{{ emploi.description }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="invoice-customer-details" class="row pt-2">
+                            <div class="col-sm-6 col-12 text-center">
+                                <div class="invoice-details mt-2">
+                                    <div class="recipient-contact pb-2">
+
+                                            <img src="/uploads/{{emploi.user.getImg()}}" style="width: 200px; height: 200px; object-fit: cover;"  class="rounded-circle img-border box-shadow-1" alt="Card image">
+
+
+
+                                    </div>
+                                </div>
+                                <h1>Company name : {{ emploi.user.company }}</h1>
+                                <div class="invoice-details mt-2">
+                                    <div class="recipient-contact pb-2">
+                                        <p>
+                                            <i class="feather icon-home"></i>
+                                            {{ emploi.user.town }}
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-mail"></i>
+                                            {{emploi.user.address}}
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-phone"></i>
+                                            {{ emploi.user.phone }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12 text-left">
+                                <br>
+                                <h5>Expiration Date</h5>
+                                <p>{{ emploi.dateExpiration ? emploi.dateExpiration|date('Y-m-d') : '' }}</p>
+                                <h5>Salary</h5>
+                                <p>{{ emploi.salaire }}</p>
+                                <h5>Type of Contract</h5>
+                                <p>{{ emploi.typeContrat }}</p>
+                                <h5>Level</h5>
+                                <p>{{ emploi.niveau }}</p>
+                                <h5>Category</h5>
+                                <p>{{ emploi.category.libelle }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" align="right">
+                        <a href="{{ path('emploi_apply',{'id': emploi.id, 'iduser': app.user.id, 'idemployer': emploi.user.id }) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
+                        <a href="{{ path('emploi_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

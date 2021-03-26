@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Stage{% endblock %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-vertical-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="content-header-title float-left mb-0">Edit Internship Offer</h4>
+                                </div>
+                                {{ include('stage/_form.html.twig', {'button_label': 'Update'}) }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

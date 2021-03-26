@@ -11,6 +11,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -167,7 +168,7 @@ class CandidatController extends AbstractController
     }
 
     /**
-     * @Route("candidat/searchStudentx ", name="searchStudentx")
+     * @Route("candidat/searchStudentx ", name="searchStudentxx")
      * @param Request $request
      * @param NormalizerInterface $Normalizer
      * @return Response
@@ -180,7 +181,7 @@ class CandidatController extends AbstractController
         $candidats = $repository->findCandidatByTown($requestString);
         $jsonContent = $Normalizer->normalize($candidats, 'json',['groups'=>'candidats']);
         $retour = json_encode($jsonContent);
-        return new Response($retour);
+        return new JsonResponse($jsonContent);
 
     }
 

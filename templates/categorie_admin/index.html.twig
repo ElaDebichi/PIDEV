@@ -1,0 +1,69 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="text-uppercase">Category
+                                        <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('categorie_admin_new')  }}"><i class="feather icon-plus"></i></a>
+
+                                    </h1>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Libelle</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for categorie in categories %}
+                                                    <tr>
+                                                        <td>{{ categorie.id }}</td>
+                                                        <td>{{ categorie.libelle }}</td>
+                                                        <td>
+                                                            <div style="display: inline-block;">
+                                                                <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('categorie_admin_edit', {'id': categorie.id}) }}"> <i class="feather icon-edit"></i></a>
+                                                            </div>
+
+                                                            <div style="display: inline-block;">
+                                                                {{ include('categorie_admin/_delete_form.html.twig') }}
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="3">no records found</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <!--/ Zero configuration table -->
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

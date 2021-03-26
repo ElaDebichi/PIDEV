@@ -1,0 +1,113 @@
+
+
+
+    {% extends 'baseAdmin.html.twig' %}
+
+    {% block title %}Job Offer{% endblock %}
+
+    {% block body %}
+        <h1>Job Offer</h1>
+
+
+
+
+
+
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+                <div class="content-body">
+                    <!-- page users view start -->
+                    <section class="page-users-view">
+                        <div class="row">
+                            <!-- account start -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Job offer</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+                                                <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                    <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+
+                                                        <table class="table">
+                                                            <tbody>
+
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Title</td>
+                                                                <td>{{ emploi.libelle }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Post</td>
+                                                                <td>{{ emploi.poste }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Expiration date</td>
+                                                                <td>{{ emploi.dateExpiration ? emploi.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Cantract type</td>
+                                                                <td>{{ emploi.typeContrat }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold"> Salary</td>
+                                                                <td>{{ emploi.salaire }}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="font-weight-bold">Level</td>
+                                                                <td>{{ emploi.niveau }}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Category</td>
+                                                                <td>{{ emploi.category.libelle }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="font-weight-bold">Description</td>
+                                                                <td>{{ emploi.description }}</td>
+                                                            </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <a href="{{ path('emploi_admin_edit', {'id': emploi.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Edit</a>
+                                                        <a href="{{ path('emploi_admin_index') }}" class="btn btn-primary mr-1">Back</a>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- permissions end -->
+        </div>
+        </section>
+        <!-- page users view end -->
+
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+    {% endblock %}

@@ -53,6 +53,7 @@ class Candidat extends User
 
     /**
      * @ORM\ManyToMany(targetEntity=Skills::class, mappedBy="candidat")
+     * @Groups({"candidats"})
      */
     private $skills;
 

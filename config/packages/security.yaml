@@ -36,7 +36,10 @@ security:
         ROLE_SUPER_ADMIN: [ ROLE_ADMIN]
     access_control:
          - { path: ^/skill, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/internshipAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/admin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/categoryAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/jobAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/formation, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/elfinder, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/efconnect, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
@@ -47,4 +50,6 @@ security:
          - { path: ^/post, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/comment, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/user/post, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
+         - { path: ^/job, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
+         - { path: ^/internship, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
