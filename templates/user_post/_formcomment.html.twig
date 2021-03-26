@@ -28,9 +28,9 @@
 
 
                 <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
-                <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
 
 
+            {{ dump(form.content.vars) }}
 
                 {{ form_end(form) }}
 
@@ -42,11 +42,11 @@
 <script>
     function editReview()
     {
-        const textarea = document.getElementById('post1_content');
+        const textarea = document.getElementById('comment_content');
         let badwords = /bashful|dopey|grumpy|happy|sleepy|doc/gi;
         let userreview1 = textarea.value;
         let userreview2 = userreview1.replace(badwords,'****');
-        document.getElementById('post1_content').value = userreview2;
+        document.getElementById('comment_content').value = userreview2;
 
     }
 
