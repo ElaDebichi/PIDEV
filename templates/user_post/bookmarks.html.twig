@@ -1,0 +1,267 @@
+{% extends 'baseuser.html.twig' %}
+
+
+{% block body %}
+    {% block content %}
+        <!--*************************************************************************************************************-->
+
+        <!-- BEGIN: Content-->
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
+                            <div class="col-12">
+                                <h2 class="content-header-title float-left mb-0">Profile</h2>
+                                <div class="breadcrumb-wrapper col-12">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item"><a href="#">Pages</a>
+                                        </li>
+                                        <li class="breadcrumb-item active">Profile
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                        <div class="form-group breadcrum-right">
+                            <div class="dropdown">
+                                <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
+                                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--copied to here-->
+                <div class="content-body">
+                    <div id="user-profile">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="profile-header mb-2">
+                                    <div class="relative">
+                                        <div class="cover-container">
+                                            <img class="img-fluid bg-cover rounded-0 w-100" src="../../../app-assets/images/profile/user-uploads/cover.jpg" alt="User Profile Image">
+                                        </div>
+                                        <div class="profile-img-container d-flex align-items-center justify-content-between">
+                                            <img src="../../../app-assets/images/profile/user-uploads/user-13.jpg" class="rounded-circle img-border box-shadow-1" alt="Card image">
+                                            <div class="float-right">
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-primary mr-1">
+                                                    <i class="feather icon-edit-2"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-primary">
+                                                    <i class="feather icon-settings"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end align-items-center profile-header-nav">
+                                        <nav class="navbar navbar-expand-sm w-100 pr-0">
+                                            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"><i class="feather icon-align-justify"></i></span>
+                                            </button>
+                                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                                <ul class="navbar-nav justify-content-around w-75 ml-sm-auto">
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="#" class="nav-link font-small-3">Timeline</a>
+                                                    </li>
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="#" class="nav-link font-small-3">About</a>
+                                                    </li>
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="#" class="nav-link font-small-3">Photos</a>
+                                                    </li>
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="#" class="nav-link font-small-3">Friends</a>
+                                                    </li>
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="#" class="nav-link font-small-3">Videos</a>
+                                                    </li>
+                                                    <li class="nav-item px-sm-0">
+                                                        <a href="http://127.0.0.1:8000/user/post/bookmarks" class="nav-link font-small-3">Bookmarks</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <section id="profile-info">
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>About</h4>
+                                            <i class="feather icon-more-horizontal cursor-pointer"></i>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>Tart I love sugar plum I love oat cake. Sweet roll caramels I love jujubes. Topping cake wafer.</p>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Joined:</h6>
+                                                <p>November 15, 2015</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Lives:</h6>
+                                                <p>New York, USA</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Email:</h6>
+                                                <p>bucketful@fiendhead.org</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <h6 class="mb-0">Website:</h6>
+                                                <p>www.pixinvent.com</p>
+                                            </div>
+                                            <div class="mt-1">
+                                                <button type="button" class="btn btn-sm btn-icon btn-primary mr-25 p-25"><i class="feather icon-facebook"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-primary mr-25 p-25"><i class="feather icon-twitter"></i></button>
+                                                <button type="button" class="btn btn-sm btn-icon btn-primary p-25"><i class="feather icon-instagram"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--POOOOOOOOOOOOOOOOOOOOOOOOOSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS----------------------------------------->
+
+                                <div class="col-lg-6 col-12">
+
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h1>New post here</h1>
+                                            <br>
+                                            <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('user_post_new') }}"><i class="feather icon-plus"></i> New post</a>
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    {% for post in posts|reverse %}
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-start align-items-center mb-1">
+                                                    <div class="avatar mr-1">
+                                                        <img src="../../../app-assets/images/profile/user-uploads/user-01.jpg" alt="avtar img holder" height="45" width="45">
+                                                    </div>
+                                                    <div class="user-page-info">
+                                                        <p class="mb-0">Leeanna Alvord</p>
+                                                        <span class="font-small-2">{{ post.date ? post.date|date('Y-m-d') : '' }} AT {{ post.date ? post.date|date('H:i:s') : '' }}</span>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <div style="display: inline-block;">
+                                                            <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_edit', {'id': post.id}) }}"> <i class="feather icon-edit-1"></i></a>
+
+                                                        </div>
+                                                        <div style="display: inline-block;">
+                                                            {{ include('user_post/_delete_form.html.twig') }}
+                                                        </div>
+                                                        <div style="display: inline-block;">
+                                                            <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_report', {'id': post.id}) }}"><i class="feather icon-flag"></i></a>
+                                                        </div>
+                                                        <div style="display: inline-block;">
+                                                            <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_notbookmark', {'id': post.id}) }}"><i class="fa fa-bookmark"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-------------------------content here---------------------->
+                                                <p> {{ post.content |raw }}  </p>
+                                                <div class="d-flex justify-content-start align-items-center mb-1">
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ path('user_post_like',{'id': post.id}) }}"><i class="feather icon-heart font-medium-2 mr-50"></i></a>
+                                                        <span>{{ post.nblikes }}</span>
+                                                    </div>
+
+
+                                                    <div class="ml-2">
+                                                        <ul class="list-unstyled users-list m-0  d-flex align-items-center">
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Trina Lynes" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="Avatar" height="30" width="30">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Lilian Nenez" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-2.jpg" alt="Avatar" height="30" width="30">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Alberto Glotzbach" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-3.jpg" alt="Avatar" height="30" width="30">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="George Nordic" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.jpg" alt="Avatar" height="30" width="30">
+                                                            </li>
+                                                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Vinnie Mostowy" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.jpg" alt="Avatar" height="30" width="30">
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="divider divider-primary">
+
+                                                    <div class="divider-text">{{ post.comments|length }} Comments</div>
+                                                </div>
+                                                {% for comment in post.comments %}
+                                                    <div class="d-flex justify-content-start align-items-center mb-2">
+
+                                                        <div class="avatar mr-50">
+                                                            <img src="../../../app-assets/images/portrait/small/avatar-s-8.jpg" alt="Avatar" height="30" width="30">
+                                                        </div>
+                                                        <div class="user-page-info">
+                                                            <h6 class="mb-0">Jeanie Bulgrin</h6>
+
+                                                            <span class="font-small-2">{{ comment.content }}</span>
+
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="ml-auto cursor-pointer">
+                                                            <i class="feather icon-heart mr-50"></i>
+                                                            <i class="feather icon-message-square"></i>
+                                                        </div>
+
+                                                    </div>
+                                                {% endfor %}
+
+
+                                                <a class="btn btn-sm btn-primary" href="{{ path('user_post_newcomment', {'id': post.id}) }}">Post Comment</a>
+
+
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+
+
+
+                                <!-----------------------------------END POST--------------------------------------------------------------->
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-primary block-element mb-1">Load More</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
+
+        <!--*************************************************************************************************************-->
+
+
+
+    {% endblock %}
+
+{% endblock %}

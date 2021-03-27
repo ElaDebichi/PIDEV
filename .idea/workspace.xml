@@ -24,7 +24,6 @@
       <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserPostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserPostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user_post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_post/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +195,7 @@
       <workItem from="1616502499419" duration="13659000" />
       <workItem from="1616614202009" duration="1331000" />
       <workItem from="1616755450954" duration="16268000" />
-      <workItem from="1616855434677" duration="13930000" />
+      <workItem from="1616855434677" duration="18976000" />
     </task>
     <servers />
   </component>

@@ -36,6 +36,7 @@ class UserPostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $post->setNblikes(0);
             $post->setNbreports(0);
+            $post->setBookmarked(0);
             $post->setDate(new \DateTimeImmutable('now'));
             $entityManager->persist($post);
             $entityManager->flush();
@@ -166,6 +167,50 @@ class UserPostController extends AbstractController
     }
 
 
+    /**
+     * @Route("/user/post/bookmarks", name="user_post_bookmarks", methods={"GET"})
+     */
+    public function bookmarks(PostRepository $postRepository): Response
+    {
+        return $this->render('user_post/bookmarks.html.twig', [
+            'posts' => $postRepository->findBy( ['bookmarked' => '1'],
+                ['date' => 'ASC']),
+        ]);
+    }
+
+    /**
+     * @Route("user/post/{id}/bookmark", name="user_post_bookmark", methods={"GET","POST"})
+     */
+    public function bookmark(Request $request, $id): Response
+    {
+
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $post->setBookmarked(1);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('user_post_bookmarks');
+
+
+
+    }
+
+    /**
+     * @Route("user/post/{id}/notbookmark", name="user_post_notbookmark", methods={"GET","POST"})
+     */
+    public function notbookmarked(Request $request, $id): Response
+    {
+
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $post->setBookmarked(0);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('user_post_bookmarks');
+
+
+
+    }
 
 
 }

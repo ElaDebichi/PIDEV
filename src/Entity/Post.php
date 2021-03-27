@@ -42,6 +42,12 @@ class Post
     private $nbreports;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $bookmarked;
+
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"}, orphanRemoval=true)
      */
     private $comments;
@@ -84,6 +90,12 @@ class Post
     {
         return $this->nblikes;
     }
+
+    public function getBookmarked(): ?int
+    {
+        return $this->bookmarked;
+    }
+
     public function getNbreports(): ?int
     {
         return $this->nbreports;
@@ -95,6 +107,14 @@ class Post
 
         return $this;
     }
+
+    public function setBookmarked(int $bookmarked): self
+    {
+        $this->bookmarked = $bookmarked;
+
+        return $this;
+    }
+
     public function setNbreports(int $nbreports): self
     {
         $this->nbreports = $nbreports;
