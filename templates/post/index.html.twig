@@ -64,6 +64,8 @@
                     <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_edit', {'id': post.id}) }}"> <i class="feather icon-edit"></i></a>
                     </div>
                     <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_show', {'id': post.id}) }}"><i class="feather icon-eye"></i></a>
+                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('comment_new',{'postid': post.id}) }}"><i class="feather icon-message-square"></i></a>
+
                     <div style="display: inline-block;">
                         {{ include('post/_delete_form.html.twig') }}
                     </div>

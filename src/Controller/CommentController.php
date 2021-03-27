@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Post;
 use App\Form\Comment1Type;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,10 +27,11 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{postid}", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, $postid): Response
     {
+        $post= $this->getDoctrine()->getRepository(Post::class)->find($postid);
         $comment = new Comment();
         $form = $this->createForm(Comment1Type::class, $comment);
         $form->handleRequest($request);
@@ -37,6 +39,7 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setNblikes(0);
+            $comment->setPost($post);
             $entityManager->persist($comment);
             $entityManager->flush();
 
