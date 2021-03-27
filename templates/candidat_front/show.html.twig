@@ -161,101 +161,59 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Skills</h4>
                                     </div>
+                                    <!-- Outline Dropdown Starts -->
                                     {% if app.user.id == candidat.id %}
-                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('candidat_cvFront', {'id': candidat.id}) }}"><i class="feather icon-plus"></i> Add Skill</a>
+                                    <section id="dropdown-with-outline-btn">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+
+                                                            <div class="btn-group dropdown mr-1 mb-1">
+                                                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Add Skill
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    {% for skill in skills %}
+                                                                    <a class="dropdown-item" href="{{ path('skills_new',{'iduser': app.user.id, 'idskill': skill.id}) }}">{{ skill.libelle }}</a>
+
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <!-- Outline Dropdown Ends -->
                                     {% endif %}
+
+
+{% if skillss |length >0 %}
                                     <div class="card-body suggested-block">
+
+                                        {% for s in skillss %}
                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                             <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-09.jpg" alt="avtar img holder" height="35" width="35">
+                                                <img src="/uploads/{{s.getImg()}}" alt="avtar img holder" height="35" width="35">
                                             </div>
                                             <div class="user-page-info">
-                                                <p>Rockose</p>
-                                                <span class="font-small-2">Company</span>
+                                                <p>{{ s.libelle }}</p>
+
                                             </div>
                                             <div class="ml-auto"><i class="feather icon-star"></i></div>
                                         </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-08.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>The Devil's</p>
-                                                <span class="font-small-2">Clothing Store</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-1">
-                                                <img src="../../../app-assets/images/profile/pages/page-03.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>The Magician</p>
-                                                <span class="font-small-2">Public Figure</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-02.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>AC/DC</p>
-                                                <span class="font-small-2">Music</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-07.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>Eat Hard</p>
-                                                <span class="font-small-2">Restaurant / Bar</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-04.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>B4B</p>
-                                                <span class="font-small-2">Beauty Store</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-05.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>Kylie Jenner</p>
-                                                <span class="font-small-2">Public Figure</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-01.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>RDJ</p>
-                                                <span class="font-small-2">Actor</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
-                                        <div class="d-flex justify-content-start align-items-center mb-1">
-                                            <div class="avatar mr-50">
-                                                <img src="../../../app-assets/images/profile/pages/page-06.jpg" alt="avtar img holder" height="35" width="35">
-                                            </div>
-                                            <div class="user-page-info">
-                                                <p>Taylor Swift</p>
-                                                <span class="font-small-2">Music</span>
-                                            </div>
-                                            <div class="ml-auto"><i class="feather icon-star"></i></div>
-                                        </div>
+                                        {% endfor %}
+
+
+
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <div class="card">
                                     <div class="card-header">

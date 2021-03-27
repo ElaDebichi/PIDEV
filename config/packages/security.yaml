@@ -19,6 +19,7 @@ security:
                     - App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
+                target: app_login
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -41,6 +42,7 @@ security:
          - { path: ^/categoryAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/jobAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/formation, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/skills_front, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/elfinder, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/efconnect, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/profile, roles: ROLE_USER }

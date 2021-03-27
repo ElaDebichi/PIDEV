@@ -84,11 +84,11 @@
                                         <label>Message</label>
                                     </div>
                                     <div class="modal-footer">
-                                        {{ form_widget(form.Send,{ 'label':'','id':'user-town','attr':{'class':'btn btn-primary','placeholder':'message *'}}) }}
 
+                                        <button type="Submit" class="btn btn-white" data-dismiss="modal"> valider </button>
                                         <input type="Reset" value="Cancel" class="btn btn-white" data-dismiss="modal">
                                     </div>
-
+                                    <input type="hidden" name="form[_token]" value="{{ form._token.vars.value }}" />
                                     {{ form_end(form) }}
 
 

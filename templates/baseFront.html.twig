@@ -150,10 +150,12 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">Leeanna Alvord</span><span class="user-status">Available</span></div><span><img class="round" src="../../../app-assets/images/profile/user-uploads/user-01.jpg" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ app.user.address }}</span><span class="user-status">Available</span></div><span><img class="round" src="/uploads/{{app.user.img}}" alt="avatar" height="40" width="40"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
+                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ path('candidat_showFront', {'id': app.user.id}) }}">{% if is_granted('ROLE_CANDIDATE') %}
+                                    <i class="feather icon-user" ></i> Edit Profile {% endif %}</a><a class="dropdown-item" href="{{ path('employer_showFront', {'idemp': app.user.id}) }}">{% if is_granted('ROLE_EMPLOYER') %}
+                                        <i class="feather icon-user" ></i> Edit Profile {% endif %}</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="feather icon-power"></i> Logout</a>
                             </div>
                         </li>
                     </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Post;
+use App\Entity\Skills;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Entity\Candidat;
@@ -86,11 +87,8 @@ class CandidatFrontController extends AbstractController
     {
 
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
-
-
-
-
-
+        $skills = $this->getDoctrine()->getRepository(Skills::class)->findAll();
+        $skillss= $candidat->getSkills();
 
 
 
@@ -99,7 +97,8 @@ class CandidatFrontController extends AbstractController
 
         return $this->render('candidat_front/show.html.twig', [
              'candidat'=>$candidat,
-
+             'skills' => $skills,
+            'skillss' => $skillss,
         ]);
     }
 

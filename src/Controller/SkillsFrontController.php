@@ -31,28 +31,21 @@ class SkillsFrontController extends AbstractController
     }
 
     /**
-     * @Route("/new/{iduser}", name="skills_new", methods={"GET","POST"})
+     * @Route("/new/{iduser}/{idskill}", name="skills_new", methods={"GET","POST"})
      */
-    public function new(Request $request,$iduser): Response
+    public function new(Request $request,$iduser,$idskill): Response
     {
-        $skill = new Skills();
-        $user = $this->getDoctrine()->getRepository(Candidat::class)->find($iduser);
-        $form = $this->createForm(SkillsType::class, $skill);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $skill->addCandidat($user);
-            $entityManager->persist($skill);
-            $entityManager->flush();
+        $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($iduser);
+        $skill = $this->getDoctrine()->getRepository(Skills::class)->find($idskill);
+        $candidat->addSkill($skill);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($candidat);
+        $entityManager->flush();
 
             return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
-        }
 
-        return $this->render('skills/new.html.twig', [
-            'skill' => $skill,
-            'form' => $form->createView(),
-        ]);
+
     }
 
     /**

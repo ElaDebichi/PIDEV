@@ -31,11 +31,11 @@ class ContactController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() ){
             $contact = $form->getData();
 
-$message = (new \Swift_Message('New Contact'))
-    ->setFrom($user->getAddress())
+    $message = (new \Swift_Message('New Contact'))
+    ->setFrom('mariem.azouz@esprit.tn')
     ->setTo($contact['email'])
     ->setBody(
         $this->renderView(
