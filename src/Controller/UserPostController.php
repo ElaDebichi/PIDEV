@@ -114,6 +114,23 @@ class UserPostController extends AbstractController
     }
 
 
+    /**
+     * @Route("user/post/{id}/like", name="user_post_like", methods={"GET","POST"})
+     */
+    public function like(Request $request, $id): Response
+    {
+
+            $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+            $post->setNblikes($post->getNblikes() + 1);
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_post');
+
+
+
+    }
+
 
 
 

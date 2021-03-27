@@ -340,7 +340,7 @@
                                             <p> {{ post.content |raw }}  </p>
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="feather icon-heart font-medium-2 mr-50"></i>
+                                                    <a href="{{ path('user_post_like',{'id': post.id}) }}"><i class="feather icon-heart font-medium-2 mr-50"></i></a>
                                                     <span>{{ post.nblikes }}</span>
                                                 </div>
                                                 <div class="ml-2">
