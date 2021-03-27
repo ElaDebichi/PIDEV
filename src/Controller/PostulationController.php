@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
-use App\Entity\Employer;
 use App\Repository\CandidatRepository;
 use App\Repository\EmploiRepository;
 use App\Repository\StageRepository;
@@ -34,14 +33,13 @@ class PostulationController extends AbstractController
     }
 
     /**
-     * @Route("/jobApply/{iduser}/{idemployer}", name="postulation_emploi")
+     * @Route("/jobApply/{iduser}", name="postulation_emploi")
      */
-    public function indexEmploi(SessionInterface $session, EmploiRepository $emploiRepository, $iduser,$idemployer)
+    public function indexEmploi(SessionInterface $session, EmploiRepository $emploiRepository, $iduser)
     {
         $emploi= $session->get('emploi',[]);
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($iduser);
         $emploiWithData = [];
-        $employer= $this->getDoctrine()->getRepository(Employer::class)->find($idemployer);
 
         foreach($emploi as $id){
             $emploiWithData[] = [
@@ -52,8 +50,8 @@ class PostulationController extends AbstractController
         }
 
 
-        return $this->redirectToRoute('employer_showFront', [
-            'items' => $emploiWithData, 'candidat' => $candidat, 'id' => $employer,
+        return $this->render('employer_front/show.html.twig', [
+            'items' => $emploiWithData, 'candidat' => $candidat,
         ]);
     }
 
@@ -65,6 +63,7 @@ class PostulationController extends AbstractController
         //$stage[$id]=1;
         $stage[$id]=$stageRepository->find($id);
         $session->set('stage',$stage);
+
         //dd($session->get('stage'));
         return $this->redirectToRoute('stage_indexC');
     }
@@ -72,16 +71,17 @@ class PostulationController extends AbstractController
     /**
      * @Route("jobApply/{id}/{iduser}", name="emploi_apply")
      */
-    public function applyEmploi($id, SessionInterface $session, EmploiRepository $emploiRepository, $iduser, CandidatRepository $candidatRepository){
+    public function applyEmploi($id, EmploiRepository $emploiRepository, $iduser, CandidatRepository $UserRepository){
 
-        $emploi = $session->get('emploi', []);
-        $emploi[$id]=$emploiRepository->find($id);
-        $session->set('emploi',$emploi);
+       $emploi = $emploiRepository->find($id);
+       $candidat= $UserRepository->find($iduser);
 
-
-        dd($session->get('emploi'));
-
-        return $this->redirectToRoute('emploi_indexC');
+       $emploi->addUser($candidat);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($emploi);
+        $entityManager->flush();
+       dd($emploi);
+        return $this->redirectToRoute('employer_front');
     }
 
     /**

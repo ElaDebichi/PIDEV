@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 
+use App\Entity\Candidat;
 use App\Entity\Employer;
 use App\Entity\Urlizer;
 use App\Entity\User;
 use App\Form\Employer1Type;
+use App\Repository\CandidatRepository;
+use App\Repository\EmploiRepository;
 use App\Repository\EmployerRepository;
 use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -86,15 +90,40 @@ class EmployerFrontController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="employer_showFront", methods={"GET"})
+     * @Route("/{idemp}", name="employer_showFront", methods={"GET"})
      * @param $id
      * @return Response
      */
-    public function show($id): Response
+    public function show($idemp): Response
     {
-        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($id);
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+
         return $this->render('employer_front/show.html.twig', [
             'employer' => $employer,
+
+
+
+
+        ]);
+
+    }
+    /**
+     * @Route("showStage/{idemp}", name="stage_list", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function showStage($idemp): Response
+    {
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+
+        return $this->render('employer_front/showStage.html.twig', [
+            'employer' => $employer,
+
+
+
+
         ]);
 
     }

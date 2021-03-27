@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Emploi;
+use App\Entity\Employer;
 use App\Entity\Search;
 use App\Entity\User;
 use App\Form\EmploiType;
@@ -131,17 +132,18 @@ class EmploiController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="emploi_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit/{idemp}", name="emploi_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Emploi $emploi): Response
+    public function edit(Request $request, Emploi $emploi, $idemp): Response
     {
         $form = $this->createForm(EmploiType::class, $emploi);
         $form->handleRequest($request);
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('emploi_index');
+            return $this->redirectToRoute('employer_showFront', ['idemp' => $idemp]);
         }
 
         return $this->render('emploi/edit.html.twig', [
@@ -151,17 +153,18 @@ class EmploiController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="emploi_delete", methods={"DELETE"})
+     * @Route("/{id}/{idemp}", name="emploi_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Emploi $emploi): Response
+    public function delete(Request $request, Emploi $emploi,$idemp): Response
     {
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
         if ($this->isCsrfTokenValid('delete'.$emploi->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($emploi);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('emploi_index');
+        return $this->redirectToRoute('employer_showFront', ['idemp' => $idemp]);
     }
 
 

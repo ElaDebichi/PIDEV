@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 
 {% block title %}Stage index{% endblock %}
 
@@ -34,7 +34,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">{{ stage.libelle }}</h4>
-                                    <h6 class="card-subtitle text-muted">Employment Name</h6>
+                                    <h6 class="card-subtitle text-muted">{{ stage.user.company }}</h6>
                                 </div>
                                 <div class="card-body text-center">
                                     <div class="card-body">

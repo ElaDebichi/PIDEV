@@ -127,12 +127,18 @@ abstract class User implements UserInterface
      */
     private $stage;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Offre::class, inversedBy="users")
+     */
+    private $apply;
+
     public function __construct()
     {
         $this->post = new ArrayCollection();
         $this->comment = new ArrayCollection();
         $this->emploi = new ArrayCollection();
         $this->stage = new ArrayCollection();
+        $this->apply = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -423,6 +429,30 @@ abstract class User implements UserInterface
                 $stage->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getApply(): Collection
+    {
+        return $this->apply;
+    }
+
+    public function addApply(Offre $apply): self
+    {
+        if (!$this->apply->contains($apply)) {
+            $this->apply[] = $apply;
+        }
+
+        return $this;
+    }
+
+    public function removeApply(Offre $apply): self
+    {
+        $this->apply->removeElement($apply);
 
         return $this;
     }
