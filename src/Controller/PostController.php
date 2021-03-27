@@ -107,7 +107,7 @@ class PostController extends AbstractController
     public function getRealEntitiesdateonly($disponi){
         foreach ($disponi as $i => $item){
             $realEntities[$i] = ['id'=>$disponi[$i]->getId(),'content'=>$disponi[$i]->getContent(),
-                'date'=>date_format($disponi[$i]->getDate(),"Y/m/d H:i:s"),'nblikes'=>$disponi[$i]->getNblikes()];}
+                'date'=>date_format($disponi[$i]->getDate(),"Y/m/d H:i:s"),'nblikes'=>$disponi[$i]->getComments()];}
         return $realEntities;
     }
 

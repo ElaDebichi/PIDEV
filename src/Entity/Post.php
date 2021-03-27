@@ -38,7 +38,7 @@ class Post
     private $nblikes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"}, orphanRemoval=true)
      */
     private $comments;
 
@@ -90,7 +90,9 @@ class Post
     public function __toString()
     {
         return $this->content;
+
     }
+
 
     /**
      * @return Collection|Comment[]

@@ -25,7 +25,7 @@ $("#search").click(function() {
                     if (key === 'disponibilite') {
                         if (id !== 'error') {
                             entitySelector.append('<tr><td>'+value['id']+'</td><td>'+
-                                value['content']+'</td><td>'+value['date']+'</td><td>'+value['nblikes']+
+                                value['content']+'</td><td>'+value['date']+'</td><td>'+value['comments']+
                                 '</td>>'+'<td>'+
                                 '<a class=\"btn btn-outline-primary mr-1 mb-1\" href=\"{{ path(\'post_edit\', {\'id\':'+ value['id']+'}) }}\"> <i class=\"feather icon-edit\"></i></a> &nbsp; &nbsp;'
                             +'<a class=\"btn btn-outline-primary mr-1 mb-1\" href=\"{{ path(\'post_show\', {\'id\': ' +  value['id']+'}) }}\"><i class=\"feather icon-eye\"></i></a> '

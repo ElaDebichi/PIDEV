@@ -3,24 +3,25 @@
     <div class="card-body">
 
         <div class="form-body">
-            <div class="row">
+            <div class="row justify-content-center">
 
                 {{ form_start(form) }}
 
-                <div class="col-12">
+                <div class="col-xl-12">
                     <div class="form-group row">
 
-                        <div class="col-md-4">
-                            <fieldset class="form-group">
+
+
 
                                 <!-- {{ form_widget(form.content, {'attr': {'class': 'form-control char-textarea'}}) }} -->
                                 <textarea type="text" class="form-control" id="{{ form.content.vars.id }}"
-                                       name="{{ form.content.vars.full_name }}" >{{ form.content.vars.value  }}
+                                       name="{{ form.content.vars.full_name }}" style="width: 500px;">
+                                    {{ form.content.vars.value  }}
                                 </textarea>
                                 {{ form_errors(form.content) }}
-                            </fieldset>
 
-                        </div>
+
+
                     </div>
                 </div>
 
@@ -40,8 +41,9 @@
                         <div class="col-md-8">
                             <fieldset class="form-group">
                                 <div class="btn-group dropdown mr-1 mb-1">
-
-                               {{ form_widget(form.post)  }}
+                                    <!-- {{ form_widget(form.post, {'attr': {'class': 'form-control char-textarea'}}) }} -->
+                                    <input type="hidden" class="form-control" id="{{ form.post.vars.id }}"
+                                           name="{{ form.post.vars.full_name }}" value="{{ form.post.vars.value  }}">
 
                                 </div>
 
@@ -56,7 +58,7 @@
 
 
 
-                <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                <button id="submitbtn" class="btn btn-outline-success mr-1 mb-1">Update</button>
 
                 {{ form_end(form) }}
 

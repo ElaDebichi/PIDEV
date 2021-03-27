@@ -42,7 +42,7 @@
                 <th>Id</th>
                 <th>Content</th>
                 <th>Date</th>
-                <th>Nblikes</th>
+                <th>Comments</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -52,7 +52,13 @@
                 <td>{{ post.id }}</td>
                 <td>{{ post.content |raw }}</td>
                 <td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ post.nblikes }}</td>
+                <td>
+                    {% for comment in post.comments %}
+                    <ul>
+                        <li> {{ comment.content }} </li>
+                    </ul>
+                    {% endfor %}
+                </td>
                 <td>
                     <div style="display: inline-block;">
                     <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_edit', {'id': post.id}) }}"> <i class="feather icon-edit"></i></a>
