@@ -36,6 +36,10 @@ class Post
      * @ORM\Column(type="integer")
      */
     private $nblikes;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbreports;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"}, orphanRemoval=true)
@@ -80,6 +84,10 @@ class Post
     {
         return $this->nblikes;
     }
+    public function getNbreports(): ?int
+    {
+        return $this->nbreports;
+    }
 
     public function setNblikes(int $nblikes): self
     {
@@ -87,6 +95,13 @@ class Post
 
         return $this;
     }
+    public function setNbreports(int $nbreports): self
+    {
+        $this->nbreports = $nbreports;
+
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->content;

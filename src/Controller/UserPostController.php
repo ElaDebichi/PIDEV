@@ -35,6 +35,7 @@ class UserPostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $post->setNblikes(0);
+            $post->setNbreports(0);
             $post->setDate(new \DateTimeImmutable('now'));
             $entityManager->persist($post);
             $entityManager->flush();
@@ -132,6 +133,37 @@ class UserPostController extends AbstractController
     }
 
 
+
+    /**
+     * @Route("user/post/{id}/report", name="user_post_report", methods={"GET","POST"})
+     */
+    public function report(Request $request, $id): Response
+    {
+
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+
+        if ($post->getNbreports() == 2)
+        {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($post);
+                $entityManager->flush();
+
+        }
+        else
+        {
+            $post->setNbreports($post->getNbreports() + 1);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+
+
+        return $this->redirectToRoute('user_post');
+
+
+
+
+
+    }
 
 
 

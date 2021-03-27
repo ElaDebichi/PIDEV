@@ -43,6 +43,7 @@
                 <th>Content</th>
                 <th>Date</th>
                 <th>Hearts</th>
+                <th>Reports</th>
                 <th>Comments</th>
                 <th>actions</th>
             </tr>
@@ -53,6 +54,7 @@
                 <td>{{ post.id }}</td>
                 <td>{{ post.content |raw }}</td>
                 <td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.nbreports }}</td>
                 <td>{{ post.nblikes }}</td>
 
                 <td>

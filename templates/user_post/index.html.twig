@@ -329,10 +329,14 @@
                                                 </div>
                                                 <div class="ml-auto">
                                                     <div style="display: inline-block;">
-                                                    <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_edit', {'id': post.id}) }}"> <i class="feather icon-edit-1"></i></a>
+                                                        <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_edit', {'id': post.id}) }}"> <i class="feather icon-edit-1"></i></a>
+
                                                     </div>
                                                     <div style="display: inline-block;">
                                                         {{ include('user_post/_delete_form.html.twig') }}
+                                                    </div>
+                                                    <div style="display: inline-block;">
+                                                    <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_report', {'id': post.id}) }}"><i class="feather icon-flag"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
