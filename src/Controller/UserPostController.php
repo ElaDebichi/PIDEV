@@ -8,6 +8,7 @@ use App\Entity\Post;
 use App\Form\CommentType;
 use App\Form\Post1Type;
 use App\Repository\PostRepository;
+use FontLib\TrueType\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,6 +40,9 @@ class UserPostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $post->setNblikes(0);
+            $post->setNbreports(0);
+            $post->setBookmarked(0);
+
             $post->setDate(new \DateTimeImmutable('now'));
             $post->setUser($user);
             $entityManager->persist($post);
@@ -127,7 +131,101 @@ class UserPostController extends AbstractController
     }
 
 
+    /**
+     * @Route("user/post/{id}/like/{iduser}", name="user_post_like", methods={"GET","POST"})
+     */
+    public function like(Request $request, $id, $iduser): Response
+    {
 
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $post->setNblikes($post->getNblikes() + 1);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('candidat_showFront', ['id' => $iduser]);
+
+
+
+    }
+
+    /**
+     * @Route("user/post/{id}/report/{iduser}", name="user_post_report", methods={"GET","POST"})
+     */
+    public function report(Request $request, $id, $iduser): Response
+    {;
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+
+        if ($post->getNbreports() == 2)
+        {
+
+            $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($post);
+                $entityManager->flush();
+
+
+        }
+        else
+        {
+            $post->setNbreports($post->getNbreports() + 1);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+
+
+        return $this->redirectToRoute('candidat_showFront', ['id' => $iduser]);
+
+    }
+
+
+//******BOOKMARK*******************************************************
+
+
+    /**
+     * @Route("/user/post/bookmarks/{iduser}", name="user_post_bookmarks", methods={"GET"})
+     */
+    public function bookmarks(PostRepository $postRepository, $iduser): Response
+    {
+        return $this->render('candidat_front/show.html.twig',
+            [
+                'id' => $iduser ,
+                'posts' => $postRepository->findBy( ['bookmarked' => '1'], ['date' => 'ASC']),
+
+        ]);
+    }
+
+    /**
+     * @Route("user/post/{id}/bookmark/{iduser}", name="user_post_bookmark", methods={"GET","POST"})
+     */
+    public function bookmark(Request $request, $id, $iduser): Response
+    {
+
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $post->setBookmarked(1);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
+
+
+
+    }
+
+    /**
+     * @Route("user/post/{id}/notbookmark/{iduser}", name="user_post_notbookmark", methods={"GET","POST"})
+     */
+    public function notbookmarked(Request $request, $id, $iduser): Response
+    {
+
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $post->setBookmarked(0);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
+
+
+
+    }
 
 
 

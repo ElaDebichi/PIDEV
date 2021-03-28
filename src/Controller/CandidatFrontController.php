@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\Skills;
+use App\Repository\PostRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Entity\Candidat;
@@ -83,12 +84,13 @@ class CandidatFrontController extends AbstractController
      * @param $id
      * @return Response
      */
-    public function show($id): Response
+    public function show($id, PostRepository $postRepository): Response
     {
 
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
         $skills = $this->getDoctrine()->getRepository(Skills::class)->findAll();
         $skillss= $candidat->getSkills();
+        $posts = $postRepository->findBy( ['bookmarked' => '1'], ['date' => 'ASC']);
 
 
 
@@ -99,6 +101,7 @@ class CandidatFrontController extends AbstractController
              'candidat'=>$candidat,
              'skills' => $skills,
             'skillss' => $skillss,
+            'posts' => $posts,
         ]);
     }
 

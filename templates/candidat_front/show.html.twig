@@ -89,6 +89,9 @@
                                                 <li class="nav-item px-sm-0">
                                                     <a href="#" class="nav-link font-small-3">Events</a>
                                                 </li>
+                                                <li class="nav-item px-sm-0">
+                                                    <a href="http://127.0.0.1:8000/user/post/bookmarks" class="nav-link font-small-3">Bookmarks</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </nav>
@@ -215,80 +218,45 @@
                                     </div>
                                     {% endif %}
                                 </div>
+
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Twitter Feeds</h4>
+                                        <h4>Bookmarked posts</h4>
                                     </div>
+
                                     <div class="card-body">
+                                        {% for  postt in posts|reverse %}
                                         <div class="twitter-feed">
+
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="avatar mr-50">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-12.jpg" alt="avtar img holder" height="35" width="35">
+                                                    <img src="/uploads/{{postt.user.getImg()}}"   height="35" width="35">
                                                 </div>
                                                 <div class="user-page-info">
-                                                    <p class="text-bold-600 mb-0">Tiana Vercetti</p>
-                                                    <small>@tiana59</small>
-                                                    <div class="badge badge-primary badge-pill badge-sm p-0">
-                                                        <i class="feather icon-check font-small-1"></i>
-                                                    </div>
+                                                    <p class="text-bold-600 mb-0">{{ postt.user.nom ~ " " ~ postt.user.prenom }}</p>
+                                                    <span class="font-small-2">{{ postt.date ? postt.date|date('Y-m-d') : '' }} AT {{ postt.date ? postt.date|date('H:i:s') : '' }}</span>
+
+
+                                                </div>
+                                                <div style="display: inline-block;">
+                                                    <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_notbookmark', {'id': postt.id,'iduser': app.user.id}) }}">
+                                                        {% if postt.bookmarked == 0 %}
+                                                            <i class="feather icon-bookmark"></i>
+                                                        {% else %}
+                                                            <i class="fa fa-bookmark"></i>
+                                                        {% endif %}
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <p class="mb-0">I love cookie chupa chups sweet tart apple pie chocolate bar. Jelly-o oat cake chupa chups.</p>
-                                            <p class="text-primary">#js #vuejs</p>
-                                            <small>12 Dec 2018</small>
+                                            <p class="mb-0">{{ postt.content |raw  }}</p>
+
                                         </div>
-                                        <div class="twitter-feed mt-2">
-                                            <div class="d-flex justify-content-start align-items-center mb-1">
-                                                <div class="avatar mr-50">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-12.jpg" alt="avtar img holder" height="35" width="35">
-                                                </div>
-                                                <div class="user-page-info">
-                                                    <p class="text-bold-600 mb-0">Tiana Vercetti</p>
-                                                    <small>@tiana59</small>
-                                                    <div class="badge badge-primary badge-pill badge-sm p-0">
-                                                        <i class="feather icon-check font-small-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">Carrot cake cake gummies I love I love tiramisu. Biscuit marzipan cookie lemon drops.</p>
-                                            <p class="text-primary">#python</p>
-                                            <small>11 Dec 2018</small>
-                                        </div>
-                                        <div class="twitter-feed mt-2">
-                                            <div class="d-flex justify-content-start align-items-center mb-1">
-                                                <div class="avatar mr-50">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-12.jpg" alt="avtar img holder" height="35" width="35">
-                                                </div>
-                                                <div class="user-page-info">
-                                                    <p class="text-bold-600 mb-0">Tiana Vercetti</p>
-                                                    <small>@tiana59</small>
-                                                    <div class="badge badge-primary badge-pill badge-sm p-0">
-                                                        <i class="feather icon-check font-small-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">I love cookie chupa chups sweet tart apple pie chocolate bar. Jelly-o oat cake chupa chups.</p>
-                                            <small>10 Dec 2018</small>
-                                        </div>
-                                        <div class="twitter-feed mt-2">
-                                            <div class="d-flex justify-content-start align-items-center mb-1">
-                                                <div class="avatar mr-50">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-12.jpg" alt="avtar img holder" height="35" width="35">
-                                                </div>
-                                                <div class="user-page-info">
-                                                    <p class="text-bold-600 mb-0">Tiana Vercetti</p>
-                                                    <small>@tiana59</small>
-                                                    <div class="badge badge-primary badge-pill badge-sm p-0">
-                                                        <i class="feather icon-check font-small-1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0">Muffin candy caramels. I love caramels tiramisu jelly. Pie I love wafer. Chocolate cake lollipop tootsie roll cake.</p>
-                                            <p class="text-primary">#django #vuejs</p>
-                                            <small>9 Dec 018</small>
-                                        </div>
+                                        {% endfor %}
+
+
                                     </div>
                                 </div>
+
                             </div>
                             <!--POOOOOOOOOOOOOOOOOOOOOOOOOSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS----------------------------------------->
 
@@ -330,6 +298,20 @@
                                                     <div style="display: inline-block;">
                                                         {{ include('user_post/_delete_form.html.twig') }}
                                                     </div>
+                                                    <div style="display: inline-block;">
+                                                        <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_report', {'id': post.id, 'iduser': app.user.id}) }}"><i class="feather icon-flag"></i></a>
+                                                    </div>
+
+                                                    <div style="display: inline-block;">
+                                                        <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('user_post_bookmark', {'id': post.id,'iduser': app.user.id}) }}">
+                                                            {% if post.bookmarked == 0 %}
+                                                                <i class="feather icon-bookmark"></i>
+                                                            {% else %}
+                                                                <i class="fa fa-bookmark"></i>
+                                                            {% endif %}
+                                                        </a>
+                                                    </div>
+
                                                 </div>
                                                 {% endif %}
                                             </div>
@@ -341,9 +323,10 @@
 
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="feather icon-heart font-medium-2 mr-50"></i>
+                                                    <a href="{{ path('user_post_like',{'id': post.id, 'iduser': app.user.id}) }}"><i class="feather icon-heart font-medium-2 mr-50"></i></a>
                                                     <span>{{ post.nblikes }}</span>
                                                 </div>
+
                                                 <div class="ml-2">
                                                     <ul class="list-unstyled users-list m-0  d-flex align-items-center">
                                                         <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Trina Lynes" class="avatar pull-up">
@@ -369,7 +352,7 @@
                                                 </p>
                                             </div>
                                             <div class="divider divider-primary">
-                                                <div class="divider-text">Comments</div>
+                                                <div class="divider-text">{{ post.comments|length }} Comments</div>
                                             </div>
                                             {% for comment in post.comments %}
                                                 <div class="d-flex justify-content-start align-items-center mb-2">

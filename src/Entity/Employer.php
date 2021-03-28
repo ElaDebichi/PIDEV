@@ -33,10 +33,17 @@ class Employer extends User
      */
     private $formation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Evenements::class, mappedBy="employer")
+     */
+    private $evenements;
+
+
     public function __construct()
     {
         parent::__construct();
         $this->formation = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
     }
 
 
@@ -94,6 +101,38 @@ class Employer extends User
 
         return $this;
     }
+
+    /**
+     * @return Collection|Evenements[]
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    public function addEvenement(Evenements $evenement): self
+    {
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements[] = $evenement;
+            $evenement->setEmployer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenement(Evenements $evenement): self
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getEmployer() === $this) {
+                $evenement->setEmployer(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 }

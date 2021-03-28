@@ -28,7 +28,7 @@ class Comment
     private $nblikes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Post::class, inversedBy="comments",cascade={"persist","remove"})
      */
     private $post;
 

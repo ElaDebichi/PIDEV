@@ -35,7 +35,7 @@ class ContactController extends AbstractController
             $contact = $form->getData();
 
     $message = (new \Swift_Message('New Contact'))
-    ->setFrom('mariem.azouz@esprit.tn')
+    ->setFrom($user->getAddress())
     ->setTo($contact['email'])
     ->setBody(
         $this->renderView(

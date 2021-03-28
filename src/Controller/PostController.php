@@ -45,6 +45,10 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $post->setNblikes(0);
+            $post->setNbreports(0);
+            $post->setBookmarked(0);
+
+
             $post->setDate(new \DateTimeImmutable('now'));
 
            $user= $entityManager->getRepository(Candidat::class)->find($iduser);

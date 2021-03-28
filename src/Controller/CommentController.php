@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Entity\Comment;
+use App\Entity\Post;
 use App\Entity\User;
 use App\Form\Comment1Type;
 use App\Repository\CommentRepository;
@@ -28,10 +29,12 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/new/{iduser}", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{iduser}/{postid}", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request,$iduser): Response
+    public function new(Request $request,$iduser,$postid): Response
     {
+        $post= $this->getDoctrine()->getRepository(Post::class)->find($postid);
+
         $comment = new Comment();
         $form = $this->createForm(Comment1Type::class, $comment);
         $form->handleRequest($request);
@@ -39,6 +42,8 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $comment->setNblikes(0);
+            $comment->setPost($post);
+
             $user= $entityManager->getRepository(User::class)->find($iduser);
             $comment->setUser($user);
             $entityManager->persist($comment);
