@@ -18,23 +18,12 @@ class StageType extends AbstractType
     {
         $builder
             ->add('libelle')
-            /*->add('secteur',ChoiceType::class,
-                array('choices' => array(
-                    'Banque/Assurance/Finance'=>'Banque/Assurance/Finance',
-                    'Art/Culture'=>'Art/Culture',
-                    'Agroalimentaire/agriculture'=>'Agroalimentaire/agriculture',
-                    'Biologie/Chimie'=>'Biologie/Chimie',
-                    'Restaurant/Hotellerie'=>'Restaurant/Hotellerie',
-                    'Informatique(hardwara/software)'=>'Informatique(hardwara/software)',
-                    'informatique ingénieurie'=>'informatique ingénieurie',
-                ),
-                'required'   => false,)
-            )*/
             ->add('poste')
             ->add('dateExpiration', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'data' => new \DateTime(),
+                //'attr' => array('class' => 'pickadate'),
             ])
             ->add('duree')
             ->add('niveau', ChoiceType::class,

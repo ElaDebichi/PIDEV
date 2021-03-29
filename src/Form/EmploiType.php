@@ -8,7 +8,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,18 +18,6 @@ class EmploiType extends AbstractType
     {
         $builder
             ->add('libelle')
-            /*->add('secteur',ChoiceType::class,
-                array('choices' => array(
-                    'Banque/Assurance/Finance'=>'Banque/Assurance/Finance',
-                    'Art/Culture'=>'Art/Culture',
-                    'Agroalimentaire/agriculture'=>'Agroalimentaire/agriculture',
-                    'Biologie/Chimie'=>'Biologie/Chimie',
-                    'Restaurant/Hotellerie'=>'Restaurant/Hotellerie',
-                    'Informatique(hardwara/software)'=>'Informatique(hardwara/software)',
-                    'informatique ingénieurie'=>'informatique ingénieurie',
-                ),
-                'required'   => false,)
-            )*/
             ->add('poste')
             ->add('dateExpiration', DateType::class, [
                 'widget' => 'single_text',

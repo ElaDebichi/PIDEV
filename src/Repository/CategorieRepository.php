@@ -19,15 +19,6 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
-    public function getSearchList($motcle)
-    {
-        $qb = $this->createQueryBuilder('a');
-
-        $qb->where('a.libelle LIKE :motcle')
-            ->setParameter('motcle', '%'.$motcle.'%');
-
-        return $qb->getQuery()->getResult();
-    }
 
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects

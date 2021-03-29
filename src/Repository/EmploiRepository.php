@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Emploi;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,30 +24,6 @@ class EmploiRepository extends ServiceEntityRepository
     public function updateDate(){
         return $this->getEntityManager()
             ->createQuery('DELETE FROM App\Entity\Emploi s WHERE s.dateExpiration < CURRENT_DATE()')
-            ->getResult();
-    }
-
-    public function triAscLib(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Emploi e ORDER BY e.libelle ASC')
-            ->getResult();
-    }
-
-    public function triDescLib(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Emploi e ORDER BY e.libelle DESC')
-            ->getResult();
-    }
-
-    public function triAscId(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Emploi e ORDER BY e.id ASC')
-            ->getResult();
-    }
-
-    public function triDescId(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Emploi e ORDER BY e.id DESC')
             ->getResult();
     }
 

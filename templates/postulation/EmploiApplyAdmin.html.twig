@@ -1,0 +1,64 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title">List of jobs postulations</h1>
+                                    <div class="breadcrum-right">
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        {% if items | length > 0 %}
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Libelle</th>
+                                                    <th>Post</th>
+                                                    <th>Expiration Date</th>
+                                                    <th>Contract Type</th>
+                                                    <th>Salary</th>
+                                                    <th>Level</th>
+                                                    <th>Category</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for item in items %}
+                                                    <tr>
+                                                        <td>{{ item.emploi.libelle }}</td>
+                                                        <td>{{ item.emploi.poste }}</td>
+                                                        <td>{{ item.emploi.dateExpiration ? item.emploi.dateExpiration|date('Y-m-d') : '' }}</td>
+                                                        <td>{{ item.emploi.typeContrat }}</td>
+                                                        <td>{{ item.emploi.salaire }}</td>
+                                                        <td>{{ item.emploi.niveau }}</td>
+                                                        <td>{{ item.emploi.category.libelle }}</td>
+                                                        <td>
+                                                            <a href="{{ path('emploi_apply_remove',{'id': item.emploi.id}) }}">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        {% else %}
+                                            <p colspan="3">no records found</p>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

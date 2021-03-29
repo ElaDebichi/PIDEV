@@ -5,23 +5,32 @@ namespace App\Controller;
 use App\Entity\Emploi;
 use App\Form\EmploiType;
 use App\Repository\EmploiRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/emploiAdmin")
+ * @Route("/jobAdmin")
  */
-class EmploiAdminController extends AbstractController
+class EmploiAdminController extends Controller
 {
     /**
-     * @Route("/", name="emploi_admin_index", methods={"GET"})
+     * @Route("/", name="emploi_admin_index")
      */
-    public function index(EmploiRepository $emploiRepository): Response
+    /*, methods={"GET"}*/
+    public function index(Request $request)
     {
-        $emplois = $this->getDoctrine()->getRepository(Emploi::class)
-            ->findAll();
+        /*$emplois = $this->getDoctrine()->getRepository(Emploi::class)
+            ->findAll();*/
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT e FROM App\Entity\Emploi e";
+        $query = $em->createQuery($dql);
+        $emplois = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->query->getInt('page',1)
+        );
+
         return $this->render('emploi_admin/index.html.twig', [
             'emplois' => $emplois,
         ]);
@@ -99,54 +108,8 @@ class EmploiAdminController extends AbstractController
      */
     public function updateAction(EmploiRepository $emploiRepository): Response
     {
-        //$emplois = $emploiRepository->updateDate();
         $emploiRepository->updateDate();
-        /*return $this->render('emploi_admin/index.html.twig', array(
-            'emplois' => $emplois));*/
         return $this->redirectToRoute('emploi_admin_index');
-    }
-
-    /**
-     * @Route("/triAscLib", name="emploi_triAsc_libelle")
-     */
-    public function triAscLib(EmploiRepository $emploiRepository)
-    {
-        $emplois = $emploiRepository->triAscLib();
-
-        return $this->render('emploi_admin/index.html.twig', array(
-            'emplois' => $emplois));
-    }
-
-    /**
-     * @Route("/triDescLib", name="emploi_triDesc_libelle")
-     */
-    public function triDescLib(EmploiRepository $emploiRepository): Response
-    {
-        $emplois = $emploiRepository->triDescLib();
-
-        return $this->render('emploi_admin/index.html.twig', array(
-            'emplois' => $emplois));
-    }
-
-    /**
-     * @Route("/triAscId", name="emploi_triAsc_id")
-     */
-    public function triAscId(EmploiRepository $emploiRepository): Response
-    {
-        $emplois = $emploiRepository->triAscId();
-
-        return $this->render('emploi_admin/index.html.twig', array(
-            'emplois' => $emplois));
-    }
-    /**
-     * @Route("/triDescId", name="emploi_triDesc_id")
-     */
-    public function triDescId(EmploiRepository $emploiRepository): Response
-    {
-        $emplois = $emploiRepository->triDescId();
-
-        return $this->render('emploi_admin/index.html.twig', array(
-            'emplois' => $emplois));
     }
 
 }

@@ -29,36 +29,18 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                 <tr role="row">
-                                                    <th>
-                                                        ID
-                                                        <form role="search" method="post" action="{{ path('stage_triAsc_id') }}">
-                                                            <button><i class="fa fa-chevron-up"></i></button>
-                                                        </form>
-                                                        <form role="search" method="post" action="{{ path('stage_triDesc_id') }}">
-                                                            <button><i class="fa fa-chevron-down"></i></button>
-                                                        </form>
-                                                    </th>
-                                                    <th>
-                                                        Libelle
-                                                        <form role="search" method="post" action="{{ path('stage_triAsc_libelle') }}">
-                                                            <button><i class="fa fa-chevron-up"></i></button>
-                                                        </form>
-                                                        <form role="search" method="post" action="{{ path('stage_triDesc_libelle') }}">
-                                                            <button><i class="fa fa-chevron-down"></i></button>
-                                                        </form>
-                                                    </th>
-                                                    <th>Post</th>
-                                                    <th>Expiration Date</th>
-                                                    <th>Duration</th>
-                                                    <th>Level</th>
-                                                    <th>Category</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Libelle', 's.libelle') }}</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Post', 's.poste') }}</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Expiration Date', 's.dateExpiration') }}</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Duration', 's.duree') }}</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Level', 's.niveau') }}</th>
+                                                    <th>{{ knp_pagination_sortable(stages, 'Category', 's.category.libelle') }}</th>
                                                     <th>Actions</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for stage in stages %}
                                                     <tr>
-                                                        <td class="odd" role="row">{{ stage.id }}</td>
                                                         <td>{{ stage.libelle }}</td>
                                                         <td>{{ stage.poste }}</td>
                                                         <td>{{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</td>
@@ -91,7 +73,6 @@
                         </div>
                     </div>
                 </section>
-                <!--/ Zero configuration table -->
             </div>
         </div>
     </div>

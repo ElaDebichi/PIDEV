@@ -11,12 +11,25 @@
                 <section class="card invoice-page">
                     <div id="invoice-template" class="card-body">
                         <div id="invoice-company-details" class="row">
-                            <div class="col-sm-6 col-12 text-left pt-1">
-                                <div class="media pt-1">
+                            <div class="col-sm-6 col-12 text-right center-layout">
+                                <div class="media pt-lg-5 pt-sm-5">
                                     <img src="../../../app-assets/images/logo/logo.png" alt="company logo" />
                                     <!-- logo -->
                                 </div>
                             </div>
+                            <div class="col-sm-6 col-12 text-left">
+                                <h1>{{ emploi.libelle }}</h1>
+                                <h5>Post </h5>
+                                {{ emploi.poste }}
+                                <div class="recipient-info my-2">
+                                    <h5>Description </h5>
+                                    <p>{{ emploi.description }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="invoice-customer-details" class="row pt-2">
                             <div class="col-sm-6 col-12 text-center">
                                 <h1>Employment Name</h1>
                                 <div class="invoice-details mt-2">
@@ -34,18 +47,6 @@
                                             +91 988 888 8888
                                         </p>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="invoice-customer-details" class="row pt-2">
-                            <div class="col-sm-6 col-12 text-left">
-                                <h1>{{ emploi.libelle }}</h1>
-                                <h5>Post </h5>
-                                {{ emploi.poste }}
-                                <div class="recipient-info my-2">
-                                    <h5>Description </h5>
-                                    <p>{{ emploi.description }}</p>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-12 text-left">

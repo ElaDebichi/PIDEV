@@ -3,8 +3,6 @@
 {% block title %}Categorie{% endblock %}
 
 {% block body %}
-    <h1>Categorie</h1>
-
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-body">
@@ -32,7 +30,9 @@
                                         <div class="col-12 col-md-12">
                                             <a href="{{ path('categorie_admin_index') }}" class="btn btn-primary mr-1">Back to list</a>
 
-                                            <a href="{{ path('categorie_admin_edit', {'id': categorie.id}) }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i>Edit</a>
+                                            <a href="{{ path('categorie_admin_edit', {'id': categorie.id}) }}" class="btn btn-primary mr-1">
+                                                <i class="feather icon-edit-1"></i>Edit
+                                            </a>
 
                                             {{ include('categorie_admin/_delete_form.html.twig') }}
                                         </div>

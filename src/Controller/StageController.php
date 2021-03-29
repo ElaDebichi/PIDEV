@@ -10,9 +10,7 @@ use App\Repository\StageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 
 /**
@@ -20,26 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class StageController extends Controller
 {
-    public function indexDefault(StageRepository $stageRepository, Request $request): Response
-    {
-        $allstages = $stageRepository->findAll();
-        $stages = $this->get('knp_paginator')->paginate(
-        // Doctrine Query, not results
-            $allstages,
-            // Define the page parameter
-            $request->query->getInt('page', 1),
-            // Items per page
-            2
-        );
-        return $this->render('stage/index.html.twig', [
-            'stages' => $stages,
-        ]);
-    }
 
     /**
      * @Route("/", name="stage_index", methods={"GET", "POST"})
      */
-    public function finds(Request $request, StageRepository $stageRepository)
+    public function finds(Request $request)
     {
         $categorySearch = new Search();
         $form = $this->createForm(SearchType::class,$categorySearch);
@@ -57,11 +40,10 @@ class StageController extends Controller
             else
                 $allstages= $this->getDoctrine()->getRepository(Stage::class)->findAll();
         }
-        //$allstages = $stageRepository->findAll();
         $stages = $this->get('knp_paginator')->paginate(
             $allstages,
             $request->query->getInt('page', 1),
-            2
+            4
         );
         return $this->render('stage/index.html.twig',['form' => $form->createView(),'stages' => $stages]);
     }
@@ -90,7 +72,7 @@ class StageController extends Controller
         $stages = $this->get('knp_paginator')->paginate(
             $allstages,
             $request->query->getInt('page', 1),
-            2
+            4
         );
 
         return $this->render('stage/indexC.html.twig',['form' => $form->createView(),'stages' => $stages]);
@@ -172,7 +154,5 @@ class StageController extends Controller
 
         return $this->redirectToRoute('stage_index');
     }
-    
-
 
 }

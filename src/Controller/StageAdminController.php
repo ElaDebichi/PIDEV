@@ -5,23 +5,31 @@ namespace App\Controller;
 use App\Entity\Stage;
 use App\Form\StageType;
 use App\Repository\StageRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/stageAdmin")
+ * @Route("/internshipAdmin")
  */
-class StageAdminController extends AbstractController
+class StageAdminController extends Controller
 {
     /**
-     * @Route("/", name="stage_admin_index", methods={"GET"})
+     * @Route("/", name="stage_admin_index")
      */
-    public function index(StageRepository $stageRepository): Response
+    /*, methods={"GET"}*/
+    public function index(Request $request): Response
     {
-        $stages = $this->getDoctrine()->getRepository(Stage::class)
-            ->findAll();
+        /*$stages = $this->getDoctrine()->getRepository(Stage::class)
+            ->findAll();*/
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT s FROM App\Entity\Stage s";
+        $query = $em->createQuery($dql);
+        $stages = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->query->getInt('page',1)
+        );
         return $this->render('stage_admin/index.html.twig', [
             'stages' => $stages,
         ]);
@@ -101,49 +109,6 @@ class StageAdminController extends AbstractController
     {
         $stageRepository->updateDate();
         return $this->redirectToRoute('stage_admin_index');
-    }
-
-    /**
-     * @Route("/triAscLib", name="stage_triAsc_libelle")
-     */
-    public function triAscLib(StageRepository $stageRepository)
-    {
-        $stages = $stageRepository->triAscLib();
-
-        return $this->render('stage_admin/index.html.twig', array(
-            'stages' => $stages));
-    }
-
-    /**
-     * @Route("/triDescLib", name="stage_triDesc_libelle")
-     */
-    public function triDescLib(StageRepository $stageRepository): Response
-    {
-        $stages = $stageRepository->triDescLib();
-
-        return $this->render('stage_admin/index.html.twig', array(
-            'stages' => $stages));
-    }
-
-    /**
-     * @Route("/triAscId", name="stage_triAsc_id")
-     */
-    public function triAscId(StageRepository $stageRepository): Response
-    {
-        $stages = $stageRepository->triAscId();
-
-        return $this->render('stage_admin/index.html.twig', array(
-            'stages' => $stages));
-    }
-    /**
-     * @Route("/triDescId", name="stage_triDesc_id")
-     */
-    public function triDescId(StageRepository $stageRepository): Response
-    {
-        $stages = $stageRepository->triDescId();
-
-        return $this->render('stage_admin/index.html.twig', array(
-            'stages' => $stages));
     }
 
 }

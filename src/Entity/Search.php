@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Search
 {
-
     /**
      * @ORM\ManyToOne(targetEntity="Categorie")
      */

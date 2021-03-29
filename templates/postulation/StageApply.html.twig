@@ -26,6 +26,7 @@
                                 <td>{{ item.stage.duree }}</td>
                                 <td>{{ item.stage.niveau }}</td>
                                 <td>{{ item.stage.category.libelle }}</td>
+                                {# categorie.id #}
                                 <td>
                                     <a href="{{ path('stage_apply_remove',{'id': item.stage.id}) }}">Delete</a>
                                 </td>

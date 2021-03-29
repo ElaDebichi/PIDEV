@@ -17,17 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EmploiController extends Controller
 {
-    public function indexDefault(EmploiRepository $emploiRepository): Response
-    {
-        return $this->render('emploi/index.html.twig', [
-            'emplois' => $emploiRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/", name="emploi_index", methods={"GET", "POST"})
      */
-    public function finds(Request $request,EmploiRepository $emploiRepository)
+    public function finds(Request $request)
     {
         $categorySearch = new Search();
         $form = $this->createForm(SearchType::class,$categorySearch);
@@ -40,15 +34,18 @@ class EmploiController extends Controller
 
             if ($category!="")
             {
-                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category] );
+                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findBy(['category' => $category]);
+
             }
-            else
-                $allemplois= $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+            else {
+                $allemplois = $this->getDoctrine()->getRepository(Emploi::class)->findAll();
+
+            }
         }
         $emplois = $this->get('knp_paginator')->paginate(
             $allemplois,
             $request->query->getInt('page', 1),
-            2
+            4
         );
 
         return $this->render('emploi/index.html.twig',['form' => $form->createView(),'emplois' => $emplois]);
@@ -78,7 +75,7 @@ class EmploiController extends Controller
         $emplois = $this->get('knp_paginator')->paginate(
             $allemplois,
             $request->query->getInt('page', 1),
-            2
+            4
         );
 
         return $this->render('emploi/indexC.html.twig',['form' => $form->createView(),'emplois' => $emplois]);
@@ -160,7 +157,5 @@ class EmploiController extends Controller
 
         return $this->redirectToRoute('emploi_index');
     }
-
-
 
 }

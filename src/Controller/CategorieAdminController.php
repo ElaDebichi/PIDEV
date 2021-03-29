@@ -5,23 +5,31 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/categorieAdmin")
+ * @Route("/categoryAdmin")
  */
-class CategorieAdminController extends AbstractController
+class CategorieAdminController extends Controller
 {
     /**
-     * @Route("/", name="categorie_admin_index", methods={"GET"})
+     * @Route("/", name="categorie_admin_index")
      */
-    public function index(CategorieRepository $categorieRepository): Response
+    /*, methods={"GET"}*/
+    public function index(CategorieRepository $categorieRepository, Request $request): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT c FROM App\Entity\Categorie c";
+        $query = $em->createQuery($dql);
+        $categories = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->query->getInt('page',1)
+        );
         return $this->render('categorie_admin/index.html.twig', [
-            'categories' => $categorieRepository->findAll(),
+            'categories' => $categories,
         ]);
     }
 

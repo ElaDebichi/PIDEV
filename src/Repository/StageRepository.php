@@ -25,29 +25,6 @@ class StageRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function triAscLib(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Stage e ORDER BY e.libelle ASC')
-            ->getResult();
-    }
-
-    public function triDescLib(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Stage e ORDER BY e.libelle DESC')
-            ->getResult();
-    }
-
-    public function triAscId(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Stage e ORDER BY e.id ASC')
-            ->getResult();
-    }
-
-    public function triDescId(){
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM App\Entity\Stage e ORDER BY e.id DESC')
-            ->getResult();
-    }
 
     // /**
     //  * @return Stage[] Returns an array of Stage objects
