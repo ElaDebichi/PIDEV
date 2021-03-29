@@ -1,0 +1,89 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Emploi{% endblock %}
+
+{% block body %}
+    <h1>Emploi</h1>
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="card invoice-page">
+                    <div id="invoice-template" class="card-body">
+                        <div id="invoice-company-details" class="row">
+                            <div class="col-sm-6 col-12 text-right">
+                                <div class="media pt-1">
+                                    <!-- logo -->
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-12 text-left">
+                                <img src="/uploads/{{event.getImg()}}" style="width: 200px; height: 200px; object-fit: cover;"  class="rounded-circle img-border box-shadow-1" alt="Card image">
+
+                                <h1>{{ event.titre }}</h1>
+                                <h5>Date </h5>
+                                {{ event.Date? event.Date|date('Y-m-d') : '' }}
+                                <div class="recipient-info my-2">
+                                    <h5>Description </h5>
+                                    <p>{{ event.nom }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="invoice-customer-details" class="row pt-2">
+                            <div class="col-sm-6 col-12 text-center">
+                                <div class="invoice-details mt-2">
+                                    <div class="recipient-contact pb-2">
+
+                                            <img src="/uploads/{{event.employer.getImg()}}" style="width: 200px; height: 200px; object-fit: cover;"  class="rounded-circle img-border box-shadow-1" alt="Card image">
+
+
+
+                                    </div>
+                                </div>
+                                <h1>Company name : {{ event.employer.company }}</h1>
+
+                                <div class="invoice-details mt-2">
+                                    <div class="recipient-contact pb-2">
+                                        <p>
+                                            <i class="feather icon-home"></i>
+                                            {{ event.employer.town }}
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-mail"></i>
+                                            {{event.employer.address}}
+                                        </p>
+                                        <p>
+                                            <i class="feather icon-phone"></i>
+                                            {{ event.employer.phone }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-12 text-left">
+                                <br>
+
+                                <h5>Location</h5>
+                                <p>{{ event.adresse}}</p>
+                                <h5>Capacity</h5>
+                                <p>{{ event.nbrMax}}</p>
+                                <h5>Attendants</h5>
+                                <p>{{ event.nbrParticipants}}</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12" align="right">
+                        <a href="" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
+                        <a href="{{ path('evenements_front') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

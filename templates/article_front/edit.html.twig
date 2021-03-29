@@ -1,0 +1,13 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+    <h1>Edit Article</h1>
+
+    {{ include('article_front/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('articles_list',{'idemp':article.employer.id}) }}">back to list</a>
+
+
+{% endblock %}

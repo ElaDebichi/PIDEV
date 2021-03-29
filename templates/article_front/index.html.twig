@@ -1,0 +1,88 @@
+{% extends 'baseFront.html.twig' %}
+
+
+
+{% block body %}
+    <!-- parallax swiper start -->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-body">
+            {% for article in articles %}
+    <section id="component-swiper-parallax">
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title">{{ article.titre }}</h4>
+                <div class="title" data-swiper-parallax="-300"> <span class="font-small-2">{{ article.Date ? article.Date|date('Y-m-d') : '' }} AT {{ article.Date ? article.Date|date('H:i:s') : '' }}</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <!-- Swiper -->
+                    <div class="swiper-parallax swiper-container">
+                        <div class="parallax-bg" data-swiper-parallax="-23%"><img class="img-fluid" style="width: 1500px; height: 500px;object-fit: scale-down;"  src="/uploads/{{article.img}}" alt="banner"> </div>
+
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="subtitle" data-swiper-parallax="-200"> <h4> Description </h4></div>
+                                <div class="text" data-swiper-parallax="-100">
+                                    <p>{{ article.description }}</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="title" data-swiper-parallax="-300" data-swiper-parallax-opacity="0"> <h4> Informations about the Company: </h4>
+                                </div>
+                                <div class="subtitle" data-swiper-parallax="-200"><h6> {{ article.employer.company }}</h6></div>
+                                <div class="text" data-swiper-parallax="-100">
+                                    <div class="invoice-details mt-2">
+                                        <div class="recipient-contact pb-2">
+                                            <p>
+                                            <div class="invoice-details mt-2">
+                                                <div class="recipient-contact pb-2">
+
+                                                    <img src="/uploads/{{article.employer.getImg()}}" style="width: 50px; height: 50px; object-fit: cover;"  class="rounded-circle img-border box-shadow-1" alt="Card image">
+
+
+
+                                                </div>
+                                            </div>
+                                                <i class="feather icon-home"></i>
+                                                {{ article.employer.town }}
+                                            </p>
+                                            <p>
+                                                <i class="feather icon-mail"></i>
+                                                {{article.employer.address}}
+                                            </p>
+                                            <p>
+                                                <i class="feather icon-phone"></i>
+                                                {{ article.employer.phone }}
+                                            </p>
+                                            <div class="card-btns d-flex justify-content-between mt-2">
+
+                                                <a href="{{ path('employer_showFront', {'idemp': article.employer.id}) }}" class="btn btn-outline-primary">Show profile</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"> </div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+    <!-- parallax swiper ends -->
+{% endblock %}

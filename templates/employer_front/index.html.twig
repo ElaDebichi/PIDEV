@@ -59,12 +59,7 @@
                                                         <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
                                                             <button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1">
                                                                 Sort by Town
-                                                                {% if is_granted('ROLE_CANDIDATE') %}
-                                                                    CANDIDATE DETECTED
-                                                                {% endif %}
-                                                                {% if is_granted('ROLE_EMPLOYER') %}
-                                                                    EMPLOYER DETECTED
-                                                                {% endif %}
+
                                                             </button>
                                                         </div>
                                                     </div>
@@ -101,37 +96,42 @@
             </div>
         </div>
 
-        <section id="basic-examples">
-            <div class="row match-height">
 
-
-                {% for employer in employers %}
-                    <div class="card">
-                        <div class="card-content">
-                            <img id="img"  style="max-width:500px; max-height: 200px; "  src="/uploads/{{employer.img}}">
-                            <div class="card-body">
-                                <h5>{{ employer.company }}</h5>
-                                <p class="card-text  mb-0">{{ employer.categorie }}</p>
-                                <span class="card-text">{{ employer.town }}</span>
-                                <div class="card-btns d-flex justify-c+ontent-between mt-2">
-                                    <a href="#" class="btn gradient-light-primary text-white">Follow</a>
-                                    <a href="{{ path('employer_showFront', {'idemp': employer.id}) }}" class="btn btn-outline-primary">Read More</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-
-                </div>
-
-                <!-- Profile Cards Starts -->
-
-                <!-- Profile Cards Ends -->
-            </div>
-        </section>
 
         <!-- // Basic example and Profile cards section end -->
+    <section id="decks">
+
+        <div class="row" height="200" width="500" >
+
+            {% for employer in employers %}
+                <div>  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; </div>
+                <div class="card" >
+
+                    <div class="card-content">
+
+                        <img id="img"  style="width:300px; height: 400px; "  src="/uploads/{{employer.img}}">
+                        <div class="card-body">
+                            <h5>{{ employer.company }}</h5>
+                            <p class="card-text  mb-0">{{ employer.categorie }}</p>
+                            <span class="card-text">{{ employer.town }}</span>
+                            <div class="card-btns d-flex justify-c+ontent-between mt-2">
+                                <a href="#" class="btn gradient-light-primary text-white">Follow</a>
+                                <a href="{{ path('employer_showFront', {'idemp': employer.id}) }}" class="btn btn-outline-primary">Read More</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Profile Cards Starts -->
+
+        <!-- Profile Cards Ends -->
+</div>
+    </section>
 
         <!-- Overlay Image and Chat Section Starts -->
 
@@ -153,13 +153,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

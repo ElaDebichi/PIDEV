@@ -43,7 +43,7 @@ class Evenements
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string",length=5000)
      * @Groups({"events"})
      */
     private $nom;

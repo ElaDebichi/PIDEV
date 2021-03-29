@@ -38,12 +38,18 @@ class Employer extends User
      */
     private $evenements;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="employer")
+     */
+    private $article;
+
 
     public function __construct()
     {
         parent::__construct();
         $this->formation = new ArrayCollection();
         $this->evenements = new ArrayCollection();
+        $this->article = new ArrayCollection();
     }
 
 
@@ -126,6 +132,36 @@ class Employer extends User
             // set the owning side to null (unless already changed)
             if ($evenement->getEmployer() === $this) {
                 $evenement->setEmployer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticle(): Collection
+    {
+        return $this->article;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
+            $article->setEmployer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->article->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getEmployer() === $this) {
+                $article->setEmployer(null);
             }
         }
 

@@ -1,0 +1,59 @@
+<div class="card-content">
+        <div class="card-body">
+                {{ form_start(form, {'attr':{ 'class':'form form-vertical','novalidate':'novalidate'}}) }}
+                <div class="form-body">
+                        <div class="row">
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="first-name-vertical">Title</label>
+                                                {{ form_widget(form.titre,{'attr':{'class':'form-control col-md-8','placeholder':'Titre'}}) }}
+
+
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Date</label>
+                                                {{ form_widget(form.Date, {'attr':{ 'class':'form-control', 'placeholder':'Expiration Date *'}}) }}
+
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Location</label>
+                                                {{ form_widget(form.adresse, {'attr':{ 'class':'form-control', 'placeholder':'Expiration Date *'}}) }}
+
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="contact-info-vertical">Description</label>
+                                                {{ form_widget(form.nom,{'attr':{'class':'form-control col-md-8','placeholder':'Description'}}) }}
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Capacity</label>
+                                                {{ form_widget(form.nbrMax,{'attr':{'class':'form-control col-md-8','placeholder':'Capacity'}}) }}
+                                        </div>
+                                </div>
+                                <div class="col-12">
+                                        <div class="form-group">
+                                                <label for="password-vertical">Image</label>
+
+                                                {{ form_widget(form.imageFile,{ 'id':'user-img','attr':{'class':'form-control col-md-4','placeholder':'YOUR LOGO *'}}) }}
+
+                                        </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                        <button class="btn btn-primary mr-1 mb-1">{{ button_label|default('Save') }}</button>
+                                        <a href="{{ path('evenements_front') }}" class="btn btn-outline-warning mr-1 mb-1">Back to list</a>
+
+                                </div>
+                        </div>
+                </div>
+                {{ form_end(form) }}
+        </div>
+</div>

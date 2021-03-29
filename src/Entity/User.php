@@ -82,7 +82,7 @@ abstract class User implements UserInterface
     private $linkdin;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=5000)
      * @Assert\NotBlank(message="insert data ")
      * @Groups({"employers","candidats"})
      */

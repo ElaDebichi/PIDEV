@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Candidat;
 use App\Entity\Employer;
+use App\Entity\Evenements;
 use App\Entity\Urlizer;
 use App\Entity\User;
 use App\Form\Employer1Type;
@@ -120,6 +121,44 @@ class EmployerFrontController extends AbstractController
 
         return $this->render('employer_front/showStage.html.twig', [
             'employer' => $employer,
+
+
+
+
+        ]);
+
+    }
+
+    /**
+     * @Route("showEvent/{idemp}", name="events_list", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function showEvents($idemp): Response
+    {
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+        return $this->render('employer_front/showEvents.html.twig', [
+            'employer' => $employer,
+
+
+
+
+        ]);
+
+    }
+    /**
+     * @Route("showArticles/{idemp}", name="articles_list", methods={"GET"})
+     * @param $idemp
+     * @return Response
+     */
+    public function showArticles($idemp): Response
+    {
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+        return $this->render('employer_front/showArticles.html.twig', [
+            'employer' => $employer,
+
 
 
 

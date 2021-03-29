@@ -22,22 +22,29 @@ class Article
     /**
      * @ORM\Column(type="string", length=80)
      */
-    private $titr;
+    private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=5000)
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=12)
-     */
-    private $media;
+
 
     /**
      * @ORM\Column(type="date")
      */
     private $Date;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $img;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Employer::class, inversedBy="article")
+     */
+    private $employer;
 
     public function getId(): ?int
     {
@@ -47,14 +54,14 @@ class Article
 
 
 
-    public function getTitr(): ?string
+    public function getTitre(): ?string
     {
-        return $this->titr;
+        return $this->titre;
     }
 
-    public function setTitr(string $titr): self
+    public function setTitre(string $titre): self
     {
-        $this->titr = $titr;
+        $this->titre = $titre;
 
         return $this;
     }
@@ -71,17 +78,7 @@ class Article
         return $this;
     }
 
-    public function getMedia(): ?string
-    {
-        return $this->media;
-    }
 
-    public function setMedia(string $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
 
     public function getDate(): ?\DateTimeInterface
     {
@@ -91,6 +88,30 @@ class Article
     public function setDate(\DateTimeInterface $Date): self
     {
         $this->Date = $Date;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    public function getEmployer(): ?Employer
+    {
+        return $this->employer;
+    }
+
+    public function setEmployer(?Employer $employer): self
+    {
+        $this->employer = $employer;
 
         return $this;
     }

@@ -1,87 +1,119 @@
-{% extends 'base.html.twig' %}
 
-{% block head %}
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>DataTables - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+{% extends 'baseAdmin.html.twig' %}
 
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
-    <!-- END: Vendor CSS-->
-
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
-
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.css">
-    <!-- END: Page CSS-->
-
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
-    <!-- END: Custom CSS-->
-
-{% endblock %}
+{% block title %}Post index{% endblock %}
 
 {% block body %}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-<section id="row-grouping">
+    {% block content %}
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-9 col-12 mb-2">
+                        <div class="row breadcrumbs-top">
 
-    <div class="row justify-content-center">
+                        </div>
+                    </div>
 
+                </div>
+                <div class="content-body">
+                    <div class="row">
 
-            <table class="table table-striped dataex-html5-selectors dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                <thead>
-                <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 310px;">Titre</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 455px;">Description</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 231px;">Media</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 105px;">Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 190px;">actions</th>
-                </tr>
-                     </thead>
-                <tbody>
+                    </div>
+                    <div style="display: inline-block;top: 0px;left: 750px;" class="col-sm-4 col-12">
+                        <input class="form-control round" placeholder="Search" type="text" id="searchadv">
+                    </div>
 
-                {% for article in articles %}
-                    <tr>
+                    <button style="top: 5px;left: 750px;" type="submit" id="search" class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1"><i class="feather icon-search"></i></button>
 
 
-                        <td>{{ article.titr }}</td>
-                        <td>{{ article.description }}</td>
-                        <td>{{ article.media }}</td>
-                        <td>{{ article.Date ? article.Date|date('Y-m-d') : '' }}</td>
-                        <td>
-                            <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                            <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="7">no records found</td>
-                    </tr>
-                {% endfor %}</tbody>
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-            </table>
-            <a href="{{ path('article_new') }}">Create new</a>
-    </div>
-</section>
+                    <script src="../../../app-assets/js/scripts/ajaxsearch.js"></script>
+                    <br>
+                    <br>
+                    <br>
 
+
+                    <div class="content-body">
+                        <div class="row">
+                        </div>
+                        <h1>Event list
+                            <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('article_new',{'iduser':app.user.id})  }}"><i class="feather icon-plus"></i></a>
+
+                        </h1>
+
+                        <section id="column-selectors">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+
+                                        <div class="card-content">
+                                            <div class="card-body card-dashboard">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped dataex-html5-selectors">
+                                                        <thead>
+                                                        <tr>
+
+                                                            <th>Title</th>
+                                                            <th>Date</th>
+                                                            <th>Description</th>
+                                                            <th>img</th>
+                                                            <th>user address</th>
+                                                            <th>user image</th>
+                                                            <th>actions</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tb">
+                                                        {% for article in articles %}
+                                                            <tr>
+
+                                                                <td>{{ article.titre}}</td>
+                                                                <td>{{ article.Date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
+                                                                <td>{{ article.description }}</td>
+                                                                <td>   <img src="/uploads/{{article.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
+                                                                <td>{{ article.employer.address }}</td>
+                                                                <td>   <img src="/uploads/{{article.employer.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
+
+                                                                </td>
+                                                                <td>
+                                                                    <div style="display: inline-block;">
+                                                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('article_edit', {'id': article.id}) }}"> <i class="feather icon-edit"></i></a>
+                                                                    </div>
+                                                                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('article_show', {'id': article.id}) }}"><i class="feather icon-eye"></i></a>
+
+                                                                    <div style="display: inline-block;">
+                                                                        {{ include('article/_delete_form.html.twig') }}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column selectors with Export Options and print table -->
+
+
+
+        </div>
+        </div>
+        </div>
+    {% endblock %}
 {% endblock %}

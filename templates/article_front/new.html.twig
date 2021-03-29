@@ -1,0 +1,11 @@
+{% extends 'baseFront.html.twig' %}
+
+
+
+{% block body %}
+
+
+    {{ include('article_front/_form.html.twig') }}
+
+    <a href="{{ path('articleFront_index') }}">back to list</a>
+{% endblock %}
