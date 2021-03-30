@@ -132,6 +132,11 @@ abstract class User implements UserInterface
      */
     private $apply;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbrFollow;
+
     public function __construct()
     {
         $this->post = new ArrayCollection();
@@ -453,6 +458,18 @@ abstract class User implements UserInterface
     public function removeApply(Offre $apply): self
     {
         $this->apply->removeElement($apply);
+
+        return $this;
+    }
+
+    public function getNbrFollow(): ?int
+    {
+        return $this->nbrFollow;
+    }
+
+    public function setNbrFollow(int $nbrFollow): self
+    {
+        $this->nbrFollow = $nbrFollow;
 
         return $this;
     }

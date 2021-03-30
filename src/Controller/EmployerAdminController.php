@@ -46,6 +46,7 @@ class EmployerAdminController extends AbstractController
     public function new(Request $request): Response
     {
             $employer = new Employer();
+        $employer->setNbrFollow(0);
         $salt = md5(microtime());
             $form = $this->createForm(Employer1Type::class, $employer);
 

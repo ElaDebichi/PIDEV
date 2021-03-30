@@ -48,6 +48,7 @@ class CandidatFrontController extends AbstractController
     public function new(Request $request): Response
     {
         $candidat = new Candidat();
+        $candidat->setNbrFollow(0);
         $salt = md5(microtime());
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);
@@ -106,7 +107,33 @@ class CandidatFrontController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/follow/{id}", name="candidat_showfollow", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function showFollow($id, PostRepository $postRepository): Response
+    {
 
+        $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
+        $skills = $this->getDoctrine()->getRepository(Skills::class)->findAll();
+        $skillss= $candidat->getSkills();
+        $posts = $postRepository->findBy( ['bookmarked' => '1'], ['date' => 'ASC']);
+
+
+
+
+
+
+
+        return $this->render('candidat_front/followers.html.twig', [
+            'candidat'=>$candidat,
+            'skills' => $skills,
+            'skillss' => $skillss,
+            'posts' => $posts,
+
+        ]);
+    }
     /**
      * @Route("/{id}/editFront", name="candidat_editFront", methods={"GET","POST"})
      * @param Request $request

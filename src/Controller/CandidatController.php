@@ -70,6 +70,7 @@ class CandidatController extends AbstractController
     public function new(Request $request): Response
     {
         $candidat = new Candidat();
+        $candidat->setNbrFollow(0);
         $salt = md5(microtime());
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);

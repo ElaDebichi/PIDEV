@@ -103,8 +103,25 @@
                                     <h5>{{ candidat.nom ~ " " ~ candidat.prenom }}</h5>
                                     <p class="card-text  mb-0">{{ candidat.typeCandidat }}</p>
                                     <span class="card-text">{{ candidat.town }}</span>
+                                    <br>
+                                    {% set i = 0 %}
+                                    {% for candidat in candidat.employers %}
+                                        {% if candidat.id == app.user.id %}
+                                            {% set i = 1 %}
+                                        {% else %}
+                                            {% set i=0  %}
+                                        {% endif %}
+
+                                    {% endfor %}
+                                    <span class="card-text">Followers : {{ candidat.nbrFollow }}</span>
                                     <div class="card-btns d-flex justify-content-between mt-2">
-                                        <a href="#" class="btn gradient-light-primary text-white">Follow</a>
+                                        {% if is_granted('ROLE_EMPLOYER') %}
+                                        {% if i==0 %}
+                                        <a href="{{ path('candidatFollow',{'id':candidat.id,'iduser':app.user.id}) }}" class="btn gradient-light-primary text-white">Follow</a>
+                                        {% else %}
+                                            <a href="{{ path('delete_follow',{'id':candidat.id,'iduser':app.user.id}) }}" class="btn gradient-light-primary text-white">Unfollow</a>
+                                        {% endif %}
+                                        {% endif %}
                                         <a href="{{ path('candidat_showFront', {'id': candidat.id}) }}" class="btn btn-outline-primary">Read More</a>
 
                                     </div>
@@ -115,6 +132,7 @@
                         </div>
                     {% endfor %}
                 </div>
+
 
                 <!-- Profile Cards Starts -->
 

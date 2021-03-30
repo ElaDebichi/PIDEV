@@ -43,6 +43,11 @@ class Employer extends User
      */
     private $article;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Candidat::class, inversedBy="employers")
+     */
+    private $candidat;
+
 
     public function __construct()
     {
@@ -50,6 +55,7 @@ class Employer extends User
         $this->formation = new ArrayCollection();
         $this->evenements = new ArrayCollection();
         $this->article = new ArrayCollection();
+        $this->candidat = new ArrayCollection();
     }
 
 
@@ -164,6 +170,30 @@ class Employer extends User
                 $article->setEmployer(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidat[]
+     */
+    public function getCandidat(): Collection
+    {
+        return $this->candidat;
+    }
+
+    public function addCandidat(Candidat $candidat): self
+    {
+        if (!$this->candidat->contains($candidat)) {
+            $this->candidat[] = $candidat;
+        }
+
+        return $this;
+    }
+
+    public function removeCandidat(Candidat $candidat): self
+    {
+        $this->candidat->removeElement($candidat);
 
         return $this;
     }
