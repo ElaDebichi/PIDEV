@@ -44,6 +44,8 @@ class FormationController extends AbstractController
         $employer=$this->getDoctrine()->getRepository(Employer::class)->find($iduser);
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
+        $formation->setNbrparticipants(0);
+        $formation->setRating(0);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $uploadedFile = $form['imageFile']->getData();

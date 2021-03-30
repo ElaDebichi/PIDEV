@@ -36,7 +36,7 @@ security:
         ROLE_ADMIN: [ROLE_ADMIN]
         ROLE_SUPER_ADMIN: [ ROLE_ADMIN]
     access_control:
-         - { path: ^/skill, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/skillAdmin, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/article, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/evenements, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
          - { path: ^/article, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN] }
@@ -59,4 +59,7 @@ security:
          - { path: ^/event, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/art, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
          - { path: ^/ski, roles: [ROLE_ADMIN,ROLE_SUPER_ADMIN,ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER]}
-         - { path: ^/, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER] }
+         - { path: ^/c, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER,ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/form, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER,ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+         - { path: ^/tutor, roles: [ROLE_USER,ROLE_CANDIDATE,ROLE_EMPLOYER,ROLE_ADMIN,ROLE_SUPER_ADMIN] }
+

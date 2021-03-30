@@ -134,6 +134,7 @@ class CandidatFrontController extends AbstractController
 
         ]);
     }
+
     /**
      * @Route("/{id}/editFront", name="candidat_editFront", methods={"GET","POST"})
      * @param Request $request

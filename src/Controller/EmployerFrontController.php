@@ -134,6 +134,48 @@ class EmployerFrontController extends AbstractController
     }
 
     /**
+     * @Route("showFormations/{idemp}", name="formation_list", methods={"GET"})
+     * @param $idemp
+     * @param $candidat
+     * @return Response
+     */
+    public function showFormation($idemp,$candidat): Response
+    {
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+
+
+        return $this->render('employer_front/showFormations.html.twig', [
+            'employer' => $employer,
+            'candidat' => $candidat,
+
+
+
+
+        ]);
+
+    }
+    /**
+     * @Route("showTutors/{idemp}", name="tutors_list", methods={"GET"})
+     * @param $idemp
+     * @return Response
+     */
+    public function showTutor($idemp): Response
+    {
+
+        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+
+        return $this->render('employer_front/showTutor.html.twig', [
+            'employer' => $employer,
+
+
+
+
+        ]);
+
+    }
+
+    /**
      * @Route("showEvent/{idemp}", name="events_list", methods={"GET"})
      * @param $id
      * @return Response

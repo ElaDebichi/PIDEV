@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutor index{% endblock %}
+
+{% block body %}
+    <h1>Tutor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tutor in tutors %}
+            <tr>
+                <td>{{ tutor.id }}</td>
+                <td>{{ tutor.nom }}</td>
+                <td>
+                    <a href="{{ path('tutor_show', {'id': tutor.id}) }}">show</a>
+                    <a href="{{ path('tutor_edit', {'id': tutor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tutor_new') }}">Create new</a>
+{% endblock %}

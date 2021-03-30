@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutor{% endblock %}
+
+{% block body %}
+    <h1>Tutor</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tutor.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ tutor.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tutor_index') }}">back to list</a>
+
+    <a href="{{ path('tutor_edit', {'id': tutor.id}) }}">edit</a>
+
+    {{ include('tutor/_delete_form.html.twig') }}
+{% endblock %}

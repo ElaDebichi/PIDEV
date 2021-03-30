@@ -1,4 +1,4 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 
 {% block title %}Formation{% endblock %}
 
@@ -35,40 +35,27 @@
                                                 <table class="table">
                                                     <tbody>
                                                     <tr>
-                                                        <td class="font-weight-bold">Title:</td>
+                                                        <td class="font-weight-bold">Formation name:</td>
                                                         <td>{{ formation.nomformation }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="font-weight-bold">Tutor name:</td>
-                                                        <td>{{ formation.nomdeformateur }}</td>
+                                                        <td>{{ formation.tutor }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="font-weight-bold"> Description:</td>
+                                                        <td class="font-weight-bold">Formation subject:</td>
                                                         <td>{{ formation.sujetdeformation }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="font-weight-bold"> Participants:</td>
-                                                        <td>{{ formation.nbrParticipants }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="font-weight-bold"> Company:</td>
-                                                        <td>{{ formation.employer }}</td>
-                                                    </tr>
-
 
 
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="col-12">
-                                                <a href="{{ path('formation_index') }}" class="btn btn-primary mr-1"> Back</a>
-                                                <a href="{{ path('formation_edit', {'id': formation.id}) }}"class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> Edit</a>
-
+                                                <a href="{{ path('formation_index') }}" class="btn btn-primary mr-1"><i class="feather icon-edit-1"></i> afficher</a>
 
 
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>

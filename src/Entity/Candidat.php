@@ -67,11 +67,17 @@ class Candidat extends User
      */
     private $employers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Formation::class, mappedBy="participer")
+     */
+    private $formations;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
         $this->participate = new ArrayCollection();
         $this->employers = new ArrayCollection();
+        $this->formations = new ArrayCollection();
     }
 
 
@@ -214,6 +220,33 @@ class Candidat extends User
     {
         if ($this->employers->removeElement($employer)) {
             $employer->removeCandidat($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Formation[]
+     */
+    public function getFormations(): Collection
+    {
+        return $this->formations;
+    }
+
+    public function addFormation(Formation $formation): self
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+            $formation->addParticiper($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(Formation $formation): self
+    {
+        if ($this->formations->removeElement($formation)) {
+            $formation->removeParticiper($this);
         }
 
         return $this;

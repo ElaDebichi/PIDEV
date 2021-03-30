@@ -48,6 +48,11 @@ class Employer extends User
      */
     private $candidat;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tutor::class, mappedBy="employer")
+     */
+    private $tutors;
+
 
     public function __construct()
     {
@@ -56,6 +61,7 @@ class Employer extends User
         $this->evenements = new ArrayCollection();
         $this->article = new ArrayCollection();
         $this->candidat = new ArrayCollection();
+        $this->tutors = new ArrayCollection();
     }
 
 
@@ -194,6 +200,36 @@ class Employer extends User
     public function removeCandidat(Candidat $candidat): self
     {
         $this->candidat->removeElement($candidat);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tutor[]
+     */
+    public function getTutors(): Collection
+    {
+        return $this->tutors;
+    }
+
+    public function addTutor(Tutor $tutor): self
+    {
+        if (!$this->tutors->contains($tutor)) {
+            $this->tutors[] = $tutor;
+            $tutor->setEmployer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTutor(Tutor $tutor): self
+    {
+        if ($this->tutors->removeElement($tutor)) {
+            // set the owning side to null (unless already changed)
+            if ($tutor->getEmployer() === $this) {
+                $tutor->setEmployer(null);
+            }
+        }
 
         return $this;
     }

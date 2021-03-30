@@ -58,8 +58,10 @@
                                                     <th>Formation name</th>
                                                     <th>Company name</th>
                                                     <th>Tutor name</th>
-                                                    <th>Formation subject</th>
-                                                    <th>Image</th>
+                                                    <th>Participants</th>
+                                                    <th>Formation Image</th>
+                                                    <th>User Address</th>
+                                                    <th>User Image</th>
                                                     <th>action</th>
                                                   </tr>
                                             </thead>
@@ -70,8 +72,10 @@
                 <td>{{ formation.nomformation }}</td>
                 <td>{{ formation.employer.company }}</td>
                 <td>{{ formation.nomdeformateur }}</td>
-                <td>{{ formation.sujetdeformation }}</td>
-                <td>   <img src="/uploads/{{formation.getImg()}}" style="max-width: 100px"  "max-height: 700px" ></td>
+                <td>{{ formation.nbrParticipants}}</td>
+                <td>   <img src="/uploads/{{formation.getImg()}}" style="max-width: 100px;max-height: 700px;" ></td>
+                <td>{{ formation.employer.address }}</td>
+                <td>   <img src="/uploads/{{formation.employer.getImg()}}" style="max-width: 100px;max-height: 700px;" ></td>
                 <td>
 
 

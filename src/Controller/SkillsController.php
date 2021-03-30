@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Candidat;
 
 /**
- * @Route("/skill")
+ * @Route("/skillAdmin")
  */
 class SkillsController extends AbstractController
 {
     /**
-     * @Route("/skill", name="skills_index", methods={"GET"})
+     * @Route("/", name="skills_index", methods={"GET"})
      */
     public function index(): Response
     {

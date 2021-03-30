@@ -1,9 +1,9 @@
 {% extends 'baseFront.html.twig' %}
 
-{% block title %}Employer{% endblock %}
+{% block title %}Formations{% endblock %}
 
 {% block body %}
-    <h1>Employer</h1>
+    <h1>Formations</h1>
 
 
 
@@ -166,7 +166,6 @@
                                                         </div>
                                                     </div>
                                                 </li>
-
                                             </ul>
                                         </div>
                                     </nav>
@@ -400,67 +399,67 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
-                                {% for  stage in employer.stage|reverse %}
+                                {% for  formation in employer.formation|reverse %}
                                     <div class="card">
                                         <div class="card-body">
 
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="avatar mr-1">
-                                                    <img src="/uploads/{{employer.img}}" alt="avtar img holder" height="45" width="45">
+                                                    <img src="/uploads/{{formation.employer.img}}" alt="avtar img holder" height="45" width="45">
 
                                                 </div>
                                                 <div class="user-page-info">
-                                                    <p class="mb-0">{{ employer.company }}</p>
+                                                    <p class="mb-0">{{ formation.employer.company }}</p>
                                                     <span class="font-small-2">12 Dec 2018 at 1:16 AM</span>
                                                 </div>
-                                                {% if app.user.id == employer.id%}
+                                                {% if app.user.id == formation.employer.id%}
                                                     <div class="ml-auto">
                                                         <div style="display: inline-block;">
-                                                            <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('stage_edit', {'id': stage.id, 'idemp': employer.id}) }}"> <i class="feather icon-edit-1"></i></a>
+                                                            <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('formationFront_edit', {'id': formation.id, 'idemp': employer.id}) }}"> <i class="feather icon-edit-1"></i></a>
                                                         </div>
                                                         <div style="display: inline-block;">
-                                                            {{ include('stage/_delete_form.html.twig') }}
+                                                            {{ include('formationfront/_delete_form.html.twig') }}
                                                         </div>
                                                     </div>
                                                 {% endif %}
                                             </div>
-                                            <h4 class="text-uppercase">{{ stage.libelle }}</h4>
+
+                                            <h4 class="text-uppercase">{{ formation.nomformation }}</h4>
+                                            <img class="img-fluid card-img-top rounded-sm mb-2" src="/uploads/{{formation.img}}" alt="avtar img holder">
+
+                                            <h4 > Tutor : </h4><p >{{ formation.tutor }}</p>
+
+                                            <p >{{ formation.sujetdeformation }}</p>
+                                            <h4 > Ratings : </h4>
+
+                                            <img class="media-object rounded-circle" src="/uploads/{{candidat.img }}"  style="object-fit: cover;" alt="Avatar" height="30" width="30">
+                                            {% for i in 1..formation.rating %}
 
 
+                                                <a href="#" class="btn btn-icon btn-flat-warning mr-1 mb-1 waves-effect waves-light" >  <i class="feather icon-star"></i></a>
+                                            {% endfor %}
 
-                                            <p >{{ stage.description }}</p>
-                                            <p>Duration : {{ stage.duree }}</p>
-                                            <p>Expiration date : {{ stage.dateExpiration ? stage.dateExpiration|date('Y-m-d') : '' }}</p>
-                                            <p>Level : {{ stage.niveau }}</p>
-                                            <p>Category: {{ stage.category.libelle }}</p>
 
                                             <div class="d-flex justify-content-start align-items-center mb-1">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="feather icon-heart font-medium-2 mr-50"></i>
-                                                    <span>145</span>
+                                                    <h5>Attendances : {{ formation.nbrParticipants }}</h5>
                                                 </div>
                                                 <div class="ml-2">
+
                                                     <ul class="list-unstyled users-list m-0  d-flex align-items-center">
-                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Trina Lynes" class="avatar pull-up">
-                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="Avatar" height="30" width="30">
-                                                        </li>
-                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Lilian Nenez" class="avatar pull-up">
-                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-2.jpg" alt="Avatar" height="30" width="30">
-                                                        </li>
-                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Alberto Glotzbach" class="avatar pull-up">
-                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-3.jpg" alt="Avatar" height="30" width="30">
-                                                        </li>
-                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="George Nordic" class="avatar pull-up">
-                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-5.jpg" alt="Avatar" height="30" width="30">
-                                                        </li>
-                                                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="Vinnie Mostowy" class="avatar pull-up">
-                                                            <img class="media-object rounded-circle" src="../../../app-assets/images/portrait/small/avatar-s-4.jpg" alt="Avatar" height="30" width="30">
-                                                        </li>
-                                                        <li class="d-inline-block pl-50">
-                                                            <span>+140 more</span>
-                                                        </li>
+                                                        {% for participe in formation.participer %}
+                                                            <li data-toggle="tooltip"  data-popup="tooltip-custom" data-placement="bottom" data-original-title="{{ participe.nom ~ " " ~ participe.prenom }}" class="avatar pull-up">
+                                                                <img class="media-object rounded-circle" src="/uploads/{{participe.img }}"  style="object-fit: cover;" alt="Avatar" height="30" width="30">
+                                                            </li>
+
+                                                        {% endfor %}
                                                     </ul>
+
+
                                                 </div>
+
+
+
                                                 <p class="ml-auto d-flex align-items-center">
                                                     <i class="feather icon-message-square font-medium-2 mr-50"></i>77
                                                 </p>
