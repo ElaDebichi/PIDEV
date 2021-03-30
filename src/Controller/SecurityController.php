@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-            return $this->redirectToRoute('candidat_index');
+            return $this->redirectToRoute('home_user');
          }
 
         // get the login error if there is one
@@ -38,6 +38,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('home_visitor');
     }
 }

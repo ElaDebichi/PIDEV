@@ -112,4 +112,5 @@ class EvenementsFrontController extends AbstractController
 
         return $this->redirectToRoute('events_list', ['idemp' => $idemp]);
     }
+
 }

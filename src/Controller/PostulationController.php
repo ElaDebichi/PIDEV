@@ -80,8 +80,36 @@ class PostulationController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($emploi);
         $entityManager->flush();
-       dd($emploi);
-        return $this->redirectToRoute('employer_front');
+
+        return $this->redirectToRoute('employer_front',['idemp' =>$emploi->getUser(),]);
+    }
+    /**
+     * @Route("remove/{id}/{iduser}", name="delete_postulation")
+     */
+    public function removeApplyEmploi($id, EmploiRepository $emploiRepository, $iduser, CandidatRepository $UserRepository){
+
+        $emploi = $emploiRepository->find($id);
+        $candidat= $UserRepository->find($iduser);
+
+        $emploi->removeUser($candidat);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('candidat_showFront',['id' =>$iduser,]);
+    }
+    /**
+     * @Route("removeApp/{id}/{idemp}/{iduser}", name="delete_postulationEmp")
+     */
+    public function removeApplyEmployer($id, EmploiRepository $emploiRepository, $iduser, CandidatRepository $UserRepository,$idemp){
+
+        $emploi = $emploiRepository->find($id);
+        $candidat= $UserRepository->find($iduser);
+
+        $emploi->removeUser($candidat);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('employer_showFront',['idemp' =>$idemp,]);
     }
 
     /**

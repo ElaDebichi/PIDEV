@@ -92,16 +92,19 @@ class EmployerFrontController extends AbstractController
 
     /**
      * @Route("/{idemp}", name="employer_showFront", methods={"GET"})
-     * @param $id
+     * @param $idemp
      * @return Response
      */
     public function show($idemp): Response
     {
 
-        $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
+        $employer = $this->getDoctrine()->getRepository(User::class)->find($idemp);
+        $applications = $employer->getApply();
 
         return $this->render('employer_front/show.html.twig', [
             'employer' => $employer,
+            'applications' => $applications,
+
 
 
 

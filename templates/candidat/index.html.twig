@@ -96,7 +96,7 @@
                                                     <th>town</th>
                                                     <th>fb</th>
                                                     <th>linkdin</th>
-                                                    <th>description</th>
+
                                                     <th>img</th>
                                                     <th>Birthday</th>
                                                     <th>degree</th>
@@ -115,7 +115,7 @@
                                                     <td>{{ candidat.town }}</td>
                                                     <td>{{ candidat.fb }}</td>
                                                     <td>{{ candidat.linkdin }}</td>
-                                                    <td>{{ candidat.description }}</td>
+
                                                     <td>   <img src="/uploads/{{candidat.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
                                                     <td>{{ candidat.dateNaissance ? candidat.dateNaissance|date('Y-m-d') : '' }}</td>
                                                     <td>{{ candidat.nivEtude }}</td>
@@ -180,7 +180,7 @@
                             $('#t tbody#search').empty();
                             $.each(retour, function(i, obj) {
                                 $('#t tbody#all').hide();
-                                $('#t tbody#search').append('<tr><td>    '+obj.nom+'  </td><td>'+obj.prenom+' </td><td>'+obj.phone+' </td><td>'+obj.address+' </td><td>'+obj.town+' </td><td>'+obj.fb+' </td><td>'+obj.linkdin+' </td><td>'+obj.description+' </td><td>'+obj.img+' </td><td>'+obj.dateNaissance+' </td><td>'+obj.nivEtude+' </td><td>'+obj.typeCandidat+' </td><td><a href="candidat_edit/'+obj.id+'">modifier</a> </br><a href="candidat_show/'+obj.id+'">show</a></td></tr>');
+                                $('#t tbody#search').append('<tr><td>    '+obj.nom+'  </td><td>'+obj.prenom+' </td><td>'+obj.phone+' </td><td>'+obj.address+' </td><td>'+obj.town+' </td><td>'+obj.fb+' </td><td>'+obj.linkdin+' </td><td>'+obj.img+' </td><td>'+obj.dateNaissance+' </td><td>'+obj.nivEtude+' </td><td>'+obj.typeCandidat+' </td><td><a href="candidat_edit/'+obj.id+'">modifier</a> </br><a href="candidat_show/'+obj.id+'">show</a></td></tr>');
                             });
                         }
                         else

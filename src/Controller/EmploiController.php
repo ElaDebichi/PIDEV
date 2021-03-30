@@ -153,7 +153,7 @@ class EmploiController extends Controller
     }
 
     /**
-     * @Route("/{id}/{idemp}", name="emploi_delete", methods={"DELETE"})
+     * @Route("/{id}/{idemp}", name="emploi_delete", methods={"DELETE","GET","POST"})
      */
     public function delete(Request $request, Emploi $emploi,$idemp): Response
     {

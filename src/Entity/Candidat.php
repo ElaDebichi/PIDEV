@@ -57,9 +57,15 @@ class Candidat extends User
      */
     private $skills;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Evenements::class, inversedBy="candidats")
+     */
+    private $participate;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->participate = new ArrayCollection();
     }
 
 
@@ -152,6 +158,30 @@ class Candidat extends User
         if ($this->skills->removeElement($skill)) {
             $skill->removeCandidat($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evenements[]
+     */
+    public function getParticipate(): Collection
+    {
+        return $this->participate;
+    }
+
+    public function addParticipate(Evenements $participate): self
+    {
+        if (!$this->participate->contains($participate)) {
+            $this->participate[] = $participate;
+        }
+
+        return $this;
+    }
+
+    public function removeParticipate(Evenements $participate): self
+    {
+        $this->participate->removeElement($participate);
 
         return $this;
     }

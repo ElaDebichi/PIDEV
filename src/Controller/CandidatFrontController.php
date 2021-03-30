@@ -97,11 +97,13 @@ class CandidatFrontController extends AbstractController
 
 
 
+
         return $this->render('candidat_front/show.html.twig', [
              'candidat'=>$candidat,
              'skills' => $skills,
             'skillss' => $skillss,
             'posts' => $posts,
+
         ]);
     }
 

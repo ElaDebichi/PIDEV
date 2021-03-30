@@ -72,6 +72,16 @@ class Evenements
      */
     private $employer;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Candidat::class, mappedBy="participate")
+     */
+    private $candidats;
+
+    public function __construct()
+    {
+        $this->candidats = new ArrayCollection();
+    }
+
 
 
 
@@ -175,6 +185,33 @@ class Evenements
     public function setEmployer(?Employer $employer): self
     {
         $this->employer = $employer;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidat[]
+     */
+    public function getCandidats(): Collection
+    {
+        return $this->candidats;
+    }
+
+    public function addCandidat(Candidat $candidat): self
+    {
+        if (!$this->candidats->contains($candidat)) {
+            $this->candidats[] = $candidat;
+            $candidat->addParticipate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidat(Candidat $candidat): self
+    {
+        if ($this->candidats->removeElement($candidat)) {
+            $candidat->removeParticipate($this);
+        }
 
         return $this;
     }

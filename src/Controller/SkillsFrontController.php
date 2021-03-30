@@ -13,9 +13,7 @@ use App\Entity\Candidat;
 
 
 /**
- * Class SkillsFrontController
- * @package App\Controller
- * @Route ("/skills_front")
+ * @Route("/ski")
  */
 class SkillsFrontController extends AbstractController
 {
@@ -31,7 +29,7 @@ class SkillsFrontController extends AbstractController
     }
 
     /**
-     * @Route("/new/{iduser}/{idskill}", name="skills_new", methods={"GET","POST"})
+     * @Route("/newSkill/{iduser}/{idskill}", name="skills_new", methods={"GET","POST"})
      */
     public function new(Request $request,$iduser,$idskill): Response
     {
@@ -44,6 +42,22 @@ class SkillsFrontController extends AbstractController
         $entityManager->flush();
 
             return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
+
+
+    }
+    /**
+     * @Route("/deleteSkill/{iduser}/{idskill}", name="skillsFront_delete", methods={"GET","POST"})
+     */
+    public function deleteSkill(Request $request,$iduser,$idskill): Response
+    {
+
+        $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($iduser);
+        $skill = $this->getDoctrine()->getRepository(Skills::class)->find($idskill);
+        $candidat->removeSkill($skill);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
 
 
     }
