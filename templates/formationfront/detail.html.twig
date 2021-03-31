@@ -86,7 +86,9 @@
 
                                                       {% endfor %}
                                                       {% if i==0 %}
+                                                      {% if is_granted('ROLE_CANDIDATE') %}
                                                           <a href="{{ path('formation_participer',{'id':formation.id,'iduser':app.user.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Inscription</a>
+                                                          {% endif %}
                                                       {% else %}
                                                           <a href="{{ path('delete_participerFromation',{'id':formation.id,'idemp':formation.employer.id,'iduser':app.user.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Cancel</a>
                                                       {% endif %}

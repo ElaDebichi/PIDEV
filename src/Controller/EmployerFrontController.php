@@ -94,10 +94,10 @@ class EmployerFrontController extends AbstractController
     /**
      * @Route("showFormations/{idemp}", name="formation_list", methods={"GET"})
      * @param $idemp
-     * @param $candidat
+
      * @return Response
      */
-    public function showFormation($idemp,$candidat): Response
+    public function showFormation($idemp): Response
     {
 
         $employer = $this->getDoctrine()->getRepository(Employer::class)->find($idemp);
@@ -105,7 +105,7 @@ class EmployerFrontController extends AbstractController
 
         return $this->render('employer_front/showFormations.html.twig', [
             'employer' => $employer,
-            'candidat' => $candidat,
+
 
 
 

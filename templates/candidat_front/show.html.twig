@@ -208,14 +208,15 @@
                                         {% for s in skillss %}
                                         <div class="d-flex justify-content-start align-items-center mb-1">
                                             <div class="avatar mr-50">
-                                                <img src="/uploads/{{s.getImg()}}" alt="avtar img holder" height="35" width="35">
+                                                <img src="/uploads/{{s.getImg()}}" alt="avtar img holder" style="object-fit: cover" height="35" width="35">
                                             </div>
                                             <div class="user-page-info">
                                                 <p>{{ s.libelle }}</p>
 
                                             </div>
-
+                                        {% if candidat.id == app.user.id %}
                                             <a   href="{{ path('skillsFront_delete',{'iduser':app.user.id,'idskill':s.id}) }}" class="btn btn-primary btn-icon ml-auto"><i class="feather icon-minus"></i></a>
+                                            {% endif %}
                                         </div>
                                         {% endfor %}
 

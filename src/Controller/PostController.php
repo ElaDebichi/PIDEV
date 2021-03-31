@@ -51,7 +51,7 @@ class PostController extends AbstractController
 
             $post->setDate(new \DateTimeImmutable('now'));
 
-           $user= $entityManager->getRepository(Candidat::class)->find($iduser);
+           $user= $this->getDoctrine()->getRepository(User::class)->find(67);
             $post->setUser($user);
 
             $entityManager->persist($post);

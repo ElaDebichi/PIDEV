@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Candidat;
+use App\Entity\Evenements;
+use App\Entity\Formation;
+use App\Entity\Offre;
 use App\Entity\Urlizer;
 use App\Entity\User;
 use App\Form\CandidatType;
@@ -42,11 +45,15 @@ class CandidatController extends AbstractController
         $qb = $em->createQueryBuilder('ca');
         $qb->select('count(c.id)');
         $qb->from('App\Entity\User','c');
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $jobs = $this->getDoctrine()->getRepository(Offre::class)->findAll();
+        $events = $this->getDoctrine()->getRepository(Evenements::class)->findAll();
+        $formations = $this->getDoctrine()->getRepository(Formation::class)->findAll();
 
         $count = $qb->getQuery()->getSingleScalarResult();
 
         return $this->render('candidat/dashboard.html.twig', [
-            'users' => $count
+            'users' => $count, 'user'=>$users, 'offre'=>$jobs, 'events'=> $events, 'formations' => $formations
 
         ]);
     }
@@ -124,11 +131,13 @@ class CandidatController extends AbstractController
      */
     public function edit(Request $request,$id): Response
     {
+        $salt = md5(microtime());
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);
-
+        $encoder = $this->encoder->getEncoder(User::class);
         if ($form->isSubmitted() && $form->isValid()) {
+
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
@@ -139,6 +148,9 @@ class CandidatController extends AbstractController
                 $newFilename
             );
             $candidat->setImg($newFilename);
+            $encodedPassword =$encoder->encodePassword($candidat->getPassword(),$salt);
+            $candidat->setPassword($this->pwdEncoder->encodePassword($candidat,$candidat->getPassword()));
+            $candidat->setRoles(['ROLE_CANDIDATE']);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('candidat_index');

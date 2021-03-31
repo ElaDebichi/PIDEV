@@ -90,6 +90,15 @@ class FormationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedFile = $form['imageFile']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+            $formation->setImg($newFilename);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('formation_index');

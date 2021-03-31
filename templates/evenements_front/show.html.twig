@@ -87,7 +87,9 @@
                             {% endfor %}
 
                        {% if i==0 %}
+                        {% if is_granted('ROLE_CANDIDATE') %}
                         <a href="{{ path('event_participer',{'id':event.id,'iduser':app.user.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Participate</a>
+                            {% endif %}
                         {% else %}
 
 

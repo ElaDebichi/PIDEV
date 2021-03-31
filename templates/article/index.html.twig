@@ -39,7 +39,7 @@
                     <div class="content-body">
                         <div class="row">
                         </div>
-                        <h1>Event list
+                        <h1>Articles list
                             <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('article_new',{'iduser':app.user.id})  }}"><i class="feather icon-plus"></i></a>
 
                         </h1>
@@ -59,7 +59,7 @@
 
                                                             <th>Title</th>
                                                             <th>Date</th>
-                                                            <th>Description</th>
+
                                                             <th>img</th>
                                                             <th>user address</th>
                                                             <th>user image</th>
@@ -72,7 +72,7 @@
 
                                                                 <td>{{ article.titre}}</td>
                                                                 <td>{{ article.Date ? article.date|date('Y-m-d H:i:s') : '' }}</td>
-                                                                <td>{{ article.description }}</td>
+
                                                                 <td>   <img src="/uploads/{{article.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
                                                                 <td>{{ article.employer.address }}</td>
                                                                 <td>   <img src="/uploads/{{article.employer.getImg()}}" style="max-width: 100px"  class="rounded-circle img-border box-shadow-1" alt="Card image"></td>
