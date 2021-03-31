@@ -34,8 +34,15 @@
                 <!-- Column selectors with Export Options and print table -->
                 <section id="column-selectors">
                     <div class="row">
+
                         <div class="col-12">
                             <div class="card">
+                                <br>
+                                <div class="card-header">
+                                <h1>Candidats list
+                                    <a class="btn btn-icon rounded-circle btn-outline-primary mr-1 mb-1" href="{{ path('candidatAdmin_new') }}"><i class="feather icon-plus"></i></a>
+
+                                </h1>
                                 <script type="text/javascript">
                                     function imprimer_page(){
                                         window.print();
@@ -44,8 +51,9 @@
                                 <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
                                     <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
                                 <form>
-                                    <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Imprimer cette page" />
+                                    <input id="impression" class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1s" name="impression" type="button" onclick="imprimer_page()" value="Print this page" />
                                 </form>
+                                    </div>
                                     </div>
                                 </div>
 
@@ -121,9 +129,15 @@
                                                     <td>{{ candidat.nivEtude }}</td>
                                                     <td>{{ candidat.typeCandidat }}</td>
                                                     <td>
-                                                        <a href="{{ path('candidat_show', {'id': candidat.id}) }}">show</a>
-                                                        <a href="{{ path('candidat_edit', {'id': candidat.id}) }}">edit</a>
+                                                        <div style="display: inline-block;">
+                                                            <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('candidat_edit', {'id': candidat.id}) }}"> <i class="feather icon-edit"></i></a>
+                                                        </div>
+                                                        <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('candidat_show', {'id': candidat.id}) }}"><i class="feather icon-eye"></i></a>
+                                                        <div style="display: inline-block;">
+                                                            {{ include('candidat/_delete_form.html.twig') }}
+                                                        </div>
                                                     </td>
+
 
                                                 </tr>
                                                 {% endfor %}
@@ -134,7 +148,6 @@
 
 
                                             </table>
-                                            <a href="{{ path('candidat_new') }}">Create new</a>
 
                                         </div>
                                     </div>
@@ -152,11 +165,6 @@
     </div>
     <!-- END: Content-->
 
-
-
-
-{% endblock %}
-{% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
     <script>
@@ -195,6 +203,8 @@
             });
         });
     </script>
+
+
 
 
 

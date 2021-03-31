@@ -374,23 +374,35 @@
                                                     </div>
                                                     <br>
 
-                                                    <div class="ml-auto cursor-pointer">
-                                                        <i class="feather icon-heart mr-50"></i>
-                                                        <i class="feather icon-message-square"></i>
-                                                    </div>
 
+                                                    <div class="ml-auto cursor-pointer">
+                                                {% if app.user.id == candidat.id %}
+                                                        <div style="display: inline-block;">
+                                                        {{ include('user_post/_deleteComment_form.html.twig') }}
+                                                        </div>
+                                                        <div style="display: inline-block;">
+
+                                                        <a class="btn btn-flat-primary mr-1 mb-1" href="{{ path('commentFront_edit', {'id': comment.id,'iduser':app.user.id}) }}"> <i class="feather icon-edit-1"></i></a>
+                                                        </div>
+
+                                                    </div>
+                                                    {% endif %}
                                                 </div>
+
                                             {% endfor %}
 
 
-
+                                            {% if is_granted('ROLE_CANDIDATE') %}
                                             <a class="btn btn-sm btn-primary" href="{{ path('user_post_newcomment', {'id': post.id, 'iduser': app.user.id}) }}">Post Comment</a>
+                                            {% endif %}
 
 
                                         </div>
                                     </div>
+
                                 {% endfor %}
                             </div>
+
 
 
 

@@ -48,48 +48,6 @@ class EmployerFrontController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="employer_newFront", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $employer = new Employer();
-        $employer->setNbrFollow(0);
-        $salt = md5(microtime());
-        $form = $this->createForm(Employer1Type::class, $employer);
-
-        $form->handleRequest($request);
-        $encoder = $this->encoder->getEncoder(User::class);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
-            $uploadedFile->move(
-                $destination,
-                $newFilename
-            );
-            $employer->setImg($newFilename);
-            $entityManager = $this->getDoctrine()->getManager();
-            $encodedPassword =$encoder->encodePassword($employer->getPassword(),$salt);
-            $employer->setPassword($this->pwdEncoder->encodePassword($employer,$employer->getPassword()));
-            $employer->setRoles(['ROLE_EMPLOYER']);
-            $entityManager->persist($employer);
-            $entityManager->flush();
-
-
-            return $this->redirectToRoute('employer_front');
-        }
-
-        return $this->render('employer_front/register.html.twig', [
-            'employer' => $employer,
-            'form' => $form->createView(),
-        ]);
-
-
-    }
 
     /**
      * @Route("/{idemp}", name="employer_showFront", methods={"GET"})

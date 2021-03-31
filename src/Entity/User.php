@@ -95,13 +95,12 @@ abstract class User implements UserInterface
     private $img;
 
     /**
-     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user", cascade="remove")
      */
     private $post;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", cascade="remove")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="post_id", onDelete="CASCADE")
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", cascade="remove" )
      */
     private $comment;
 
@@ -118,12 +117,12 @@ abstract class User implements UserInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Emploi::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Emploi::class, mappedBy="user", cascade="remove")
      */
     private $emploi;
 
     /**
-     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="user", cascade="remove")
      */
     private $stage;
 

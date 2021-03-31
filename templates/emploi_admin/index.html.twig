@@ -69,16 +69,14 @@
                                                     <table class="table table-striped dataex-html5-selectors">
                                                         <thead>
                                                         <tr>
-                                                            <th>
-                                                                Libelle
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Libelle', 'e.libelle') }}</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Post', 'e.poste') }}</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Expiration Date', 'e.dateExpiration') }}</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Contract Type', 'e.typeContrat') }}</th>
 
-                                                            </th>
-                                                            <th>Post</th>
-                                                            <th>Expiration Date</th>
-                                                            <th>Contract Type</th>
-                                                            <th>Salary</th>
-                                                            <th>Level</th>
-                                                            <th>Category</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Salary', 'e.salaire') }}</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Level', 'e.niveau') }}</th>
+                                                            <th>{{ knp_pagination_sortable(emplois, 'Category', 'e.category.libelle') }}</th>
                                                             <th>User Address</th>
                                                             <th>User Image</th>
 

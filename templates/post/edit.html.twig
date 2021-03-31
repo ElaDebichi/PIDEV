@@ -4,29 +4,16 @@
 
 {% block body %}
 
-    {% block content %}
-<div class="content-body">
 
-    <section id="basic-horizontal-layouts">
-        <div class="row match-height">
-            <div class="col-md-6 col-12">
-                <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Edit Post</h4>
-                                 </div>
+        <h1>Edit Post</h1>
 
 
-                        <div style="text-align: right;">
-                            {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
-                         {{ include('post/_delete_form.html.twig') }}
-                            <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_index') }}">back to list</a>
-                        </div>
+    <div style="text-align: right;">
 
-                </div>
-            </div>
+            {{ include('post/_form.html.twig', {'button_label': 'Update'}) }}
+            <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_index') }}">back to list</a>
+            <a  href="{{ path('post_index') }}">back to list</a>
         </div>
-    </section>
+    </div>
 
-</div>
-{% endblock %}
 {% endblock %}

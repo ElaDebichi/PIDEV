@@ -63,7 +63,7 @@ class CandidatController extends AbstractController
     }
 
     /**
-     * @Route("/newCandidat", name="candidat_new", methods={"GET","POST"})
+     * @Route("/newCandidat", name="candidatAdmin_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */

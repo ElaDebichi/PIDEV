@@ -20,15 +20,19 @@ class StageAdminController extends Controller
      * @Route("/", name="stage_admin_index")
      */
     /*, methods={"GET"}*/
-    public function index(): Response
+    public function index(Request $request): Response
     {
-
-
-        $stages = $this->getDoctrine()->getRepository(Stage::class)
-            ->findAll();
+    $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT s FROM App\Entity\Stage s";
+        $query = $em->createQuery($dql);
+        $stages = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->query->getInt('page',1)
+        );
         return $this->render('stage_admin/index.html.twig', [
             'stages' => $stages,
         ]);
+
     }
 
     /**

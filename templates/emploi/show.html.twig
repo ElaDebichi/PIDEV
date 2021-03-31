@@ -74,7 +74,9 @@
                         </div>
                     </div>
                     <div class="col-12" align="right">
+                        {% if is_granted('ROLE_CANDIDATE') %}
                         <a href="{{ path('emploi_apply',{'id': emploi.id, 'iduser': app.user.id}) }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Apply</a>
+                        {% endif %}
                         <a href="{{ path('emploi_indexC') }}" class="btn btn-flat-primary border-primary text-primary mr-1 mb-1">Back to list</a>
                     </div>
                 </section>

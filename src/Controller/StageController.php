@@ -111,7 +111,7 @@ class StageController extends Controller
             $entityManager->persist($stage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('stage_index');
+            return $this->redirectToRoute('stage_list', ['idemp' => $iduser]);
         }
 
         return $this->render('stage/new.html.twig', [
@@ -152,7 +152,7 @@ class StageController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('employer_showFront', ['idemp' => $idemp]);
+            return $this->redirectToRoute('stage_list', ['idemp' => $idemp]);
         }
 
         return $this->render('stage/edit.html.twig', [
@@ -173,7 +173,7 @@ class StageController extends Controller
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('employer_showFront', ['idemp' => $idemp]);
+        return $this->redirectToRoute('stage_list', ['idemp' => $idemp]);
     }
     
 

@@ -45,7 +45,7 @@ class ContactController extends AbstractController
     );
      $mailer->send($message);
      $this->addFlash('message','the message is sent successfully');
-     return $this->redirectToRoute('employer_front');
+     return $this->redirectToRoute('contact',['id'=>$id]);
         }
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView()

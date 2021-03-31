@@ -29,17 +29,17 @@ class Employer extends User
     private $categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="employer")
+     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="employer", cascade="remove")
      */
     private $formation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenements::class, mappedBy="employer")
+     * @ORM\OneToMany(targetEntity=Evenements::class, mappedBy="employer", cascade="remove")
      */
     private $evenements;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="employer")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="employer", cascade="remove")
      */
     private $article;
 
@@ -49,7 +49,7 @@ class Employer extends User
     private $candidat;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tutor::class, mappedBy="employer")
+     * @ORM\OneToMany(targetEntity=Tutor::class, mappedBy="employer", cascade="remove")
      */
     private $tutors;
 

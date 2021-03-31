@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Candidat;
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\User;
+use App\Form\Comment1Type;
 use App\Form\CommentType;
 use App\Form\Post1Type;
 use App\Repository\PostRepository;
@@ -101,7 +103,7 @@ class UserPostController extends AbstractController
      */
     public function newCommentFront(Request $request, $id,$iduser): Response
     {
-        $user = $this->getDoctrine()->getRepository(Candidat::class)->find($iduser);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($iduser);
         $repository = $this->getDoctrine()->getRepository(Post::class);
         $post = $repository->find($id);
 
@@ -120,7 +122,7 @@ class UserPostController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('candidat_front');
+            return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
         }
 
         return $this->render('user_post/newcomment.html.twig', [
@@ -226,7 +228,38 @@ class UserPostController extends AbstractController
 
 
     }
+    /**
+     * @Route("delete/{id}/{iduser}", name="commentFront_delete", methods={"DELETE"})
+     */
+    public function deleteComment(Request $request, Comment $comment,$iduser): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$comment->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($comment);
+            $entityManager->flush();
+        }
 
+        return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
+    }
+    /**
+     * @Route("/{id}/edit/{iduser}", name="commentFront_edit", methods={"GET","POST"})
+     */
+    public function editComment(Request $request, Comment $comment,$iduser): Response
+    {
+        $form = $this->createForm(Comment1Type::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('candidat_showFront',  ['id' => $iduser]);
+        }
+
+        return $this->render('user_post/editComment.html.twig', [
+            'comment' => $comment,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
 

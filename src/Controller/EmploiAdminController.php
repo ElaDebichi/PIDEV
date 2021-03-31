@@ -20,11 +20,17 @@ class EmploiAdminController extends Controller
      * @Route("/", name="emploi_admin_index")
      */
     /*, methods={"GET"}*/
-    public function index()
+    public function index(Request $request)
     {
 
-        $emplois = $this->getDoctrine()->getRepository(Emploi::class)
-            ->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT e FROM App\Entity\Emploi e";
+        $query = $em->createQuery($dql);
+        $emplois = $this->get('knp_paginator')->paginate(
+            $query,
+            $request->query->getInt('page',1)
+        );
+
         return $this->render('emploi_admin/index.html.twig', [
             'emplois' => $emplois,
         ]);

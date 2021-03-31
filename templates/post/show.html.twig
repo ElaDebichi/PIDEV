@@ -1,49 +1,113 @@
+
+
+
+
+
+
+
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Post{% endblock %}
+{% block title %}Event{% endblock %}
 
 {% block body %}
-    {% block content %}
-    <h1>Post</h1>
+    <h1>Event</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ post.content |raw}}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nblikes</th>
-                <td>{{ post.nblikes }}</td>
-            </tr>
-            <tr>
-                <th>Comments</th>
-                <td>
 
-                    {% for comment in post.comments %}
-                    <ul class="list-group">
-                       <li class="list-group-item"> {{ comment.content }} </li>
-                    </ul>
-                    {% endfor %}
 
-                </td>
-            </tr>
-        </tbody>
-    </table>
-<div>
-    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_index') }}">back to list</a>
 
-    <a class="btn btn-outline-warning mr-1 mb-1" href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
 
-    {{ include('post/_delete_form.html.twig') }}
-</div>
-{% endblock %}
+
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- page users view start -->
+                <section class="page-users-view">
+                    <div class="row">
+                        <!-- account start -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Post</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="users-view-image">
+                                            <img src="/uploads/{{ post.user.getImg() }}" style="max-height: 500px; max-width: 200px;" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                        </div>
+                                        <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+
+                                            <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+                                                <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="font-weight-bold">Content</td>
+                                                            <td>{{ post.content |raw}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold">Date</td>
+                                                            <td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold">Likes</td>
+                                                            <td>{{ post.nblikes }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold">Comment</td>
+                                                            <td> {% for comment in post.comments %}
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item"> {{ comment.content }} </li>
+                                                                    </ul>
+                                                                {% endfor %}</td>
+                                                        </tr>
+
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-12">
+                                                    <a class="btn btn-outline-primary mr-1 mb-1" href="{{ path('post_index') }}">back to list</a>
+
+                                                    <a class="btn btn-outline-warning mr-1 mb-1" href="{{ path('post_edit', {'id': post.id}) }}"><i class="feather icon-edit"></i>  edit</a>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- account end -->
+                                <!-- information start -->
+
+                                <!-- information start -->
+                                <!-- social links end -->
+
+                                <!-- social links end -->
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- permissions end -->
+    </div>
+    </section>
+    <!-- page users view end -->
+
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
 {% endblock %}

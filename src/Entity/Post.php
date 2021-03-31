@@ -47,12 +47,12 @@ class Post
     private $bookmarked;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post", cascade={"remove"})
      */
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="post",cascade={"persist","remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="post")
      */
     private $user;
 

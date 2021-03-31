@@ -67,15 +67,13 @@
                                                     <table class="table table-striped dataex-html5-selectors">
                                                         <thead>
                                                         <tr>
-                                                            <th>
-                                                                Libelle
 
-                                                            </th>
-                                                            <th>Post</th>
-                                                            <th>Expiration Date</th>
-                                                            <th>Duration</th>
-                                                            <th>Level</th>
-                                                            <th>Category</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Libelle', 's.libelle') }}</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Post', 's.poste') }}</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Expiration Date', 's.dateExpiration') }}</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Duration', 's.duree') }}</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Level', 's.niveau') }}</th>
+                                                            <th>{{ knp_pagination_sortable(stages, 'Category', 's.category.libelle') }}</th>
                                                             <th>User address</th>
                                                             <th>User image</th>
                                                             <th>Actions</th>

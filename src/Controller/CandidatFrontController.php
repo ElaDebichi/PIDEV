@@ -42,43 +42,7 @@ class CandidatFrontController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/newCandidat", name="candidat_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $candidat = new Candidat();
-        $candidat->setNbrFollow(0);
-        $salt = md5(microtime());
-        $form = $this->createForm(CandidatType::class, $candidat);
-        $form->handleRequest($request);
-        $encoder = $this->encoder->getEncoder(User::class);
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedFile = $form['imageFile']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
-            $uploadedFile->move(
-                $destination,
-                $newFilename
-            );
-            $candidat->setImg($newFilename);
-            $entityManager = $this->getDoctrine()->getManager();
-            $encodedPassword =$encoder->encodePassword($candidat->getPassword(),$salt);
-            $candidat->setPassword($this->pwdEncoder->encodePassword($candidat,$candidat->getPassword()));
-            $candidat->setRoles(['ROLE_CANDIDATE']);
-            $entityManager->persist($candidat);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('candidat_front');
-        }
-
-        return $this->render('candidat_front/register.html.twig', [
-            'candidat' => $candidat,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="candidat_showFront", methods={"GET"})
@@ -144,8 +108,10 @@ class CandidatFrontController extends AbstractController
     public function edit(Request $request,$id): Response
     {
         $candidat = $this->getDoctrine()->getRepository(Candidat::class)->find($id);
+        $salt = md5(microtime());
         $form = $this->createForm(CandidatType::class, $candidat);
         $form->handleRequest($request);
+        $encoder = $this->encoder->getEncoder(User::class);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile */
@@ -158,9 +124,12 @@ class CandidatFrontController extends AbstractController
                 $newFilename
             );
             $candidat->setImg($newFilename);
+            $encodedPassword =$encoder->encodePassword($candidat->getPassword(),$salt);
+            $candidat->setPassword($this->pwdEncoder->encodePassword($candidat,$candidat->getPassword()));
+            $candidat->setRoles(['ROLE_CANDIDATE']);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('candidat_front');
+            return $this->redirectToRoute('candidat_showFront' , ['id'=>$id]);
         }
 
         return $this->render('candidat_front/edit.html.twig', [
@@ -285,15 +254,19 @@ class CandidatFrontController extends AbstractController
     public function showCV(Candidat $candidat): Response
     {
         // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+        $options = new Options();
+
+        $options->set('defaultFont', 'Arial');
+
 
         // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
+        $dompdf = new Dompdf($options);
+
+
 
 
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('candidat_front/cv.html.twig', [
+        $this->renderView('candidat_front/cv.html.twig', [
             'candidat' => $candidat,
         ]);
         // Retrieve the HTML generated in our twig file
@@ -462,7 +435,7 @@ footer {
   text-align: center;
 }
 </style>
-<h1>Reponse Reclamation</h1>
+<h1>".$candidat->getPrenom()."  ".$candidat->getNom()." Resume</h1>
  <!DOCTYPE html>
 <html lang=\"en\">
   <head>
@@ -475,23 +448,41 @@ footer {
       <table>
         <thead>
           <tr>
+         
             <th class=\"desc\">DESCRIPTION</th>
+            
           </tr>
         </thead><tbody>
-        <tr><td  class=\"service\">".$candidat->getAddress()."</td></tr>
+       
+         <tr><td  class=\"service\">".$candidat->getDescription()."</td></tr>
  </tbody>
 
       </table>
        </br></br></br></br></br>
       <div id=\"details\" class=\"clearfix\">
         <div id=\"project\">
-          <div class=\"arrow\"><div class=\"inner-arrow\"><span>COMPANY</span>tabaani</div></div>
-          <div class=\"arrow\"><div class=\"inner-arrow\"><span>(216)20029000</span> PHONE</div></div>
-          </div>
-        <div id=\"company\">
-          <div class=\"arrow back\"><div class=\"inner-arrow\">Ariana soghra<span>ADDRESS</span></div></div>
-          <div class=\"arrow back\"><div class=\"inner-arrow\">EMAIL<span>tabaani@esprit.com</span></div></div>
-           </div>
+          <span>LEVEL   :  </span>  ".$candidat->getNivEtude()."
+          <br>
+          <br>
+           <span>EMAIL  :  </span>  ".$candidat->getAddress()."
+           <br>
+           <br>
+            <span>PHONE  :  </span>  ".$candidat->getPhone()."
+            <br>
+            <br>
+             <span>TYPE   :  </span>  ".$candidat->getTypeCandidat()."
+             <br>
+             <br>
+              <span>TOWN   :  </span>  ".$candidat->getTown()."
+              <br>
+              <br>
+               <span>FACEBOOOK  :  </span>  ".$candidat->getfB()."
+               <BR>
+               <br>
+                <span>LINKEDIN :  </span>  ".$candidat->getLinkdin()."
+               
+              
+          
       </div>
   
      
@@ -502,8 +493,10 @@ footer {
   </body>
 </html>";
 
+
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
+
 
         // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
         $dompdf->setPaper('A4', 'portrait');

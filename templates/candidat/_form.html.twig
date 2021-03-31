@@ -31,20 +31,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
                                     <!-- users edit media object start -->
-                                    <div class="media mb-2">
-                                        <a class="mr-2 my-25" href="#">
-                                            <img src="admin/app-assets/images/portrait/small/avatar-s-18.jpg" alt="users avatar" class="users-avatar-shadow rounded" height="90" width="90">
-                                        </a>
-                                        <div class="media-body mt-50">
-                                            <h4 class="media-heading">Angelo Sashington</h4>
-                                            <div class="col-12 d-flex mt-1 px-0">
-                                                <a href="#" class="btn btn-primary d-none d-sm-block mr-75">Change</a>
-                                                <a href="#" class="btn btn-primary d-block d-sm-none mr-75"><i class="feather icon-edit-1"></i></a>
-                                                <a href="#" class="btn btn-outline-danger d-none d-sm-block">Remove</a>
-                                                <a href="#" class="btn btn-outline-danger d-block d-sm-none"><i class="feather icon-trash-2"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <!-- users edit media object ends -->
                                     <!-- users edit account form start -->
                                     {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
@@ -61,7 +48,7 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label>Name</label>
-                                                    {{ form_widget(form.nom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR COMPANY NAME *'}}) }}
+                                                    {{ form_widget(form.nom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR FIRSTNAME *'}}) }}
                                                     <div class="alert alert-danger">
                                                         {{ form_errors(form.nom) }}
                                                     </div>
@@ -70,7 +57,7 @@
                                             <div class="form-group">
                                             <div class="controls">
                                                 <label>First Name</label>
-                                                {{ form_widget(form.prenom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR COMPANY NAME *'}}) }}
+                                                {{ form_widget(form.prenom,{ 'label':'','id' : 'user-company','attr':{'class':'form-control col-12 col-sm-7 ','placeholder':'YOUR NAME *'}}) }}
                                                 <div class="alert alert-danger">
                                                     {{ form_errors(form.prenom) }}
                                                 </div>
@@ -127,21 +114,21 @@
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label>Your image</label>
-                                                    {{ form_widget(form.imageFile,{ 'id':'user-img','attr':{'class':'form-control col-md-4','placeholder':'YOUR LOGO *'}}) }}
+                                                    {{ form_widget(form.imageFile,{ 'id':'user-img','attr':{'class':'form-control col-md-4','placeholder':'YOUR IMAGE *'}}) }}
 
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <label>Your birthday</label>
-                                                    {{ form_widget(form.dateNaissance,{ 'id':'user-categorie','attr':{'class':'form-control col-md-4','placeholder':'YOUR CATEGORIE *'}}) }}
+                                                    {{ form_widget(form.dateNaissance,{ 'id':'user-categorie','attr':{'class':'form-control col-md-4','placeholder':'YOUR BIRTHDAY *'}}) }}
                                                 </div>
                                             </div>
                                         <div class="form-group">
                                             <div class="controls">
                                                 <label>Your degree</label>
 
-                                                {{ form_widget(form.nivEtude,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}} ) }}
+                                                {{ form_widget(form.nivEtude,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR DEGREE *'}} ) }}
                                                 <div class="alert alert-danger">
                                                     {{ form_errors(form.nivEtude) }}
                                                 </div>
@@ -151,7 +138,7 @@
                                             <div class="controls">
                                                 <label>Your type</label>
 
-                                                {{ form_widget(form.typeCandidat,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR DESCRIPTION *'}} ) }}
+                                                {{ form_widget(form.typeCandidat,{ 'label':'','attr':{'class':'form-control','placeholder':'YOUR TYPE *'}} ) }}
                                                 <div class="alert alert-danger">
                                                     {{ form_errors(form.typeCandidat) }}
                                                 </div>
