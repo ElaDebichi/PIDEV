@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@dark-theme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Edu.esprit.gui.EspaceController">
+   <children>
+      <Button fx:id="btn_admin" layoutX="233.0" layoutY="101.0" mnemonicParsing="false" onAction="#LoadAdmin" prefHeight="25.0" prefWidth="117.0" text="Espace Admin" />
+      <Button fx:id="btn_client" layoutX="234.0" layoutY="222.0" mnemonicParsing="false" onAction="#LoadClient" prefHeight="25.0" prefWidth="117.0" text="Espace Client" />
+      <Button fx:id="btn_company" layoutX="233.0" layoutY="162.0" mnemonicParsing="false" onAction="#LoadCompany" prefHeight="25.0" prefWidth="117.0" text="Espace Company" />
+   </children>
+</AnchorPane>

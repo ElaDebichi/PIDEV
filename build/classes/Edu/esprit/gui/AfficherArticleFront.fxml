@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@dark-theme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Edu.esprit.gui.AfficherArticleFrontController">
+   <children>
+      <TableView fx:id="afficher_article" layoutX="63.0" layoutY="58.0" prefHeight="330.0" prefWidth="455.0" stylesheets="@../../../../../../../Bureau/dark-theme.css">
+         <columns>
+            <TableColumn fx:id="clm_titre" prefWidth="134.0" text="Titre" />
+            <TableColumn fx:id="clm_desc" prefWidth="97.0" text="Description" />
+            <TableColumn fx:id="clm_date" prefWidth="117.0" text="Date" />
+            <TableColumn fx:id="clm_img" prefWidth="105.0" text="img" />
+         </columns>
+      </TableView>
+      <TextField fx:id="search" layoutX="90.0" layoutY="24.0" onInputMethodTextChanged="#searchTextChanged" onKeyReleased="#searchKeyRelaesed" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.esprit.gui.AjouterArticleController">
+   <children>
+      <Label layoutX="149.0" layoutY="41.0" text="Titre" />
+      <Label layoutX="115.0" layoutY="100.0" text="Description" />
+      <Label layoutX="137.0" layoutY="202.0" text="Date" />
+      <TextField fx:id="titre_txt" layoutX="191.0" layoutY="37.0" />
+      <TextArea fx:id="desc_txt" layoutX="187.0" layoutY="88.0" prefHeight="87.0" prefWidth="229.0" />
+      <DatePicker fx:id="date_pic" layoutX="189.0" layoutY="198.0" />
+      <Button fx:id="btn_ajout" layoutX="442.0" layoutY="342.0" mnemonicParsing="false" onAction="#addEvent" text="Ajouter" />
+      <Button fx:id="btn_back" layoutX="366.0" layoutY="342.0" mnemonicParsing="false" onAction="#back" text="Article list" />
+      <ImageView fx:id="imageToPost" fitHeight="132.0" fitWidth="133.0" layoutX="191.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="addImage" layoutX="111.0" layoutY="284.0" mnemonicParsing="false" onAction="#addImage" text="upload" />
+   </children>
+</AnchorPane>
