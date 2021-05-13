@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="addpost" scrollableY="true" name="addpost">
+  <component type="TextField" text="TextField" name="Text_Field">
+    <layoutConstraint insets="11.623617% -1.3227501mm auto 43.541668%" referenceComponents="-1 1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Button" text="Button" name="Button">
+    <layoutConstraint insets="26.93727% auto auto 43.29609%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Label" name="Label">
+    <layoutConstraint insets="auto auto 0.0mm 24.581005%" referenceComponents="-1 -1 0 -1" referencePositions="0.0 0.0 1.0 0.0" />
+  </component>
+</component>
