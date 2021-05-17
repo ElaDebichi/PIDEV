@@ -40,7 +40,7 @@ public class SignUpForm extends BaseForm{
         TextField nom = new TextField("", "First Name", 20, TextField.ANY);
         TextField prenom = new TextField("", "Name", 20, TextField.ANY);
          TextField email = new TextField("", "Email", 20, TextField.EMAILADDR);
-        TextField town = new TextField("", "Sexe", 20, TextField.ANY);
+        TextField town = new TextField("", "Town", 20, TextField.ANY);
         TextField fb = new TextField("", "Facebook", 20, TextField.ANY);
         TextField linkdin = new TextField("", "Linkdin", 20, TextField.ANY);
       
