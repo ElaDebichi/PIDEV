@@ -40,6 +40,7 @@ import javax.mail.internet.MimeMultipart;
  * @author hp
  */
 public class MotDePasseOubliee extends BaseForm {
+       int randomNum=ThreadLocalRandom.current().nextInt(100000,999999);
     public MotDePasseOubliee(Resources res) {
         super(new BorderLayout());
         Toolbar tb = new Toolbar(true);
@@ -60,11 +61,22 @@ public class MotDePasseOubliee extends BaseForm {
         TextField email = new TextField("", "Enter Email");
         email.setSingleLineTextArea(false);
      
+        
+           TextField code = new TextField("", "Enter code");
+        code.setSingleLineTextArea(false);
+     
        
         
-        Button signUp = new Button("Sign Up");
+       
+           Button valider = new Button("valider");
+              Button change = new Button("change");
+           
+               TextField pass = new TextField("", "Enter new password");
+             pass.setSingleLineTextArea(false);
+             pass.setVisible(true);
         Button resend = new Button("Resend");
         resend.setUIID("CenterLink");
+        
         Label alreadHaveAnAccount = new Label("Already have an account?");
         Button signIn = new Button("Sign In");
         signIn.addActionListener(e -> previous.showBack());
@@ -75,7 +87,7 @@ public class MotDePasseOubliee extends BaseForm {
             sendMail("aaa");
             //  System.out.println(in.getLibelle());
             System.out.println("sent mail !");
-            postuler.setEnabled(false);
+          
             if (postuler.isEnabled()) {
                 System.out.println("button activé ");
             } else {
@@ -83,19 +95,51 @@ public class MotDePasseOubliee extends BaseForm {
                 new ListInternship(res).showBack();
             }
         });
+          change.setEnabled(false);
+         valider.addActionListener(l -> {
+         
+         if ((int)Float.parseFloat(code.getText()) == randomNum)
+         {
+                
+        
+             pass.setVisible(true);
+            change.setEnabled(true);
+             System.out.print("yessssssssss");
+                 Dialog.show("succes", "success code", "ok",null);
+         }
+         else{
+              pass.setVisible(false);
+              change.setVisible(false);
+               change.setEnabled(false);
+                  Dialog.show("succes", "not the right code", "ok",null);
+                          System.out.print("nooo");
+
+             
+         }
+            
+        });
        
         Container content = BoxLayout.encloseY(
                 new FloatingHint(email),
                 createLineSeparator(),
                 new SpanLabel("We've sent the password  to your email. Please check your inbox", "CenterLabel"),
                 resend,
-                signUp,
+                 createLineSeparator(),
+             
                 postuler,
+                 new FloatingHint(code),
+                createLineSeparator(),
+                valider,
+                pass,
+                change,
+               
+                  
+                  
                 FlowLayout.encloseCenter(alreadHaveAnAccount, signIn)
         );
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
-        signUp.requestFocus();
+      
         
     }
      //<editor-fold defaultstate="collapsed" desc=" SendMail ">
@@ -106,7 +150,7 @@ public class MotDePasseOubliee extends BaseForm {
         String password = "203JFT1621";
         String fromEmail = "asma.besbes@esprit.tn";
     
-        String toEmail ="asma.besbes@esprit.tn";
+        String toEmail ="mariem.azouz@esprit.tn";
         System.out.println(toEmail);
 
         Properties properties = new Properties();
@@ -140,7 +184,7 @@ public class MotDePasseOubliee extends BaseForm {
             Multipart emailContent = new MimeMultipart();
 
             MimeBodyPart textBodyPart = new MimeBodyPart();
-             int randomNum=ThreadLocalRandom.current().nextInt(100000,999999);
+          
              System.out.println(randomNum);
             textBodyPart.setText("your code is : "+randomNum);
 

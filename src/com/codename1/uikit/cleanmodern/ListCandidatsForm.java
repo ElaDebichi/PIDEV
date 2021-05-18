@@ -71,8 +71,8 @@ public class ListCandidatsForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
-        addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
+        addTab(swipe, res.getImage("mobile.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
+        addTab(swipe, res.getImage("mobile.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -154,7 +154,7 @@ public class ListCandidatsForm extends BaseForm {
            
              
              
-             addButton(res.getImage("news-item-4.jpg"), p.getNom(), p.getDescription(),false,22, p.getNbr_follow());
+             addButton(res.getImage("user123.png"), p.getNom(), p.getDescription(),false,22, p.getNbr_follow());
              
             
            

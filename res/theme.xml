@@ -2,10 +2,14 @@
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
     <image name="activation-background.jpg"  />
+    <image name="bgg.png"  />
     <image name="confirmation-background.jpg"  />
     <image name="dog.jpg"  />
+    <image name="event.jpg"  />
     <image name="facebook-logo.png" type="multi"  />
+    <image name="Logo1.jpg"  />
     <image name="Logo1.png"  />
+    <image name="mobile.jpg"  />
     <image name="news-item-1.jpg"  />
     <image name="news-item-2.jpg"  />
     <image name="news-item-3.jpg"  />
@@ -330,6 +334,7 @@
     </theme>
     <image name="timeline-background.jpg"  />
     <image name="twitter-logo.png" type="multi"  />
+    <image name="user123.png"  />
     <image name="welcome-background.jpg"  />
     <image name="welcome-slide-1.png" type="multi"  />
     <image name="welcome-slide-2.png" type="multi"  />

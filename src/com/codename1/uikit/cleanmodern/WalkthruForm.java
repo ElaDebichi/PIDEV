@@ -53,8 +53,8 @@ public class WalkthruForm extends Form {
         t.getContentPane().setUIID("Container");
         add(BorderLayout.CENTER, t);
         
-        ScaleImageLabel page1 = new ScaleImageLabel(res.getImage("welcome-slide-1.png"));
-        ScaleImageLabel page2 = new ScaleImageLabel(res.getImage("welcome-slide-2.png"));
+        ScaleImageLabel page1 = new ScaleImageLabel(res.getImage("mobile.jpg"));
+        ScaleImageLabel page2 = new ScaleImageLabel(res.getImage("welcome-slide-1.png"));
         ScaleImageLabel page3 = new ScaleImageLabel(res.getImage("welcome-slide-3.png"));
         page1.setUIID("Container");
         page2.setUIID("Container");

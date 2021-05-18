@@ -27,14 +27,18 @@ import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
+import static com.codename1.ui.Image.createImage;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -42,6 +46,12 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.codename1.uikit.cleanmodern.BaseForm;
+import com.netdev.mindspace.entites.Event;
+import com.netdev.mindspace.entites.User;
+import com.netdev.mindspace.services.EventService;
+import com.netdev.mindspace.services.UserService;
+import java.util.ArrayList;
 
 /**
  * The newsfeed form
@@ -54,6 +64,7 @@ public class NewsfeedForm extends BaseForm {
         super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
+       
         getTitleArea().setUIID("Container");
         setTitle("Newsfeed");
         getContentPane().setScrollVisible(false);
@@ -65,8 +76,8 @@ public class NewsfeedForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
-        addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
+        addTab(swipe, res.getImage("mobile.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
+        addTab(swipe, res.getImage("mobile.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -109,10 +120,31 @@ public class NewsfeedForm extends BaseForm {
         ButtonGroup barGroup = new ButtonGroup();
         RadioButton all = RadioButton.createToggle("All", barGroup);
         all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Featured", barGroup);
+        RadioButton featured = RadioButton.createToggle("Events", barGroup);
         featured.setUIID("SelectBar");
-        RadioButton popular = RadioButton.createToggle("Popular", barGroup);
+        featured.addActionListener(
+        e->{
+            Form p=new ListEventForm(res);
+            p.show();
+        
+        
+        }
+        
+        
+        );
+     
+        RadioButton popular = RadioButton.createToggle("Articles", barGroup);
         popular.setUIID("SelectBar");
+            popular.addActionListener(e->{
+            Form p=new ListArticleForm(res);
+            p.show();
+        
+        
+        }
+        
+        
+        );
+    
         RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
         myFavorite.setUIID("SelectBar");
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
@@ -138,11 +170,9 @@ public class NewsfeedForm extends BaseForm {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
         
-        addButton(res.getImage("news-item-1.jpg"), "Morbi per tincidunt tellus sit of amet eros laoreet.", false, 26, 32);
-        addButton(res.getImage("news-item-2.jpg"), "Fusce ornare cursus masspretium tortor integer placera.", true, 15, 21);
-        addButton(res.getImage("news-item-3.jpg"), "Maecenas eu risus blanscelerisque massa non amcorpe.", false, 36, 15);
-        addButton(res.getImage("news-item-4.jpg"), "Pellentesque non lorem diam. Proin at ex sollicia.", false, 11, 9);
+         
     }
+    
     
     private void updateArrowPosition(Button b, Label arrow) {
         arrow.getUnselectedStyle().setMargin(LEFT, b.getX() + b.getWidth() / 2 - arrow.getWidth() / 2);
