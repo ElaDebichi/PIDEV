@@ -68,8 +68,8 @@ public class BaseForm extends Form {
         ));
         
         tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, null);
-        tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, null);
-        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP,null);
+        tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListCandidatsForm(res).show());
     }
     
 }

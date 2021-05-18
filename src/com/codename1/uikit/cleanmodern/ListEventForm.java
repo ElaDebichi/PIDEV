@@ -22,6 +22,7 @@ package com.codename1.uikit.cleanmodern;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -57,12 +58,14 @@ import java.util.ArrayList;
  *
  * @author Shai Almog
  */
-public class NewsfeedForm extends BaseForm {
+public class ListEventForm extends BaseForm {
 
-    public NewsfeedForm(Resources res) {
+    public ListEventForm(Resources res) {
         super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
+         ArrayList<Event> list = EventService.getInstance().getAllTasks();
+         System.out.println(list);
        
         getTitleArea().setUIID("Container");
         setTitle("Newsfeed");
@@ -121,20 +124,11 @@ public class NewsfeedForm extends BaseForm {
         all.setUIID("SelectBar");
         RadioButton featured = RadioButton.createToggle("Events", barGroup);
         featured.setUIID("SelectBar");
-        featured.addActionListener(
-        e->{
-            Form p=new ListEventForm(res);
-            p.show();
-        
-        
-        }
-        
-        
-        );
-     
+      
         RadioButton popular = RadioButton.createToggle("Articles", barGroup);
         popular.setUIID("SelectBar");
-            popular.addActionListener(e->{
+        popular.addActionListener(
+        e->{
             Form p=new ListArticleForm(res);
             p.show();
         
@@ -143,7 +137,7 @@ public class NewsfeedForm extends BaseForm {
         
         
         );
-    
+     
         RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
         myFavorite.setUIID("SelectBar");
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
@@ -153,11 +147,11 @@ public class NewsfeedForm extends BaseForm {
                 FlowLayout.encloseBottom(arrow)
         ));
         
-        all.setSelected(true);
+        featured.setSelected(true);
         arrow.setVisible(false);
         addShowListener(e -> {
             arrow.setVisible(true);
-            updateArrowPosition(all, arrow);
+            updateArrowPosition(featured, arrow);
         });
         bindButtonSelection(all, arrow);
         bindButtonSelection(featured, arrow);
@@ -169,6 +163,27 @@ public class NewsfeedForm extends BaseForm {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
         
+         System.out.println(list);
+         for(Event p : list){
+             String urlImage ="dog.jpg";
+             Image placeHolder = createImage(120,90);
+             EncodedImage enc = EncodedImage.createFromImage(placeHolder, false);
+             URLImage urlim = URLImage.createToStorage(enc,urlImage,urlImage,URLImage.RESIZE_SCALE);
+             //System.out.println(p.getNblikes());
+             
+             
+          addButton(urlim,p.getNom()+"\n",true,p.getId() ,1);
+             
+           
+           
+           ScaleImageLabel image = new ScaleImageLabel(urlim);
+           Container containerImg = new Container();
+           image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+         
+           
+           
+             
+         }
          
     }
     
@@ -223,12 +238,17 @@ public class NewsfeedForm extends BaseForm {
        int width = Display.getInstance().convertToPixels(14f);
        Button image = new Button(img.fill(width, height));
        image.setUIID("Label");
+       Button annuler=new Button("Cancel");
+       annuler.setUIID("btnvalid1");
+       Event p=new Event();
        Container cnt = BorderLayout.west(image);
-       cnt.setLeadComponent(image);
+       /*cnt.setLeadComponent(image);
+       
+       cnt.setLeadComponent(annuler);*/
        TextArea ta = new TextArea(title);
        ta.setUIID("NewsTopLine");
        ta.setEditable(false);
-
+       
        Label likes = new Label(likeCount + " Likes  ", "NewsBottomLine");
        likes.setTextPosition(RIGHT);
        if(!liked) {
@@ -241,15 +261,44 @@ public class NewsfeedForm extends BaseForm {
        }
        Label comments = new Label(commentCount + " Comments", "NewsBottomLine");
        FontImage.setMaterialIcon(likes, FontImage.MATERIAL_CHAT);
-       
-       
+       Button participer=new Button("Attend");
+       participer.setUIID("btnvalid");
+      
+        annuler.addActionListener(a ->
+       {//EventService.getInstance().UnattendEvent(likeCount,commentCount);
+       System.out.print("no");
+        participer.setVisible(true);
+       ToastBar.showMessage("Attendance Removed ", FontImage.MATERIAL_INFO);
+       });
+        
+         participer.addActionListener(a ->
+       {//EventService.getInstance().UnattendEvent(likeCount,commentCount);
+       System.out.print("yes");
+        participer.setVisible(false);
+        Message m = new Message("Body of message");
+        m.getAttachments().put("Attending Event ", "text/plain");
+        Display.getInstance().sendMessage(new String[] {"achrefbensaid45@gmail.com"}, "events", m);
+       ToastBar.showMessage("Attendance saved ", FontImage.MATERIAL_INFO);
+       });
+      
        cnt.add(BorderLayout.CENTER, 
                BoxLayout.encloseY(
                        ta,
-                       BoxLayout.encloseX(likes, comments)
+                       BoxLayout.encloseX(likes, comments,participer,annuler)
                ));
        add(cnt);
-       image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
+       image.addActionListener(e ->
+       {
+        
+       ToastBar.showMessage("Attendance Saved ", FontImage.MATERIAL_INFO);
+       });
+      /* image.addActionListener(e ->
+       {
+        
+       ToastBar.showMessage("Attendance Removed ", FontImage.MATERIAL_INFO);
+       });*/
+      
+        //image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
    }
     
     private void bindButtonSelection(Button b, Label arrow) {

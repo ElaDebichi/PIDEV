@@ -46,8 +46,10 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.netdev.mindspace.entites.Article;
 import com.netdev.mindspace.entites.Event;
 import com.netdev.mindspace.entites.User;
+import com.netdev.mindspace.services.ArticleService;
 import com.netdev.mindspace.services.EventService;
 import com.netdev.mindspace.services.UserService;
 import java.util.ArrayList;
@@ -57,12 +59,14 @@ import java.util.ArrayList;
  *
  * @author Shai Almog
  */
-public class NewsfeedForm extends BaseForm {
+public class ListArticleForm extends BaseForm {
 
-    public NewsfeedForm(Resources res) {
+    public ListArticleForm(Resources res) {
         super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
+         ArrayList<Article> list = ArticleService.getInstance().getAllTasks();
+         System.out.println(list);
        
         getTitleArea().setUIID("Container");
         setTitle("Newsfeed");
@@ -119,10 +123,10 @@ public class NewsfeedForm extends BaseForm {
         ButtonGroup barGroup = new ButtonGroup();
         RadioButton all = RadioButton.createToggle("All", barGroup);
         all.setUIID("SelectBar");
+        
         RadioButton featured = RadioButton.createToggle("Events", barGroup);
         featured.setUIID("SelectBar");
-        featured.addActionListener(
-        e->{
+        featured.addActionListener(e->{
             Form p=new ListEventForm(res);
             p.show();
         
@@ -134,16 +138,9 @@ public class NewsfeedForm extends BaseForm {
      
         RadioButton popular = RadioButton.createToggle("Articles", barGroup);
         popular.setUIID("SelectBar");
-            popular.addActionListener(e->{
-            Form p=new ListArticleForm(res);
-            p.show();
         
         
-        }
-        
-        
-        );
-    
+     
         RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
         myFavorite.setUIID("SelectBar");
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
@@ -153,11 +150,11 @@ public class NewsfeedForm extends BaseForm {
                 FlowLayout.encloseBottom(arrow)
         ));
         
-        all.setSelected(true);
+        popular.setSelected(true);
         arrow.setVisible(false);
         addShowListener(e -> {
             arrow.setVisible(true);
-            updateArrowPosition(all, arrow);
+            updateArrowPosition(popular, arrow);
         });
         bindButtonSelection(all, arrow);
         bindButtonSelection(featured, arrow);
@@ -169,6 +166,26 @@ public class NewsfeedForm extends BaseForm {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
         
+         System.out.println(list);
+         for(Article p : list){
+             String urlImage ="dog.jpg";
+             Image placeHolder = createImage(120,90);
+             EncodedImage enc = EncodedImage.createFromImage(placeHolder, false);
+             URLImage urlim = URLImage.createToStorage(enc,urlImage,urlImage,URLImage.RESIZE_SCALE);
+             //System.out.println(p.getNblikes());
+             
+             
+          addButton(urlim,p.getDescription(),true,p.getId() ,0);
+             
+           
+           
+           ScaleImageLabel image = new ScaleImageLabel(urlim);
+           Container containerImg = new Container();
+           image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+           
+           
+             
+         }
          
     }
     
@@ -249,7 +266,13 @@ public class NewsfeedForm extends BaseForm {
                        BoxLayout.encloseX(likes, comments)
                ));
        add(cnt);
-       image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
+       Resources res = null;
+       image.addActionListener(e->{
+            Form p=new ShowArticleForm(res,likeCount);
+            p.show();
+        
+        
+        });
    }
     
     private void bindButtonSelection(Button b, Label arrow) {

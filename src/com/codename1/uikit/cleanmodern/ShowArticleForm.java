@@ -39,6 +39,8 @@ import com.codename1.ui.Tabs;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -46,43 +48,32 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.netdev.mindspace.entites.Article;
 import com.netdev.mindspace.entites.Event;
 import com.netdev.mindspace.entites.User;
+import com.netdev.mindspace.services.ArticleService;
 import com.netdev.mindspace.services.EventService;
 import com.netdev.mindspace.services.UserService;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * The newsfeed form
  *
  * @author Shai Almog
  */
-public class NewsfeedForm extends BaseForm {
-
-    public NewsfeedForm(Resources res) {
-        super("Newsfeed", BoxLayout.y());
-        Toolbar tb = new Toolbar(true);
+public class ShowArticleForm extends BaseForm {
+    
+    public ShowArticleForm(Resources res,int id) {
+      super("Newsfeed", BoxLayout.y());
+       /*Toolbar tb = new Toolbar(true);
         setToolbar(tb);
-       
-        getTitleArea().setUIID("Container");
+        
+         getTitleArea().setUIID("Container");
         setTitle("Newsfeed");
         getContentPane().setScrollVisible(false);
-        
-        super.addSideMenu(res);
-        tb.addSearchCommand(e -> {});
-        
-        Tabs swipe = new Tabs();
-
-        Label spacer1 = new Label();
-        Label spacer2 = new Label();
-        addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
-        addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
-                
-        swipe.setUIID("Container");
-        swipe.getContentPane().setUIID("Container");
-        swipe.hideTabs();
-        
-        ButtonGroup bg = new ButtonGroup();
+    
+       ButtonGroup bg = new ButtonGroup();
         int size = Display.getInstance().convertToPixels(1);
         Image unselectedWalkthru = Image.createImage(size, size, 0);
         Graphics g = unselectedWalkthru.getGraphics();
@@ -95,80 +86,56 @@ public class NewsfeedForm extends BaseForm {
         g.setColor(0xffffff);
         g.setAntiAliased(true);
         g.fillArc(0, 0, size, size, 0, 360);
-        RadioButton[] rbs = new RadioButton[swipe.getTabCount()];
+       
         FlowLayout flow = new FlowLayout(CENTER);
         flow.setValign(BOTTOM);
         Container radioContainer = new Container(flow);
-        for(int iter = 0 ; iter < rbs.length ; iter++) {
-            rbs[iter] = RadioButton.createToggle(unselectedWalkthru, bg);
-            rbs[iter].setPressedIcon(selectedWalkthru);
-            rbs[iter].setUIID("Label");
-            radioContainer.add(rbs[iter]);
-        }
-                
-        rbs[0].setSelected(true);
-        swipe.addSelectionListener((i, ii) -> {
-            if(!rbs[ii].isSelected()) {
-                rbs[ii].setSelected(true);
-            }
-        });
-        
-        Component.setSameSize(radioContainer, spacer1, spacer2);
-        add(LayeredLayout.encloseIn(swipe, radioContainer));
-        
+          super.addSideMenu(res);*/
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton all = RadioButton.createToggle("All", barGroup);
-        all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Events", barGroup);
-        featured.setUIID("SelectBar");
-        featured.addActionListener(
-        e->{
-            Form p=new ListEventForm(res);
-            p.show();
         
-        
-        }
-        
-        
-        );
      
-        RadioButton popular = RadioButton.createToggle("Articles", barGroup);
-        popular.setUIID("SelectBar");
-            popular.addActionListener(e->{
+        RadioButton featured = RadioButton.createToggle("Back", barGroup);
+        featured.setUIID("SelectBar");
+        featured.addActionListener(e->{
             Form p=new ListArticleForm(res);
             p.show();
         
-        
         }
         
         
         );
-    
-        RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
-        myFavorite.setUIID("SelectBar");
-        Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
-        
         add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(4, all, featured, popular, myFavorite),
-                FlowLayout.encloseBottom(arrow)
+                GridLayout.encloseIn(1,featured)
         ));
+
         
-        all.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(all, arrow);
-        });
-        bindButtonSelection(all, arrow);
-        bindButtonSelection(featured, arrow);
-        bindButtonSelection(popular, arrow);
-        bindButtonSelection(myFavorite, arrow);
+       
+       
         
-        // special case for rotation
-        addOrientationListener(e -> {
-            updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
-        });
+       
+         ArrayList<Article> list = ArticleService.getInstance().ShowArticle(id);
+         Iterator iter = list.iterator();
+
+          Article first = (Article) iter.next();
         
+             String urlImage ="dog.jpg";
+             Image placeHolder = createImage(120,90);
+             EncodedImage enc = EncodedImage.createFromImage(placeHolder, false);
+             URLImage urlim = URLImage.createToStorage(enc,urlImage,urlImage,URLImage.RESIZE_SCALE);
+             //System.out.println(p.getNblikes());
+             
+             
+          addButton(urlim,first.getDescription(),true,first.getDate(),first.getTitre(),0 ,0);
+             
+           
+           
+           ScaleImageLabel image = new ScaleImageLabel(urlim);
+           Container containerImg = new Container();
+           image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+           
+           
+             
+         
          
     }
     
@@ -216,15 +183,17 @@ public class NewsfeedForm extends BaseForm {
             );
 
         swipe.addTab("", page1);
-    }
+    } 
     
-   private void addButton(Image img, String title, boolean liked, int likeCount, int commentCount) {
+   private void addButton(Image img, String title, boolean liked, String date, String titre,int likeCount, int commentCount) {
        int height = Display.getInstance().convertToPixels(11.5f);
        int width = Display.getInstance().convertToPixels(14f);
        Button image = new Button(img.fill(width, height));
        image.setUIID("Label");
        Container cnt = BorderLayout.west(image);
        cnt.setLeadComponent(image);
+        TextArea d = new TextArea(date);
+        TextArea t = new TextArea(titre);
        TextArea ta = new TextArea(title);
        ta.setUIID("NewsTopLine");
        ta.setEditable(false);
@@ -244,7 +213,7 @@ public class NewsfeedForm extends BaseForm {
        
        
        cnt.add(BorderLayout.CENTER, 
-               BoxLayout.encloseY(
+               BoxLayout.encloseY(t,d,
                        ta,
                        BoxLayout.encloseX(likes, comments)
                ));
