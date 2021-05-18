@@ -21,8 +21,10 @@ package com.codename1.uikit.cleanmodern;
 
 import com.codename1.components.FloatingHint;
 import com.codename1.components.SpanLabel;
+import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -32,6 +34,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Account activation UI
@@ -56,9 +59,13 @@ public class ActivateForm extends BaseForm {
                         new Label("Awsome Thanks!", "LogoLabel")
                 )
         );
-        
-        TextField code = new TextField("", "Enter Code", 20, TextField.PASSWORD);
+        int randomNum=ThreadLocalRandom.current().nextInt(100000,999999);
+        Message m = new Message("Code : "+randomNum); 
+        Display.getInstance().sendMessage(new String[] {"mariem.azouz@esprit.tn"}, "Confirmation code", m);
+        TextField code = new TextField("", "Enter Code");
         code.setSingleLineTextArea(false);
+     
+       
         
         Button signUp = new Button("Sign Up");
         Button resend = new Button("Resend");
@@ -67,6 +74,7 @@ public class ActivateForm extends BaseForm {
         Button signIn = new Button("Sign In");
         signIn.addActionListener(e -> previous.showBack());
         signIn.setUIID("CenterLink");
+         ;
         
         Container content = BoxLayout.encloseY(
                 new FloatingHint(code),
@@ -79,7 +87,15 @@ public class ActivateForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signUp.requestFocus();
-        signUp.addActionListener(e -> new NewsfeedForm(res).show());
+        signUp.addActionListener(e -> {
+            if((int)Float.parseFloat(code.getText()) == randomNum){
+            Dialog.show("succes", "maintenant vous etes Inscri", "ok",null);
+            new NewsfeedForm(res).show();
+            }
+            else {
+                 Dialog.show("Erreur", "code incorrect", "ok",null);
+            }
+                });
     }
     
 }

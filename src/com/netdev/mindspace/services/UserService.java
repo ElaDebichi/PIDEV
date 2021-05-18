@@ -169,6 +169,15 @@ public class UserService {
                 NetworkManager.getInstance().addToQueueAndWait(req);
         return u;
     }
+     public void update(int id, String nom, String prenom, String email) {
+        String url = Statics.BASE_URL + "/candidat/mobile/UpdateUserMobile/" + id + "/" + nom + "/" + prenom + "/" + email ;
+        System.out.print(url);
+        ConnectionRequest req = new ConnectionRequest();
+        req.setUrl(url);
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+    }
      public void editUser(TextField id,TextField nom ,TextField prenom ,TextField email ,TextField town ,TextField fb,TextField linkdin,TextField password ,
             TextField telephone ,TextField img,TextField level,TextField type_candidat,TextField description, Resources res)
     {
@@ -272,7 +281,41 @@ public class UserService {
         }
         return null;
     }
-    
+    public User getUser1(int id) {
+      ArrayList<User>  l = getAllUsers();
+        int i;
+        for (i = 0; i < l.size(); i++) {
+            if (l.get(i).getId()== id) {
+                return l.get(i);
+            }
+        }
+        return null;
+    }
+    String json;
+    public String getPasswordByEmail(String email,Resources res){
+        
+         String url = Statics.BASE_URL+"/candidat/membre/getPasswordByEmail?address="+email;
+        req = new ConnectionRequest(url , false);
+        req.setUrl(url);
+         req.addResponseListener((e)->{
+             
+             JSONParser j = new JSONParser();
+         json = new String(req.getResponseData())+"";
+        
+         try {
+             System.out.println("data =="+json);
+            Map<String,Object> password =j.parseJSON(new CharArrayReader(json.toCharArray()));
+            
+            
+         }catch(Exception ex){
+            ex.printStackTrace();
+        }
+             
+         });
+         
+          NetworkManager.getInstance().addToQueueAndWait(req);
+          return json;
+         }
      
     
 }

@@ -5,12 +5,17 @@
  */
 package com.codename1.uikit.cleanmodern;
 
+import com.codename1.capture.Capture;
 import com.codename1.components.FloatingHint;
+import com.codename1.components.ImageViewer;
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Log;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
@@ -18,14 +23,21 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.spinner.Picker;
+import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
 import com.netdev.mindspace.services.UserService;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  *
  * @author hp
  */
 public class SignUpForm extends BaseForm{
+    String avatar;
+    ImageViewer img_viewer;
      public SignUpForm(Resources res) {
         super(new BorderLayout());
         Toolbar tb = new Toolbar(true);
@@ -68,8 +80,13 @@ public class SignUpForm extends BaseForm{
           level.setSingleLineTextArea(false);
            type_candidat.setSingleLineTextArea(false);
             description.setSingleLineTextArea(false);
+            Button btn_take_photo= new Button("Prendre une photo");
+            
+         
+       
         Button next = new Button("Next");
         Button signIn = new Button("Sign In");
+      //  Button img1 = new Button ("choose an image");
         signIn.addActionListener(e -> previous.showBack());
         signIn.setUIID("Link");
         Label alreadHaveAnAccount = new Label("Already have an account?");
@@ -105,21 +122,118 @@ public class SignUpForm extends BaseForm{
                 new FloatingHint(description),
                 createLineSeparator()
                 
+                
         );
         content.setScrollableY(true);
         add(BorderLayout.CENTER, content);
         add(BorderLayout.SOUTH, BoxLayout.encloseY(
                 next,
+                btn_take_photo,
                 FlowLayout.encloseCenter(alreadHaveAnAccount, signIn)
         ));
         next.requestFocus();
         next.addActionListener((e)-> {
             UserService.getInstance().signup(nom, prenom, email, town, fb, linkdin, password, telephone,img,level,type_candidat,description, res);
-            Dialog.show("succes", "maintenant vous etes Inscri", "ok",null);
-            new NewsfeedForm(res).show();
+          
+            new ActivateForm(res).show();
+        });
+        
+        btn_take_photo.addActionListener(e->{
+            
+            this.avatar = Capture.capturePhoto();
+
+            if(this.avatar!=null)
+            {
+                Image img1= null;
+                try {
+                    img1 = Image.createImage(FileSystemStorage.getInstance().openInputStream(this.avatar)).scaled(400,440);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
+                img_viewer.setImage(img1);
+                img_viewer.getComponentForm().revalidate();
+
+            }
         });
         
     }
+     
+     protected String saveFileToDevice(String hi, String ext) throws IOException, URISyntaxException {
+        URI uri;
+        try {
+            uri = new URI(hi);
+            String path = uri.getPath();
+            int index = hi.lastIndexOf("/");
+            hi = hi.substring(index + 1);
+            return hi;
+        } catch (URISyntaxException ex) {
+        }
+        return "hh";
+    }
+//        img1.addActionListener((ActionEvent e) -> {
+//            if (FileChooser.isAvailable()) {
+//                FileChooser.setOpenFilesInPlace(true);
+//                FileChooser.showOpenDialog(multiSelect.isSelected(), ".jpg, .jpeg, .png/plain", (ActionEvent e2) -> {
+//                    if (e2 == null || e2.getSource() == null) {
+//                        add("No file was selected");
+//                        revalidate();
+//                        return;
+//                    }
+//                    if (multiSelect.isSelected()) {
+//                        String[] paths = (String[]) e2.getSource();
+//                        for (String path : paths) {
+//                            System.out.println(path);
+//                            CN.execute(path);
+//                        }
+//                        return;
+//                    }
+//
+//                    String file = (String) e2.getSource();
+//                    if (file == null) {
+//                        add("No file was selected");
+//                        revalidate();
+//                    } else {
+//                        Image logo;
+//
+//                        try {
+//                            logo = Image.createImage(file).scaledHeight(500);;
+//                            add(logo);
+//                            String imageFile = FileSystemStorage.getInstance().getAppHomePath() + "photo.png";
+//
+//                            try (OutputStream os = FileSystemStorage.getInstance().openOutputStream(imageFile)) {
+//                                System.out.println(imageFile);
+//                                ImageIO.getImageIO().save(logo, os, ImageIO.FORMAT_PNG, 1);
+//                            } catch (IOException err) {
+//                            }
+//                        } catch (IOException ex) {
+//                        }
+//
+//                        String extension = null;
+//                        if (file.lastIndexOf(".") > 0) {
+//                            extension = file.substring(file.lastIndexOf(".") + 1);
+//                            StringBuilder hi = new StringBuilder(file);
+//                            if (file.startsWith("file://")) {
+//                                hi.delete(0, 7);
+//                            }
+//                            int lastIndexPeriod = hi.toString().lastIndexOf(".");
+//                            Log.p(hi.toString());
+//                            String ext = hi.toString().substring(lastIndexPeriod);
+//                            String hmore = hi.toString().substring(0, lastIndexPeriod - 1);
+//                            try {
+//                                String namePic = saveFileToDevice(file, ext);
+//                                System.out.println(namePic);
+//                            } catch (IOException ex) {
+//                            }
+//
+//                            revalidate();
+//
+//                        
+//                    }
+//                    }
+//                        });
+//            }
+//                });
     
     
 }

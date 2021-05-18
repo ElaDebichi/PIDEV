@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.codename1.uikit.cleanmodern;
 
-import com.codename1.components.InfiniteProgress;
+import static com.codename1.charts.util.ColorUtil.BLACK;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
-import com.codename1.components.ToastBar;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
-import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.BOTTOM;
 import static com.codename1.ui.Component.CENTER;
@@ -22,20 +15,18 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
-import static com.codename1.ui.Image.createImage;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
 import com.codename1.ui.TextArea;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -43,41 +34,41 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.netdev.mindspace.entites.User;
-import com.netdev.mindspace.services.UserService;
 
 import java.util.ArrayList;
-import java.util.Date;
+import com.netdev.mindspace.entites.Internship;
+import com.netdev.mindspace.entites.Job;
+import com.netdev.mindspace.services.InternshipService;
+import com.netdev.mindspace.services.JobService;
 
+public class ListJob extends BaseForm {
 
-/**
- *
- * @author hp
- */
-public class ListCandidatsForm extends BaseForm {
     Form current;
-    public ListCandidatsForm(Resources res) {
-               super("Newsfeed", BoxLayout.y());
+
+    public ListJob(Resources res) {
+        super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
+        current = this; 
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Newsfeed");
+        setTitle("Jobs");
         getContentPane().setScrollVisible(false);
-        
-        super.addSideMenu(res);
-        tb.addSearchCommand(e -> {});
-        
+
+       super.addSideMenu(res);
+        tb.addSearchCommand(e -> {
+        });
+
         Tabs swipe = new Tabs();
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
         addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
         addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
-                
+
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
         swipe.hideTabs();
-        
+
         ButtonGroup bg = new ButtonGroup();
         int size = Display.getInstance().convertToPixels(1);
         Image unselectedWalkthru = Image.createImage(size, size, 0);
@@ -95,87 +86,64 @@ public class ListCandidatsForm extends BaseForm {
         FlowLayout flow = new FlowLayout(CENTER);
         flow.setValign(BOTTOM);
         Container radioContainer = new Container(flow);
-        for(int iter = 0 ; iter < rbs.length ; iter++) {
+        for (int iter = 0; iter < rbs.length; iter++) {
             rbs[iter] = RadioButton.createToggle(unselectedWalkthru, bg);
             rbs[iter].setPressedIcon(selectedWalkthru);
             rbs[iter].setUIID("Label");
             radioContainer.add(rbs[iter]);
         }
-                
-        rbs[0].setSelected(true);
+
+//        rbs[0].setSelected(true);
         swipe.addSelectionListener((i, ii) -> {
-            if(!rbs[ii].isSelected()) {
+            if (!rbs[ii].isSelected()) {
                 rbs[ii].setSelected(true);
             }
         });
-        
+
         Component.setSameSize(radioContainer, spacer1, spacer2);
         add(LayeredLayout.encloseIn(swipe, radioContainer));
-        
+
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton all = RadioButton.createToggle("All", barGroup);
-        all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Featured", barGroup);
-        featured.setUIID("SelectBar");
-        RadioButton popular = RadioButton.createToggle("Popular", barGroup);
-        popular.setUIID("SelectBar");
-        RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
-        myFavorite.setUIID("SelectBar");
+      
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
+
+       
         
-        add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(4, all, featured, popular, myFavorite),
-                FlowLayout.encloseBottom(arrow)
-        ));
-        
-        all.setSelected(true);
-        arrow.setVisible(false);
-        addShowListener(e -> {
-            arrow.setVisible(true);
-            updateArrowPosition(all, arrow);
-        });
-        bindButtonSelection(all, arrow);
-        bindButtonSelection(featured, arrow);
-        bindButtonSelection(popular, arrow);
-        bindButtonSelection(myFavorite, arrow);
-        
+
         // special case for rotation
         addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
-      
-          ArrayList<User> list = UserService.getInstance().getAllUsers();
-         //System.out.println(list);
-         for(User p : list){
-             String urlImage = p.getNom();
-             Image placeHolder = createImage(120,90);
-             EncodedImage enc = EncodedImage.createFromImage(placeHolder, false);
-             URLImage urlim = URLImage.createToStorage(enc,urlImage,urlImage,URLImage.RESIZE_SCALE);
-           
-             
-             
-             addButton(res.getImage("news-item-4.jpg"), p.getNom(), p.getDescription(),false,22, p.getNbr_follow());
-             
+
+//        SpanLabel sp = new SpanLabel();
+//        sp.setText(JobService.getInstance().getAllTasks().toString());
+//        add(sp);
+        ArrayList<Job> list = JobService.getInstance().getAllTasks();
+        for (Job j : list) {
+            String urlImage = "back-logo.jpeg";
+            Image placeHolder = Image.createImage(120, 90);
+            EncodedImage enc = EncodedImage.createFromImage(placeHolder, false);
+            URLImage urlim = URLImage.createToStorage(enc, urlImage, urlImage, URLImage.RESIZE_SCALE);
             
-           
-           
-           ScaleImageLabel image = new ScaleImageLabel(urlim);
-           Container containerImg = new Container();
-           image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-           
-           
-             
-         }
+            addButton(urlim, j.getLibelle(), j.getDescription(), j);
+
+            Button readMore = new Button("Read more .. ");
+            readMore.setUIID("Link");
+            readMore.setAlignment(3);
+            readMore.getAllStyles().setFgColor(0x000000);
+            readMore.addActionListener((l) -> {
+                new ShowJob(res,j).show();
+            });
+            add(readMore);
+            
+            ScaleImageLabel image = new ScaleImageLabel(urlim);
+            Container containerImg = new Container();
+            image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+            add(createLineSeparator(0xeeeeee));
+        }
+
     }
-    
-    private void updateArrowPosition(Button b, Label arrow) {
-        arrow.getUnselectedStyle().setMargin(LEFT, b.getX() + b.getWidth() / 2 - arrow.getWidth() / 2);
-        arrow.getParent().repaint();
-        
-        
-    }
-    
-    private void addTab(Tabs swipe, Image img, Label spacer, String likesStr, String commentsStr, String text) {
+     private void addTab(Tabs swipe, Image img, Label spacer, String likesStr, String commentsStr, String text) {
         int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
         if(img.getHeight() < size) {
             img = img.scaledHeight(size);
@@ -212,57 +180,49 @@ public class ListCandidatsForm extends BaseForm {
 
         swipe.addTab("", page1);
     }
-    
-   private void addButton(Image img, String title,String description, boolean liked, int likeCount, int commentCount) {
-       int height = Display.getInstance().convertToPixels(11.5f);
-       int width = Display.getInstance().convertToPixels(14f);
-       Button image = new Button(img.fill(width, height));
-       image.setUIID("Label");
-       Container cnt = BorderLayout.west(image);
-       
-       
-       cnt.setLeadComponent(image);
-       Label ta = new Label(title);
-       ta.setUIID("container");
-      // ta.setEditable(false);
-       
-        TextArea ta1 = new TextArea(description);
-       ta1.setUIID("NewsTopLine");
-       ta1.setEditable(false);
 
-       Label likes = new Label(likeCount + " Likes  ", "NewsBottomLine");
-       likes.setTextPosition(RIGHT);
-       if(!liked) {
-           FontImage.setMaterialIcon(likes, FontImage.MATERIAL_FAVORITE);
-       } else {
-           Style s = new Style(likes.getUnselectedStyle());
-           s.setFgColor(0xff2d55);
-           FontImage heartImage = FontImage.createMaterial(FontImage.MATERIAL_FAVORITE, s);
-           likes.setIcon(heartImage);
-       }
-       Label comments = new Label(commentCount + " Followers", "NewsBottomLine");
-       FontImage.setMaterialIcon(likes, FontImage.MATERIAL_CHAT);
-       
-       
-       cnt.add(BorderLayout.CENTER, 
-               BoxLayout.encloseY(
-                       ta,
-                       ta1,
-                       BoxLayout.encloseX(likes, comments)
-               ));
-       add(cnt);
-       image.addActionListener(e -> {ToastBar.showMessage(title, FontImage.MATERIAL_INFO);
-      
-       
-               
-               });
-   }
-    
+    private void updateArrowPosition(Button b, Label arrow) {
+        arrow.getUnselectedStyle().setMargin(LEFT, b.getX() + b.getWidth() / 2 - arrow.getWidth() / 2);
+        arrow.getParent().repaint();
+    }
+
     private void bindButtonSelection(Button b, Label arrow) {
         b.addActionListener(e -> {
-            if(b.isSelected()) {
+            if (b.isSelected()) {
                 updateArrowPosition(b, arrow);
             }
         });
     }
+
+    private void addButton(Image img, String libelle, String description, Job j) {
+
+        int height = Display.getInstance().convertToPixels(11.5f);
+        int width = Display.getInstance().convertToPixels(14f);
+
+        Button image = new Button(img.fill(width, height));
+        image.setUIID("Label");
+        Container cnt = BorderLayout.west(image);
+        
+        //TextArea ta = new TextArea(libelle);
+        Label lLibelle = new Label(libelle);
+        //ta.setUIID("NewsTopLine");
+        lLibelle.setUIID("container");
+        TextArea lDescription = new TextArea(description);
+        lDescription.setFocusable(false);
+        lDescription.setEditable(false);
+        lDescription.setUIID("NewsTopLine");
+
+        cnt.add(BorderLayout.CENTER, BoxLayout.encloseY(lLibelle, lDescription));
+        add(cnt);
+
+    }
+
+    public Component createLineSeparator(int color) {
+        Label separator = new Label("", "WhiteSeparator");
+        separator.getUnselectedStyle().setBgColor(color);
+        separator.getUnselectedStyle().setBgTransparency(255);
+        separator.setShowEvenIfBlank(true);
+        return separator;
+    }
+
 }

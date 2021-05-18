@@ -95,7 +95,7 @@ public class SignInForm extends BaseForm{
             
         });
         mp.addActionListener((e) -> {
-            new ActivateForm(res).show();
+            new MotDePasseOubliee(res).show();
         });
     }
     

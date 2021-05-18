@@ -23,7 +23,7 @@ import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
-import static com.codename1.ui.Component.BOTTOM;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -36,7 +36,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.netdev.mindspace.entites.User;
+import com.codename1.uikit.cleanmodern.BaseForm;
 import com.netdev.mindspace.services.UserService;
 import com.netdev.mindspace.utils.Session;
 
@@ -45,21 +45,21 @@ import com.netdev.mindspace.utils.Session;
  *
  * @author Shai Almog
  */
-public class ProfileForm extends BaseForm {
+public class EditProfileForm extends BaseForm {
 
-    public ProfileForm(Resources res) {
+    public EditProfileForm(Resources res) {
         super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
         setTitle("Profile");
         getContentPane().setScrollVisible(false);
-        
+
         super.addSideMenu(res);
-        
+
         tb.addSearchCommand(e -> {});
-        
-        
+
+
         Image img = res.getImage("profile-background.jpg");
         if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
@@ -68,11 +68,11 @@ public class ProfileForm extends BaseForm {
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
 
-        Button facebook = new Button("Edit Profile", res.getImage("facebook-logo.png"), "BottomPad");
+        Label facebook = new Label("786 followers", res.getImage("facebook-logo.png"), "BottomPad");
         Label twitter = new Label("486 followers", res.getImage("twitter-logo.png"), "BottomPad");
         facebook.setTextPosition(BOTTOM);
         twitter.setTextPosition(BOTTOM);
-        
+
         add(LayeredLayout.encloseIn(
                 sl,
                 BorderLayout.south(
@@ -85,34 +85,37 @@ public class ProfileForm extends BaseForm {
                 )
         ));
 
-        Label nom = new Label(Session.getSession().getSessionUser().getNom());
-        nom.setUIID("TextFieldBlack");
-        addStringValue("Nom", nom);
-        
-        Label prenom = new Label(Session.getSession().getSessionUser().getPrenom());
+        TextField username = new TextField(Session.getSession().getSessionUser().getNom());
+        username.setUIID("TextFieldBlack");
+        addStringValue("First name", username);
+         TextField prenom = new TextField(Session.getSession().getSessionUser().getPrenom());
         prenom.setUIID("TextFieldBlack");
-        addStringValue("prenom", prenom);
-        
-        Label email = new Label(Session.getSession().getSessionUser().getAddress());
+        addStringValue("name", prenom);
+
+        TextField email = new TextField(Session.getSession().getSessionUser().getAddress(), "E-Mail", 20, TextField.EMAILADDR);
         email.setUIID("TextFieldBlack");
-        addStringValue("address", email);
+        addStringValue("E-Mail", email);
+
+        TextField password = new TextField("sandeep", "Password", 20, TextField.PASSWORD);
+        password.setUIID("TextFieldBlack");
+        addStringValue("Password", password);
         
         
-        Label town = new Label(Session.getSession().getSessionUser().getTown());
-        town.setUIID("TextFieldBlack");
-        addStringValue("town", town);
-         Label fb  = new Label(Session.getSession().getSessionUser().getFb());
-        fb.setUIID("TextFieldBlack");
-        addStringValue("facebook", fb);
-         Label linkdin  = new Label(Session.getSession().getSessionUser().getLinkdin());
-        linkdin.setUIID("TextFieldBlack");
-        addStringValue("linkedin", linkdin);
-         Label description  = new Label(Session.getSession().getSessionUser().getDescription());
-        description.setUIID("TextFieldBlack");
-        addStringValue("description", description);
+      
         
+
+       Button next = new Button("Next");
+        addStringValue("", next);
+        next.requestFocus();
+        next.addActionListener((e)-> {
+           UserService.getInstance().update(Session.getSession().getSessionUser().getId(), username.getText(), prenom.getText(),  email.getText());
+            Session.getSession().SetSessionUser(UserService.getInstance().getUser1(Session.getSession().getSessionUser().getId()));
+            Dialog.show("succes", "edit sucess", "ok",null);
+            new NewsfeedForm(res).show();
+        });
         
-        facebook.addActionListener(e -> new EditProfileForm(res).show());
+
+        
     }
     
     private void addStringValue(String s, Component v) {
