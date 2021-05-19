@@ -82,9 +82,9 @@ public class MotDePasseOubliee extends BaseForm {
         signIn.addActionListener(e -> previous.showBack());
         signIn.setUIID("CenterLink");
          ;
-         Button postuler = new Button("Apply");
+         Button postuler = new Button("Send");
         postuler.addActionListener(l -> {
-            sendMail("aaa");
+            sendMail(email.getText());
             //  System.out.println(in.getLibelle());
             System.out.println("sent mail !");
           
@@ -106,12 +106,18 @@ public class MotDePasseOubliee extends BaseForm {
             change.setEnabled(true);
              System.out.print("yessssssssss");
                  Dialog.show("succes", "success code", "ok",null);
+                 change.addActionListener(e -> {
+                     User u = UserService.getInstance().getUser(email.getText());
+                      UserService.getInstance().updatePassword(u.getId(),pass.getText());
+            Dialog.show("succes", "password changed successfuly", "ok",null);
+                 });
+                 
          }
          else{
               pass.setVisible(false);
               change.setVisible(false);
                change.setEnabled(false);
-                  Dialog.show("succes", "not the right code", "ok",null);
+                  Dialog.show("failed", "not the right code", "ok",null);
                           System.out.print("nooo");
 
              
@@ -150,7 +156,7 @@ public class MotDePasseOubliee extends BaseForm {
         String password = "203JFT1621";
         String fromEmail = "asma.besbes@esprit.tn";
     
-        String toEmail ="mariem.azouz@esprit.tn";
+        String toEmail =address;
         System.out.println(toEmail);
 
         Properties properties = new Properties();

@@ -178,6 +178,16 @@ public class UserService {
         NetworkManager.getInstance().addToQueueAndWait(req);
 
     }
+     
+      public void updatePassword(int id, String password) {
+        String url = Statics.BASE_URL + "/candidat/mobile/UpdatePasswordMobile/" + id + "/" + password ;
+        System.out.print(url);
+        ConnectionRequest req = new ConnectionRequest();
+        req.setUrl(url);
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+    }
      public void editUser(TextField id,TextField nom ,TextField prenom ,TextField email ,TextField town ,TextField fb,TextField linkdin,TextField password ,
             TextField telephone ,TextField img,TextField level,TextField type_candidat,TextField description, Resources res)
     {

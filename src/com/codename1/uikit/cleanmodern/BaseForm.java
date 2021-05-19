@@ -68,11 +68,13 @@ public class BaseForm extends Form {
         ));
         
         tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE,  e -> new ListArticleForm(res).show());
-         tb.addMaterialCommandToSideMenu("Events", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListEventForm(res).show());
+         tb.addMaterialCommandToSideMenu("Events", FontImage.MATERIAL_CALENDAR_TODAY, e -> new ListEventForm(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Candidats", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListCandidatsForm(res).show());
-        tb.addMaterialCommandToSideMenu("Job Offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListJob(res).show());
-         tb.addMaterialCommandToSideMenu("Internship Offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListInternship(res).show());
+        tb.addMaterialCommandToSideMenu("Candidats", FontImage.MATERIAL_PERSON, e -> new ListCandidatsForm(res).show());
+        tb.addMaterialCommandToSideMenu("Job Offers", FontImage.MATERIAL_WORK, e -> new ListJob(res).show());
+         tb.addMaterialCommandToSideMenu("Internship Offers", FontImage.MATERIAL_SCHOOL, e -> new ListInternship(res).show());
+           tb.addMaterialCommandToSideMenu("Posts", FontImage.MATERIAL_POST_ADD, e -> new ListPostsForm(res).show());
+           tb.addMaterialCommandToSideMenu("Formations", FontImage.MATERIAL_BOOK, e -> new ListFormation(res).show());
           tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new SignInForm(res).show());
          
     }

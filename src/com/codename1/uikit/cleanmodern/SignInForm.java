@@ -45,7 +45,7 @@ public class SignInForm extends BaseForm{
         password.setSingleLineTextArea(false);
         Button signIn = new Button("Sign In");
         Button signUp = new Button("Sign Up");
-        Button mp = new Button("mot de passe oublier","centerLabel1");
+        Button mp = new Button("Forgot password ?","centerLabel1");
         signUp.addActionListener(e -> new SignUpForm(res).show());
         signUp.setUIID("Link");
         Label doneHaveAnAccount = new Label("Don't have an account?");

@@ -126,7 +126,7 @@ public class ListFormation extends BaseForm {
 //        SpanLabel sp = new SpanLabel();
 //        sp.setText(JobService.getInstance().getAllTasks().toString());
 //        add(sp);
-        ArrayList<Formation> list = Formationservice.getInstance().getAllChallenges();
+        ArrayList<Formation> list = Formationservice.getInstance().getAllFormations();
         for (Formation j : list) {
             String urlImage = "back-logo.jpeg";
             Image placeHolder = Image.createImage(120, 90);
@@ -139,9 +139,10 @@ public class ListFormation extends BaseForm {
             readMore.setUIID("Link");
             readMore.setAlignment(3);
             readMore.getAllStyles().setFgColor(0x000000);
-//            readMore.addActionListener((l) -> {
-//                new ShowFormation(res,j).show();  
-//            });
+             addButton(res.getImage("formation.jpg"),j.getNomformation(),j.getSujetdeformation()+"\n",j );
+            readMore.addActionListener((l) -> {
+                new ShowFormation(res,j).show();  
+            });
             add(readMore);
             
             ScaleImageLabel image = new ScaleImageLabel(urlim);
